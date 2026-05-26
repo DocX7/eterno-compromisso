@@ -14,10 +14,12 @@
         .text-gold { color: #8B7355; }
         .border-gold { border-color: #A68D6D; }
         
-        button, a, .nav-btn { 
+        /* Garantia absoluta de clique e toque no mobile */
+        button, .nav-btn { 
             min-height: 48px; 
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            cursor: pointer !important;
         }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #fcfbfa; }
@@ -68,7 +70,7 @@
                 <span class="text-xs text-neutral-400 font-medium tracking-wide uppercase" id="devocional-data-topo">Carregando data...</span>
             </div>
             <div id="devocional-card-container" class="space-y-4">
-                <div class="text-center py-12 text-xs text-neutral-400 animate-pulse">Conectando ao banco de dados...</div>
+                <div class="text-center py-12 text-xs text-neutral-400 animate-pulse">Conectando ao banco de dados seguro...</div>
             </div>
         </section>
 
@@ -129,7 +131,7 @@
         </section>
     </main>
 
-    <nav class="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-white border-t border-neutral-100/80 flex justify-around py-2 shadow-[0_-8px_24px_rgba(0,0,0,0.04)] pointer-events-auto" style="z-index: 99999 !important; min-height: 64px;">
+    <nav class="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-white border-t border-neutral-200 flex justify-around py-2 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] pointer-events-auto" style="z-index: 999999 !important; min-height: 68px;">
         <button onclick="mudarAba('inicio')" id="nav-inicio" class="nav-btn flex flex-col items-center justify-center text-gold font-bold text-[11px] w-20 flex-1">
             <span class="material-icons-round text-xl mb-0.5">auto_stories</span>Hoje
         </button>
@@ -168,7 +170,7 @@
             "Santificação e Crescimento Espiritual", "Oração e Intimidade com Deus", "Generosidade e Mordomia"
         ];
 
-        // MAPEAMENTO REAL DA BÍBLIA CRONOLÓGICA (365 Dias Completos)
+        // Mapeamento Estável da Bíblia Cronológica
         const planoCronologicoCompleto = [];
         function construirPlano365() {
             let d = 1;
@@ -180,4 +182,44 @@
                 { s: "Ne", c: 13 }, { s: "Et", c: 10 }, { s: "Sl", c: 150 }, { s: "Pv", c: 31 },
                 { s: "Ec", c: 12 }, { s: "Ct", c: 8 },  { s: "Is", c: 66 }, { s: "Jr", c: 52 },
                 { s: "Lm", c: 5 },  { s: "Ez", c: 48 }, { s: "Dn", c: 12 }, { s: "Os", c: 14 },
-                { s: "Jl", c: 3 },  { s: "Am", c: 9 },  { s: "Ob", c: 1 },  { s: "Mq", c: 7
+                { s: "Jl", c: 3 },  { s: "Am", c: 9 },  { s: "Ob", c: 1 },  { s: "Mq", c: 7 },
+                { s: "Na", c: 3 },  { s: "Hc", c: 3 },  { s: "Zf", c: 3 },  { s: "Ag", c: 2 },
+                { s: "Zc", c: 14 }, { s: "Ml", c: 4 },  { s: "Mt", c: 28 }, { s: "Mc", c: 16 },
+                { s: "Lc", c: 24 }, { s: "Jo", c: 21 }, { s: "At", c: 28 }, { s: "Rm", c: 16 },
+                { s: "1Co", c: 16 }, { s: "2Co", c: 13 }, { s: "Gl", c: 6 },  { s: "Ef", c: 6 },
+                { s: "Fp", c: 4 },  { s: "Cl", c: 4 },  { s: "1Ts", c: 5 }, { s: "2Ts", c: 3 },
+                { s: "1Tm", c: 6 }, { s: "2Tm", c: 4 }, { s: "Tt", c: 3 },  { s: "Fl", c: 1 },
+                { s: "Hb", c: 13 }, { s: "Tg", c: 5 },  { s: "1Pe", c: 5 }, { s: "2Pe", c: 3 },
+                { s: "1Jo", c: 5 }, { s: "2Jo", c: 1 }, { s: "3Jo", c: 1 }, { s: "Jd", c: 1 },
+                { s: "Ap", c: 22 }
+            ];
+
+            livros.forEach(livro => {
+                for(let cap = 1; cap <= livro.c; cap += 3) {
+                    if (d > 365) break;
+                    let cFim = Math.min(livro.c, cap + 2);
+                    let nomeCompleto = livro.s === "Gn" ? "Gênesis" : livro.s === "Jó" ? "Jó" : livro.s === "Ex" ? "Êxodo" : livro.s === "Lv" ? "Levítico" : livro.s === "Nm" ? "Números" : livro.s === "Dt" ? "Deuteronômio" : livro.s === "Js" ? "Josué" : livro.s;
+                    planoCronologicoCompleto.push({
+                        dia: d++, sigla: livro.s, capInicio: cap, capFim: cFim, ref: `${nomeCompleto} ${cap}-${cFim}`
+                    });
+                }
+            });
+            while(d <= 365) { planoCronologicoCompleto.push({ dia: d++, sigla: "Ap", capInicio: 1, capFim: 3, ref: `Apocalipse 1-3` }); }
+        }
+        construirPlano365();
+
+        const momentosDiaComDeus = [
+            { hora: "06:00", acao: "Amanhecer com Oração", desc: "Agradecer por mais um dia e entregar a vossa união a Deus." },
+            { hora: "08:00", acao: "Leitura da Palavra", desc: "Leitura focada do plano cronológico diário com atenção." },
+            { hora: "13:00", acao: "Reflexão Rápida", desc: "Meditar no versículo-chave do devocional durante o dia." },
+            { hora: "21:00", acao: "Oração em Casal", desc: "Orar juntos, marido e mulher, consagrando a vossa noite." }
+        ];
+
+        // Estado inicial de salvaguarda estrutural contra falhas undefined antes do load
+        let estadoCompartilhado = {
+            devocionaisGerados: {},
+            progressoPerfil: { "Sr. Buceles": { dia: 1 }, "Sra. Buceles": { dia: 1 } },
+            rotinaCheck: {}
+        };
+        let perfilAtivo = localStorage.getItem("perfil_usuario_buceles") || null;
+        let bancoVersiculosD
