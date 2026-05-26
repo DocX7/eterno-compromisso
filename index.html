@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Menos de Nós, Mais de Deus</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     
     <style>
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #fcfbfa; 
-            color: #3e3327;
             -webkit-user-select: none;
             user-select: none;
+            transition: background-color 0.3s, color 0.3s;
         }
         .serif { font-family: 'Playfair Display', Georgia, serif; }
         .bg-gold-gradient { background: linear-gradient(135deg, #8B7355 0%, #A68D6D 100%); }
@@ -26,503 +30,56 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Estilização para textos teológicos longos e confortáveis */
+        .prose-devotional p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            text-align: justify;
+            text-indent: 1.5rem;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-[#fcfbfa] flex flex-col max-w-md mx-auto shadow-2xl relative pb-24">
+<body class="min-h-screen bg-[#fcfbfa] text-[#3e3327] dark:bg-[#121110] dark:text-[#f3f1ed] flex flex-col max-w-md mx-auto shadow-2xl relative pb-24">
 
-    <header class="bg-white border-b border-neutral-100 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-sm">
+    <header class="bg-white dark:bg-[#1c1a18] border-b border-neutral-100 dark:border-neutral-800/60 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-sm transition-colors">
         <div>
-            <span id="txt-data-topo" class="text-[10px] font-bold text-amber-800 tracking-widest uppercase">Carregando...</span>
-            <h1 class="serif text-xl font-bold text-neutral-900 tracking-tight">Menos de Nós</h1>
+            <span id="txt-data-topo" class="text-[10px] font-bold text-amber-800 dark:text-amber-500 tracking-widest uppercase">Carregando...</span>
+            <h1 class="serif text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">Menos de Nós</h1>
         </div>
-        <div class="flex items-center gap-1 bg-amber-50/60 px-3 py-1.5 rounded-full border border-amber-100/50">
-            <span class="material-icons-round text-sm text-amber-800">spa</span>
-            <span class="text-xs font-bold text-neutral-700">Marcus & Ingrid</span>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDarkMode()" class="w-8 h-8 rounded-full flex items-center justify-center bg-neutral-50 dark:bg-neutral-800 border border-neutral-200/40 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 active:scale-95 transition-all">
+                <span id="icon-dark-mode" class="material-icons-round text-lg">dark_mode</span>
+            </button>
+            <div class="flex items-center gap-1 bg-amber-50/60 dark:bg-amber-950/40 px-3 py-1.5 rounded-full border border-amber-100/50 dark:border-amber-900/40">
+                <span class="material-icons-round text-sm text-amber-800 dark:text-amber-500">spa</span>
+                <span class="text-xs font-bold text-neutral-700 dark:text-neutral-300">M & I</span>
+            </div>
         </div>
     </header>
 
-    <div id="toast" class="hidden fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-neutral-900/95 text-white text-xs px-5 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 max-w-xs text-center"></div>
+    <div id="toast" class="hidden fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-neutral-900/95 dark:bg-neutral-100/95 text-white dark:text-neutral-900 text-xs px-5 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 max-w-xs text-center font-medium"></div>
 
     <main class="flex-1 p-5 overflow-y-auto no-scrollbar">
 
         <section id="view-inicio" class="space-y-4 block">
-            <div class="bg-gradient-to-r from-amber-50 to-orange-50/30 rounded-2xl p-5 border border-amber-100/40 space-y-1">
-                <h2 class="serif text-lg font-bold text-neutral-900">Bem-vindos ao vosso Altar</h2>
-                <p class="text-xs text-neutral-500 leading-relaxed">Edificando o casamento sobre a rocha eterna todos os dias.</p>
+            <div class="bg-gradient-to-r from-amber-50 to-orange-50/30 dark:from-amber-950/20 dark:to-transparent rounded-2xl p-5 border border-amber-100/40 dark:border-amber-900/30 space-y-1">
+                <h2 class="serif text-lg font-bold text-neutral-900 dark:text-neutral-100">Bem-vindos ao vosso Altar</h2>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Edificando o casamento sobre o fundamento eterno da Palavra divina.</p>
             </div>
 
             <div id="wrapper-devocional-ativo" class="space-y-4">
-                <div class="text-center py-10 text-xs text-neutral-400 animate-pulse">Sincronizando altar familiar...</div>
+                <div class="text-center py-10 text-xs text-neutral-400 animate-pulse">Sincronizando santuário familiar no Firebase...</div>
             </div>
         </section>
 
         <section id="view-leitura" class="hidden space-y-4">
             <div class="mb-2 flex justify-between items-end">
                 <div>
-                    <h2 class="serif text-xl font-bold text-neutral-900">Leitura Bíblica</h2>
-                    <p class="text-xs text-neutral-500">Acompanhe os capítulos da meta de hoje.</p>
+                    <h2 class="serif text-xl font-bold text-neutral-900 dark:text-neutral-100">Leitura Bíblica</h2>
+                    <p class="text-xs text-neutral-500 dark:text-neutral-400">Alimentação espiritual através do plano cronológico.</p>
                 </div>
-                <div id="csv-status-badge" class="text-[10px] bg-neutral-100 text-neutral-400 px-2 py-0.5 rounded font-mono">Carregando Bíblia...</div>
+                <div id="csv-status-badge" class="text-[10px] bg-neutral-100 dark:bg-neutral-800 text-neutral-400 px-2 py-0.5 rounded font-mono">Processando CSV...</div>
             </div>
             
-            <div class="bg-white border border-neutral-100 rounded-3xl p-5 shadow-sm space-y-4">
-                <div class="border-b border-neutral-50 pb-3 flex justify-between items-center">
-                    <div>
-                        <span id="txt-leitura-meta-dia" class="text-[9px] font-bold text-amber-800 uppercase tracking-wider block">BÍBLIA CRONOLÓGICA</span>
-                        <h3 id="txt-leitura-ref-titulo" class="serif text-lg font-bold text-neutral-800">Carregando meta...</h3>
-                    </div>
-                </div>
-
-                <div id="texto-biblico-container" class="serif text-[15px] leading-relaxed text-neutral-800 space-y-3 max-h-[350px] overflow-y-auto pr-1 no-scrollbar">
-                    <div class="text-center py-12 text-xs text-neutral-400 italic">Selecione uma meta ou aguarde o processamento...</div>
-                </div>
-            </div>
-
-            <div class="pt-2"><h3 class="font-bold text-xs text-neutral-400 uppercase tracking-wider mb-2">Cronograma do Ciclo</h3></div>
-            <div id="lista-cronograma-leitura" class="space-y-2.5"></div>
-        </section>
-
-        <section id="view-gerar" class="hidden space-y-5">
-            <div class="space-y-1">
-                <h2 class="serif text-xl font-bold text-neutral-900">Buscando Edificação</h2>
-                <p class="text-xs text-neutral-500">Selecione um tema estratégico abaixo para gerar uma palavra direcionada com IA.</p>
-            </div>
-
-            <div id="hub-temas-ia" class="grid grid-cols-1 gap-3 block">
-                <button onclick="dispararGeracaoIA('Comunicação Cristã no Casamento', 'foco em falar com mansidão, paciência e sabedoria prática')" class="flex items-center gap-4 p-4 bg-white border border-neutral-100 rounded-2xl shadow-sm text-left active:bg-neutral-50 transition-all">
-                    <div class="w-10 h-10 bg-amber-50 text-amber-800 rounded-xl flex items-center justify-center"><span class="material-icons-round">chat_bubble</span></div>
-                    <div>
-                        <h4 class="text-xs font-bold text-neutral-800">Comunicação Cristã</h4>
-                        <p class="text-[11px] text-neutral-400 mt-0.5">Foco em falar com mansidão e sabedoria.</p>
-                    </div>
-                </button>
-
-                <button onclick="dispararGeracaoIA('Amor Sacrificial e Aliança', 'focado na teologia cristã da união e aliança eterna incondicional')" class="flex items-center gap-4 p-4 bg-white border border-neutral-100 rounded-2xl shadow-sm text-left active:bg-neutral-50 transition-all">
-                    <div class="w-10 h-10 bg-red-50 text-red-700 rounded-xl flex items-center justify-center"><span class="material-icons-round">favorite</span></div>
-                    <div>
-                        <h4 class="text-xs font-bold text-neutral-800">Amor Sacrificial e Aliança</h4>
-                        <p class="text-[11px] text-neutral-400 mt-0.5">Aprofundamento na teologia da união eterna.</p>
-                    </div>
-                </button>
-
-                <button onclick="dispararGeracaoIA('Alinhamento de Planos e Finanças', 'mordomia cristã, finanças conjugais equilibradas e sonhos em comum debaixo da soberania de Deus')" class="flex items-center gap-4 p-4 bg-white border border-neutral-100 rounded-2xl shadow-sm text-left active:bg-neutral-50 transition-all">
-                    <div class="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center"><span class="material-icons-round">payments</span></div>
-                    <div>
-                        <h4 class="text-xs font-bold text-neutral-800">Planos e Finanças</h4>
-                        <p class="text-[11px] text-neutral-400 mt-0.5">Mordomia cristã e sonhos em comum para o futuro.</p>
-                    </div>
-                </button>
-            </div>
-
-            <div id="loader-ia-screen" class="hidden py-16 flex flex-col items-center justify-center text-center space-y-4 bg-white border border-neutral-100 rounded-3xl shadow-sm animate-pulse">
-                <div class="animate-spin rounded-full h-8 w-8 border-2 border-amber-800 border-t-transparent"></div>
-                <div class="space-y-1 px-4">
-                    <p class="text-xs font-bold text-neutral-800">Buscando sabedoria teológica para Marcus e Ingrid...</p>
-                    <p class="text-[10px] text-neutral-400">O teólogo digital está estruturando sua resposta reformada.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-progresso" class="hidden space-y-5">
-            <div class="space-y-1">
-                <h2 class="serif text-xl font-bold text-neutral-900">Crescimento de Fé</h2>
-                <p class="text-xs text-neutral-500">Métricas exatas de consagração e leitura na nuvem.</p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white border border-neutral-100 rounded-2xl p-4 text-center space-y-1 shadow-sm">
-                    <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block">Metas Concluídas</span>
-                    <span id="txt-metricas-dias" class="serif text-2xl font-bold text-neutral-800">0</span>
-                    <span class="text-[10px] text-neutral-400 block">no ciclo atual</span>
-                </div>
-                <div class="bg-white border border-neutral-100 rounded-2xl p-4 text-center space-y-1 shadow-sm">
-                    <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block">Devocionais Lidos</span>
-                    <span id="txt-metricas-devocionais" class="serif text-2xl font-bold text-neutral-800">0</span>
-                    <span class="text-[10px] text-neutral-400 block">gerados por IA</span>
-                </div>
-            </div>
-
-            <div class="bg-white border border-neutral-100 rounded-2xl p-5 shadow-sm space-y-3">
-                <div class="flex justify-between items-center text-xs font-bold">
-                    <span class="text-neutral-500">Evolução Bíblica Espiritual</span>
-                    <span id="txt-porcentagem-progresso" class="text-gold font-extrabold text-sm">0%</span>
-                </div>
-                <div class="w-full bg-neutral-100 h-3 rounded-full overflow-hidden p-[2px] border border-neutral-200/50">
-                    <div id="barra-progresso-preenchimento" class="bg-gold-gradient h-full w-0 rounded-full transition-all duration-700"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-perfil" class="hidden space-y-6">
-            <div class="text-center space-y-2 py-4">
-                <h2 class="serif text-xl font-bold text-neutral-900">Aliança Visual</h2>
-                <p class="text-xs text-neutral-400">Propósito e centralidade firmados no Senhor.</p>
-            </div>
-
-            <div class="flex items-center justify-center gap-6 relative">
-                <div class="absolute w-16 h-[2px] bg-neutral-200 z-0"></div>
-                <div class="w-16 h-16 rounded-full bg-gold-gradient text-white flex items-center justify-center serif font-bold text-xl shadow-md z-10 border-4 border-[#fcfbfa]">M</div>
-                <div class="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center text-xs shadow-sm z-20 font-bold border-2 border-[#fcfbfa]">
-                    <span class="material-icons-round text-base">all_inclusive</span>
-                </div>
-                <div class="w-16 h-16 rounded-full bg-neutral-800 text-white flex items-center justify-center serif font-bold text-xl shadow-md z-10 border-4 border-[#fcfbfa]">I</div>
-            </div>
-
-            <div class="bg-white border border-neutral-100 rounded-2xl p-5 shadow-sm space-y-3 text-center">
-                <div class="space-y-0.5">
-                    <h3 class="text-sm font-bold text-neutral-800">Marcus & Ingrid</h3>
-                    <p class="text-[11px] text-neutral-400 font-medium">Casamento Blindado por Deus</p>
-                </div>
-                <div class="border-t border-neutral-50 pt-3 text-left">
-                    <div class="flex justify-between text-xs text-neutral-500">
-                        <span>Database status:</span>
-                        <span class="font-bold text-emerald-600 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-ping"></span> Conectado</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <nav class="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-white/95 backdrop-blur-md border-t border-neutral-100 flex justify-around py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50">
-        <button onclick="mudarAba('inicio')" id="nav-inicio" class="flex flex-col items-center justify-center text-amber-800 font-bold text-[11px] py-1 w-14">
-            <span class="material-icons-round text-xl mb-0.5">home</span>Início
-        </button>
-        <button onclick="mudarAba('leitura')" id="nav-leitura" class="flex flex-col items-center justify-center text-neutral-400 font-medium text-[11px] py-1 w-14">
-            <span class="material-icons-round text-xl mb-0.5">menu_book</span>Bíblia
-        </button>
-        <button onclick="mudarAba('gerar')" id="nav-gerar" class="flex flex-col items-center justify-center text-neutral-400 font-medium text-[11px] py-1 w-14">
-            <span class="material-icons-round text-xl mb-0.5">auto_awesome</span>Gerar IA
-        </button>
-        <button onclick="mudarAba('progresso')" id="nav-progresso" class="flex flex-col items-center justify-center text-neutral-400 font-medium text-[11px] py-1 w-14">
-            <span class="material-icons-round text-xl mb-0.5">analytics</span>Progresso
-        </button>
-        <button onclick="mudarAba('perfil')" id="nav-perfil" class="flex flex-col items-center justify-center text-neutral-400 font-medium text-[11px] py-1 w-14">
-            <span class="material-icons-round text-xl mb-0.5">person</span>Perfil
-        </button>
-    </nav>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, onSnapshot, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAL_2fd0pKhwt4N_A5KlOmcmI8K1X1t5Qw",
-            authDomain: "eterno-compromisso-cde47.firebaseapp.com",
-            projectId: "eterno-compromisso-cde47",
-            storageBucket: "eterno-compromisso-cde47.firebasestorage.app",
-            messagingSenderId: "239562518259",
-            appId: "1:239562518259:web:56bfa836ad6a7534e41186"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Estrutura Cronológica Real amarrada com as siglas do arquivo CSV
-        const metasCronograma30Dias = [
-            { dia: 1, ref: "Gênesis 1-3", sigla: "Gn", capIni: 1, capFim: 3 },
-            { dia: 2, ref: "Gênesis 4-7", sigla: "Gn", capIni: 4, capFim: 7 },
-            { dia: 3, ref: "Gênesis 8-11", sigla: "Gn", capIni: 8, capFim: 11 },
-            { dia: 4, ref: "Gênesis 12-15", sigla: "Gn", capIni: 12, capFim: 15 },
-            { dia: 5, ref: "Gênesis 16-19", sigla: "Gn", capIni: 16, capFim: 19 },
-            { dia: 6, ref: "Gênesis 20-23", sigla: "Gn", capIni: 20, capFim: 23 },
-            { dia: 7, ref: "Gênesis 24-26", sigla: "Gn", capIni: 24, capFim: 26 },
-            { dia: 8, ref: "Gênesis 27-29", sigla: "Gn", capIni: 27, capFim: 29 },
-            { dia: 9, ref: "Gênesis 30-32", sigla: "Gn", capIni: 30, capFim: 32 },
-            { dia: 10, ref: "Gênesis 33-36", sigla: "Gn", capIni: 33, capFim: 36 },
-            { dia: 11, ref: "Gênesis 37-40", sigla: "Gn", capIni: 37, capFim: 40 },
-            { dia: 12, ref: "Gênesis 41-43", sigla: "Gn", capIni: 41, capFim: 43 },
-            { dia: 13, ref: "Gênesis 44-47", sigla: "Gn", capIni: 44, capFim: 47 },
-            { dia: 14, ref: "Gênesis 48-50", sigla: "Gn", capIni: 48, capFim: 50 },
-            { dia: 15, ref: "Jó 1-4", sigla: "Jó", capIni: 1, capFim: 4 },
-            { dia: 16, ref: "Jó 5-8", sigla: "Jó", capIni: 5, capFim: 8 },
-            { dia: 17, ref: "Jó 9-12", sigla: "Jó", capIni: 9, capFim: 12 },
-            { dia: 18, ref: "Jó 13-16", sigla: "Jó", capIni: 13, capFim: 16 },
-            { dia: 19, ref: "Jó 17-20", sigla: "Jó", capIni: 17, capFim: 20 },
-            { dia: 20, ref: "Jó 21-24", sigla: "Jó", capIni: 21, capFim: 24 },
-            { dia: 21, ref: "Jó 25-28", sigla: "Jó", capIni: 25, capFim: 28 },
-            { dia: 22, ref: "Jó 29-32", sigla: "Jó", capIni: 29, capFim: 32 },
-            { dia: 23, ref: "Jó 33-36", sigla: "Jó", capIni: 33, capFim: 36 },
-            { dia: 24, ref: "Jó 37-40", sigla: "Jó", capIni: 37, capFim: 40 },
-            { dia: 25, ref: "Jó 41-42", sigla: "Jó", capIni: 41, capFim: 42 },
-            { dia: 26, ref: "Êxodo 1-3", sigla: "Ex", capIni: 1, capFim: 3 },
-            { dia: 27, ref: "Êxodo 4-7", sigla: "Ex", capIni: 4, capFim: 7 },
-            { dia: 28, ref: "Êxodo 8-11", sigla: "Ex", capIni: 8, capFim: 11 },
-            { dia: 29, ref: "Êxodo 12-15", sigla: "Ex", capIni: 12, capFim: 15 },
-            { dia: 30, ref: "Êxodo 16-18", sigla: "Ex", capIni: 16, capFim: 18 }
-        ];
-
-        let dicionarioVersiculos = {}; 
-        let diaAtivoSelecaoLeitura = 1;
-
-        let estadoCasal = {
-            devocionalAtivo: {
-                titulo: "A Rocha Firme",
-                referencia: "Mateus 7:24",
-                versiculo: "Todo aquele, pois, que escuta estas minhas palavras, e as pratica, assemelhá-lo-ei ao homem prudente, que edificou a sua casa sobre a rocha.",
-                reflexao: ["Edificar uma união exige alinhar os tijolos diariamente com base na obediência prática.", "Quando as tempestades financeiras ou emocionais chegam, a estabilidade não vem da ausência de vento, mas sim da profundidade do fundamento.", "Reservem um momento hoje para alinhar vossas palavras e objetivos."]
-            },
-            leiturasConcluidas: {}, 
-            totalGeraçoesIA: 0
-        };
-
-        // Carregamento Seguro e parsing da Bíblia ACF local
-        async function carregarBibliaCSV() {
-            try {
-                const res = await fetch("./1. Bíblia ACF.csv");
-                if(!res.ok) throw new Error("Não foi possível ler o CSV local.");
-                const dataRaw = await res.text();
-                const linhas = dataRaw.split(/\r?\n/);
-                
-                linhas.forEach(line => {
-                    const partes = line.split("/");
-                    if(partes.length >= 4) {
-                        const sigla = partes[0].trim();
-                        const cap = parseInt(partes[1]);
-                        const vers = parseInt(partes[2]);
-                        const texto = partes.slice(3).join("/").trim();
-                        
-                        const chave = `${sigla}_${cap}`;
-                        if(!dicionarioVersiculos[chave]) dicionarioVersiculos[chave] = [];
-                        dicionarioVersiculos[chave].push({ num: vers, txt: texto });
-                    }
-                });
-                
-                const badge = document.getElementById("csv-status-badge");
-                if(badge) {
-                    badge.innerText = "Bíblia Online";
-                    badge.className = "text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-mono font-bold";
-                }
-                exibirTextoBiblicoDaMeta(diaAtivoSelecaoLeitura);
-            } catch(e) {
-                console.error("Erro na leitura da fonte bíblica: ", e);
-                const badge = document.getElementById("csv-status-badge");
-                if(badge) badge.innerText = "Modo Parcial";
-            }
-        }
-
-        function exibirTextoBiblicoDaMeta(diaNum) {
-            diaAtivoSelecaoLeitura = diaNum;
-            const meta = metasCronograma30Dias[diaNum - 1] || metasCronograma30Dias[0];
-            
-            const rTit = document.getElementById("txt-leitura-ref-titulo");
-            const rMeta = document.getElementById("txt-leitura-meta-dia");
-            if(rTit) rTit.innerText = meta.ref;
-            if(rMeta) rMeta.innerText = `META DO DIA ${meta.dia}`;
-
-            const boxTexto = document.getElementById("texto-biblico-container");
-            if(!boxTexto) return;
-
-            let htmlAcumulado = "";
-            // Varre do capítulo inicial ao final estipulado para a meta do dia
-            for (let c = meta.capIni; c <= meta.capFim; c++) {
-                const chaveBusca = `${meta.sigla}_${c}`;
-                const versiculosDoCapitulo = dicionarioVersiculos[chaveBusca] || [];
-                
-                if(versiculosDoCapitulo.length > 0) {
-                    htmlAcumulado += `<div class="mb-4 border-b border-neutral-100/40 pb-2"><h4 class="text-xs font-bold text-amber-900/60 mb-2 font-mono">Capítulo ${c}</h4>`;
-                    versiculosDoCapitulo.forEach(v => {
-                        htmlAcumulado += `<p class="mb-1.5 text-[14px]"><strong class="text-amber-800 text-[10px] font-mono mr-1.5">${v.num}</strong>${v.txt}</p>`;
-                    });
-                    htmlAcumulado += `</div>`;
-                }
-            }
-
-            if(htmlAcumulado !== "") {
-                boxTexto.innerHTML = htmlAcumulado;
-            } else {
-                boxTexto.innerHTML = `<div class="text-center py-12 text-xs text-neutral-400 italic">Capítulos prontos no plano:<br><strong class="text-neutral-700 font-bold block mt-1">${meta.ref}</strong></div>`;
-            }
-            boxTexto.scrollTop = 0;
-        }
-
-        window.atualizarMetaDeVisualizacao = function(diaNum) {
-            exibirTextoBiblicoDaMeta(diaNum);
-            window.showToast(`Visualizando capítulos do Dia ${diaNum}`);
-        };
-
-        function iniciarSincroniaFirebase() {
-            onSnapshot(doc(db, "menos_de_nos", "compartilhado_v3"), (snapshot) => {
-                if(snapshot.exists()) {
-                    const dados = snapshot.data();
-                    estadoCasal.devocionalAtivo = dados.devocionalAtivo || estadoCasal.devocionalAtivo;
-                    estadoCasal.leiturasConcluidas = dados.leiturasConcluidas || {};
-                    estadoCasal.totalGeraçoesIA = dados.totalGeraçoesIA || 0;
-                } else {
-                    setDoc(doc(db, "menos_de_nos", "compartilhado_v3"), estadoCasal);
-                }
-                renderizarInterfaceDinamica();
-            });
-        }
-
-        window.alternarCliqueLeitura = async function(diaNum) {
-            estadoCasal.leiturasConcluidas[diaNum] = !estadoCasal.leiturasConcluidas[diaNum];
-            await updateDoc(doc(db, "menos_de_nos", "compartilhado_v3"), {
-                leiturasConcluidas: estadoCasal.leiturasConcluidas
-            });
-            renderizarInterfaceDinamica();
-        };
-
-        window.dispararGeracaoIA = async function(tema, escopoTeologico) {
-            const hHub = document.getElementById("hub-temas-ia");
-            const lLoader = document.getElementById("loader-ia-screen");
-            
-            if(hHub && lLoader) {
-                hHub.classList.add("hidden");
-                lLoader.classList.remove("hidden");
-            }
-
-            const apiKey = "AIzaSyAL_2fd0pKhwt4N_A5KlOmcmI8K1X1t5Qw";
-            
-            // Prompt ajustado para forçar o retorno estrito de JSON sem quebras de texto que causem erro de conexão
-            const promptContexto = `Gere um devocional bíblico reformado profundo feito especificamente para o casal Marcus e Ingrid. O tema de hoje é: ${tema} (${escopoTeologico}). Retorne EXCLUSIVAMENTE um objeto JSON estruturado estruturado exatamente com estas chaves: "titulo", "referencia", "versiculo", "reflexao" (um array com 3 parágrafos curtos de texto). Não inclua nenhuma linha extra, introdução ou bloco de marcação markdown.`;
-
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: promptContexto }] }] })
-                });
-                
-                const resData = await response.json();
-                let textoCru = resData.candidates[0].content.parts[0].text;
-                
-                // Tratamento robusto para isolar o JSON contra qualquer quebra de linha ou texto extra da IA
-                let textoLimpo = textoCru.replace(/```json/g, "").replace(/```/g, "").trim();
-                const devocionalObjeto = JSON.parse(textoLimpo);
-
-                estadoCasal.devocionalAtivo = devocionalObjeto;
-                estadoCasal.totalGeraçoesIA += 1;
-
-                await updateDoc(doc(db, "menos_de_nos", "compartilhado_v3"), {
-                    devocionalAtivo: estadoCasal.devocionalAtivo,
-                    totalGeraçoesIA: estadoCasal.totalGeraçoesIA
-                });
-
-                window.showToast("Altar atualizado com sucesso! ✨");
-                window.mudarAba("inicio");
-            } catch(e) {
-                console.error(e);
-                window.showToast("Erro de leitura do servidor da IA. Tente novamente.");
-            } finally {
-                if(hHub && lLoader) {
-                    hHub.classList.remove("hidden");
-                    lLoader.classList.add("hidden");
-                }
-            }
-        };
-
-        function renderizarInterfaceDinamica() {
-            // Atualiza Data Superior
-            const topoD = document.getElementById("txt-data-topo");
-            if(topoD) topoD.innerText = new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'short' });
-
-            // 🏠 Aba Início
-            const boxDevocional = document.getElementById("wrapper-devocional-ativo");
-            if(boxDevocional && estadoCasal.devocionalAtivo) {
-                boxDevocional.innerHTML = `
-                    <div class="bg-white border border-neutral-100 rounded-3xl p-6 shadow-sm space-y-5 text-center">
-                        <div class="space-y-1">
-                            <span class="text-[9px] font-bold text-amber-800 tracking-widest uppercase block">Palavra Ativa no Altar</span>
-                            <h3 class="serif text-xl font-bold text-neutral-900 leading-snug">${estadoCasal.devocionalAtivo.titulo}</h3>
-                            <span class="inline-block bg-amber-50 text-amber-900 font-mono text-[11px] px-3 py-0.5 rounded-full font-bold mt-1">${estadoCasal.devocionalAtivo.referencia}</span>
-                        </div>
-                        <div class="bg-[#fcfbfa] border border-neutral-100/70 rounded-2xl p-4 italic text-sm serif text-neutral-700 leading-relaxed max-w-[280px] mx-auto">
-                            "${estadoCasal.devocionalAtivo.versiculo}"
-                        </div>
-                        <div class="space-y-3.5 text-xs text-neutral-600 leading-relaxed text-justify pt-2 border-t border-neutral-50">
-                            ${estadoCasal.devocionalAtivo.reflexao.map(p => `<p>${p}</p>`).join('')}
-                        </div>
-                    </div>`;
-            }
-
-            // 📖 Aba Leitura: Cronograma com botões circulares interativos
-            const boxCronograma = document.getElementById("lista-cronograma-leitura");
-            if(boxCronograma && boxCronograma.children.length === 0) {
-                boxCronograma.innerHTML = "";
-                metasCronograma30Dias.forEach(meta => {
-                    const checked = estadoCasal.leiturasConcluidas[meta.dia] || false;
-                    const linha = document.createElement("div");
-                    linha.className = `flex items-center justify-between p-4 bg-white border border-neutral-100 rounded-2xl shadow-sm`;
-                    linha.innerHTML = `
-                        <div onclick="window.atualizarMetaDeVisualizacao(${meta.dia})" class="space-y-0.5 flex-1 cursor-pointer">
-                            <span class="text-[10px] font-bold text-neutral-400 block uppercase tracking-wider">Dia ${meta.dia} de 30</span>
-                            <h4 class="serif text-sm font-bold text-neutral-800">${meta.ref}</h4>
-                        </div>
-                        <button onclick="alternarCliqueLeitura(${meta.dia})" id="chk-btn-${meta.dia}" class="w-8 h-8 rounded-full border flex items-center justify-center transition-all ${checked ? 'bg-gold-gradient text-white border-transparent' : 'border-neutral-200 text-neutral-300'}">
-                            <span class="material-icons-round text-sm">done</span>
-                        </button>`;
-                    boxCronograma.appendChild(linha);
-                });
-            } else if (boxCronograma) {
-                metasCronograma30Dias.forEach(meta => {
-                    const checked = estadoCasal.leiturasConcluidas[meta.dia] || false;
-                    const btn = document.getElementById(`chk-btn-${meta.dia}`);
-                    if(btn) {
-                        if(checked) {
-                            btn.className = "w-8 h-8 rounded-full border flex items-center justify-center transition-all bg-gold-gradient text-white border-transparent";
-                        } else {
-                            btn.className = "w-8 h-8 rounded-full border flex items-center justify-center transition-all border-neutral-200 text-neutral-300";
-                        }
-                    }
-                });
-            }
-
-            // 📊 Aba Progresso
-            let contagemMarcados = Object.values(estadoCasal.leiturasConcluidas).filter(Boolean).length;
-            const porcCalculada = Math.min(100, Math.round((contagemMarcados / 30) * 100));
-
-            const mDias = document.getElementById("txt-metricas-dias");
-            if(mDias) mDias.innerText = contagemMarcados;
-
-            const mDevs = document.getElementById("txt-metricas-devocionais");
-            if(mDevs) mDevs.innerText = estadoCasal.totalGeraçoesIA;
-
-            const txtP = document.getElementById("txt-porcentagem-progresso");
-            if(txtP) txtP.innerText = `${porcCalculada}%`;
-
-            const barraPreenc = document.getElementById("barra-progresso-preenchimento");
-            if(barraPreenc) barraPreenc.style.width = `${porcCalculada}%`;
-        }
-
-        window.alternarCliqueLeitura = window.alternarCliqueLeitura;
-        iniciarSincroniaFirebase();
-        carregarBibliaCSV();
-    </script>
-
-    <script>
-        function mudarAba(alvo) {
-            ['inicio', 'leitura', 'gerar', 'progresso', 'perfil'].forEach(a => {
-                const view = document.getElementById(`view-${a}`);
-                if(view) view.classList.add("hidden");
-
-                const btn = document.getElementById(`nav-${a}`);
-                if(btn) {
-                    btn.classList.remove("text-amber-800", "font-bold");
-                    btn.classList.add("text-neutral-400", "font-medium");
-                }
-            });
-
-            const viewAtiva = document.getElementById(`view-${alvo}`);
-            if(viewAtiva) viewAtiva.classList.remove("hidden");
-
-            const btnAtivo = document.getElementById(`nav-${alvo}`);
-            if(btnAtivo) {
-                btnAtivo.classList.add("text-amber-800", "font-bold");
-                btnAtivo.classList.remove("text-neutral-400", "font-medium");
-            }
-        }
-
-        function showToast(msg) {
-            const t = document.getElementById("toast");
-            if(t) {
-                t.innerText = msg;
-                t.classList.remove("hidden");
-                setTimeout(() => { t.classList.add("hidden"); }, 3500);
-            }
-        }
-        
-        window.mudarAba = mudarAba;
-        window.showToast = showToast;
-    </script>
-</body>
-</html>
+            <div class="bg-white dark:bg-[#1c1a18] border border-neutral-100 dark:border-neutral-800/50 rounded-3xl p-6
