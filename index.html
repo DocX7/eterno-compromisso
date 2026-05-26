@@ -1,85 +1,1514 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Menos de Nós, Mais de Deus</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    
-    <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            -webkit-user-select: none;
-            user-select: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .serif { font-family: 'Playfair Display', Georgia, serif; }
-        .bg-gold-gradient { background: linear-gradient(135deg, #8B7355 0%, #A68D6D 100%); }
-        .text-gold { color: #8B7355; }
-        
-        button, .nav-btn { 
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Estilização para textos teológicos longos e confortáveis */
-        .prose-devotional p {
-            margin-bottom: 1.25rem;
-            line-height: 1.8;
-            text-align: justify;
-            text-indent: 1.5rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Menos de Nós, Mais de Deus</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#B8945A;--gold-light:#D4A96A;--gold-pale:#F5EDD8;--gold-dark:#7A5C2E;
+  --cream:#FBF8F3;--ink:#2C2416;--ink-mid:#5C4E38;--ink-soft:#8C7A60;
+  --shadow:rgba(44,36,22,0.08);--border:rgba(184,148,90,0.2);
+  --bg:var(--cream);--surface:#FFFFFF;--text:var(--ink);
+  --text-mid:var(--ink-mid);--text-soft:var(--ink-soft);
+  --accent-pale:var(--gold-pale);--nav-bg:rgba(251,248,243,0.96);
+}
+.dark {
+  --bg:#141209;--surface:#1E1B14;--text:#F2EDE3;
+  --text-mid:#C4B89A;--text-soft:#8A7A5E;
+  --nav-bg:rgba(20,18,9,0.97);--border:rgba(184,148,90,0.15);
+  --shadow:rgba(0,0,0,0.3);--accent-pale:rgba(184,148,90,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;max-width:430px;margin:0 auto;overflow-x:hidden;
+  transition:background 0.3s,color 0.3s;}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:var(--nav-bg);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  padding:13px 20px;display:flex;align-items:center;justify-content:space-between;}
+.header-left h1{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--text);}
+.header-left span{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.header-right{display:flex;gap:8px;}
+.icon-btn{width:35px;height:35px;border-radius:50%;background:var(--accent-pale);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all 0.2s;}
+.icon-btn:active{transform:scale(0.92);}
+
+/* NAV */
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(16px);border-top:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(5,1fr);
+  padding:5px 0 max(5px,env(safe-area-inset-bottom));}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;
+  cursor:pointer;user-select:none;transition:all 0.2s;}
+.nav-icon{font-size:19px;color:var(--text-soft);transition:color 0.2s;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:0.05em;color:var(--text-soft);text-transform:uppercase;}
+.nav-item.active .nav-icon,.nav-item.active .nav-label{color:var(--gold);}
+.nav-item:active{opacity:0.7;}
+
+main{padding:18px 18px 88px;}
+.view{display:none;}.view.active{display:block;}
+
+/* TOAST */
+#toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(16px);
+  background:var(--ink);color:var(--cream);font-size:13px;font-weight:500;
+  padding:10px 20px;border-radius:30px;opacity:0;pointer-events:none;
+  transition:all 0.3s;z-index:500;white-space:nowrap;}
+.dark #toast{background:var(--gold);color:var(--ink);}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;
+  padding:20px;margin-bottom:14px;box-shadow:0 2px 12px var(--shadow);}
+.card-subtle{background:var(--accent-pale);border:1px solid var(--border);}
+
+/* SECTION TITLES */
+.section-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;
+  color:var(--text);margin-bottom:4px;}
+.section-sub{font-size:12px;color:var(--text-soft);margin-bottom:18px;line-height:1.5;}
+
+/* VERSE BANNER */
+.verse-banner{background:linear-gradient(155deg,#6B4423 0%,#9A6E35 50%,#C8924A 100%);
+  border-radius:22px;padding:26px 22px;color:white;margin-bottom:18px;position:relative;overflow:hidden;}
+.verse-banner::after{content:'✦';position:absolute;right:18px;bottom:14px;
+  font-size:60px;opacity:0.1;line-height:1;}
+.vb-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.vb-text{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.6;margin-bottom:10px;}
+.vb-ref{font-size:11px;opacity:0.8;font-weight:600;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:14px 10px;text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--gold);line-height:1;}
+.stat-lbl{font-size:10px;color:var(--text-soft);margin-top:3px;font-weight:500;line-height:1.3;}
+
+/* QUICK ACTIONS */
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.quick-btn{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:16px 14px;cursor:pointer;transition:all 0.2s;
+  display:flex;flex-direction:column;gap:7px;}
+.quick-btn:active{transform:scale(0.96);background:var(--accent-pale);}
+.qb-icon{font-size:22px;}
+.qb-label{font-size:13px;font-weight:600;color:var(--text);}
+.qb-sub{font-size:10px;color:var(--text-soft);}
+
+/* DEVOCIONAL CARD */
+.devo-card{cursor:pointer;transition:transform 0.15s;}
+.devo-card:active{transform:scale(0.98);}
+.dc-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.dc-badge{width:42px;height:42px;border-radius:12px;background:var(--accent-pale);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;}
+.dc-badge-done{background:#E8F5E9;border-color:#A5D6A7;}
+.dark .dc-badge-done{background:rgba(165,214,167,0.15);}
+.dc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.2;}
+.dc-meta{font-size:11px;color:var(--text-soft);margin-top:2px;}
+.dc-excerpt{font-size:13px;color:var(--text-mid);line-height:1.7;}
+.dc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;}
+.tag{font-size:10px;font-weight:600;letter-spacing:0.07em;padding:4px 10px;border-radius:30px;}
+.tag-gold{background:var(--accent-pale);color:var(--gold-dark);border:1px solid var(--border);}
+.dark .tag-gold{color:var(--gold-light);}
+.tag-green{background:#E8F5E9;color:#2E7D32;border:1px solid #C8E6C9;}
+.dark .tag-green{background:rgba(46,125,50,0.15);color:#81C784;border-color:rgba(129,199,132,0.3);}
+.tag-ai{background:linear-gradient(90deg,rgba(184,148,90,0.2),rgba(138,106,62,0.2));
+  color:var(--gold-dark);border:1px solid var(--border);}
+.dark .tag-ai{color:var(--gold-light);}
+.read-more{font-size:12px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:3px;}
+
+/* AI DEVOCIONAL DO DIA */
+.ai-devo-banner{border-radius:22px;overflow:hidden;margin-bottom:18px;
+  border:1px solid var(--border);box-shadow:0 4px 20px var(--shadow);}
+.ai-devo-top{background:linear-gradient(135deg,#2C1810 0%,#5C3A1E 50%,#8B5E2E 100%);
+  padding:22px 20px;color:white;position:relative;overflow:hidden;}
+.ai-devo-top::before{content:'✦ IA';position:absolute;right:16px;top:14px;
+  font-size:10px;font-weight:700;letter-spacing:0.12em;opacity:0.6;
+  background:rgba(255,255,255,0.15);padding:3px 8px;border-radius:20px;}
+.ai-devo-top::after{content:'✦';position:absolute;right:20px;bottom:10px;
+  font-size:55px;opacity:0.08;line-height:1;}
+.adt-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  opacity:0.7;margin-bottom:8px;}
+.adt-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;
+  line-height:1.2;margin-bottom:8px;}
+.adt-ref{font-size:12px;opacity:0.8;font-weight:500;}
+.ai-devo-body{background:var(--surface);padding:18px 20px;}
+.adt-excerpt{font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:14px;}
+.adt-actions{display:flex;gap:10px;}
+.adt-btn{flex:1;padding:11px;border-radius:12px;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;transition:all 0.2s;}
+.adt-btn-main{background:linear-gradient(135deg,#7A5C2E,#B8945A);color:white;}
+.adt-btn-outline{background:transparent;color:var(--gold);border:1px solid var(--gold);}
+.adt-btn:active{transform:scale(0.97);}
+
+/* ESTADO DE GERAÇÃO IA */
+.ai-generating{background:var(--surface);border:1px solid var(--border);
+  border-radius:22px;padding:32px 20px;margin-bottom:18px;text-align:center;}
+.ai-gen-spinner{width:40px;height:40px;border:3px solid var(--border);
+  border-top-color:var(--gold);border-radius:50%;margin:0 auto 16px;
+  animation:spin 0.9s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.ai-gen-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;
+  color:var(--text);margin-bottom:6px;}
+.ai-gen-sub{font-size:13px;color:var(--text-soft);line-height:1.6;}
+.ai-gen-dots::after{content:'...';animation:dots 1.4s steps(4,end) infinite;}
+@keyframes dots{0%,20%{content:'.';}40%,60%{content:'..';}80%,100%{content:'...'}}
+
+/* DEVO FULL */
+.devo-full-back{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+  color:var(--gold);cursor:pointer;margin-bottom:16px;}
+.devo-full-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;
+  color:var(--text);line-height:1.2;margin-bottom:8px;}
+.devo-verse-box{background:var(--accent-pale);border:1px solid var(--border);
+  border-left:3px solid var(--gold);border-radius:12px;padding:18px 20px;margin:18px 0;}
+.devo-verse-box p{font-family:'Cormorant Garamond',serif;font-size:18px;
+  font-style:italic;color:var(--text);line-height:1.6;}
+.devo-verse-box cite{display:block;font-size:12px;color:var(--gold);
+  font-style:normal;font-weight:600;margin-top:8px;letter-spacing:0.05em;}
+.devo-body{font-size:15px;color:var(--text-mid);line-height:1.85;}
+.devo-body p{margin-bottom:16px;text-indent:18px;text-align:justify;}
+.devo-section{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;
+  color:var(--text);margin:26px 0 10px;}
+.devo-prayer{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:18px;margin-top:22px;}
+.devo-prayer-lbl{font-size:10px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.devo-prayer-text{font-family:'Cormorant Garamond',serif;font-size:16px;
+  font-style:italic;color:var(--text-mid);line-height:1.8;}
+.devo-q-item{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;}
+.devo-q-num{width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:var(--accent-pale);color:var(--gold-dark);border:1px solid var(--border);
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.dark .devo-q-num{color:var(--gold-light);}
+.devo-q-text{font-size:14px;color:var(--text-mid);line-height:1.6;padding-top:3px;}
+.mark-done-btn{width:100%;padding:15px;border-radius:16px;border:none;
+  background:linear-gradient(135deg,#7A5C2E,#B8945A);color:white;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;
+  margin-top:26px;transition:all 0.2s;display:flex;align-items:center;
+  justify-content:center;gap:8px;}
+.mark-done-btn:active{transform:scale(0.98);opacity:0.9;}
+
+/* STREAMING */
+.stream-cursor{display:inline-block;width:2px;height:1em;background:var(--gold);
+  vertical-align:text-bottom;animation:blink 0.8s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* PRAYERS */
+.prayer-item{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:16px;margin-bottom:10px;
+  display:flex;gap:12px;align-items:flex-start;}
+.prayer-item.answered{opacity:0.55;}
+.prayer-item.answered .pi-title{text-decoration:line-through;}
+.pi-check{width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  border:2px solid var(--gold);cursor:pointer;display:flex;
+  align-items:center;justify-content:center;transition:all 0.2s;margin-top:1px;}
+.pi-check.checked{background:var(--gold);border-color:var(--gold);}
+.pi-check.checked::after{content:'✓';color:white;font-size:12px;font-weight:700;}
+.pi-content{flex:1;}
+.pi-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.pi-meta{font-size:11px;color:var(--text-soft);}
+.pi-cat{font-size:10px;font-weight:600;letter-spacing:0.06em;padding:2px 8px;
+  border-radius:20px;display:inline-block;margin-top:5px;}
+.pi-del{background:none;border:none;color:var(--text-soft);cursor:pointer;
+  padding:4px;font-size:15px;}
+
+/* CHIPS */
+.cat-chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.cat-chip{padding:6px 14px;border-radius:30px;border:1px solid var(--border);
+  background:var(--surface);font-size:12px;font-weight:500;color:var(--text-mid);
+  cursor:pointer;transition:all 0.2s;}
+.cat-chip.sel{background:var(--gold);color:white;border-color:var(--gold);}
+
+/* PROMISES */
+.promise-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:20px;margin-bottom:12px;cursor:pointer;
+  transition:all 0.2s;position:relative;overflow:hidden;}
+.promise-card::before{content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:linear-gradient(to bottom,var(--gold),var(--gold-light));}
+.promise-card:active{transform:scale(0.98);}
+.p-ref{font-size:11px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.p-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;
+  color:var(--text);line-height:1.6;margin-bottom:10px;}
+.p-theme{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;}
+.theme-amor{background:#FCE4EC;color:#880E4F;}
+.dark .theme-amor{background:rgba(136,14,79,0.2);color:#F48FB1;}
+.theme-fe{background:#E3F2FD;color:#0D47A1;}
+.dark .theme-fe{background:rgba(13,71,161,0.2);color:#90CAF9;}
+.theme-force{background:#E8F5E9;color:#1B5E20;}
+.dark .theme-force{background:rgba(27,94,32,0.2);color:#A5D6A7;}
+.theme-paz{background:#F3E5F5;color:#4A148C;}
+.dark .theme-paz{background:rgba(74,20,140,0.2);color:#CE93D8;}
+.theme-bencao{background:#FFF8E1;color:#E65100;}
+.dark .theme-bencao{background:rgba(230,81,0,0.2);color:#FFCC80;}
+.fav-btn{position:absolute;right:14px;top:14px;background:none;border:none;
+  font-size:18px;cursor:pointer;transition:transform 0.2s;}
+.fav-btn:active{transform:scale(1.3);}
+.promise-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+
+/* DIARY */
+.diary-entry{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:18px;margin-bottom:12px;}
+.de-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.de-date{font-size:11px;color:var(--text-soft);font-weight:500;}
+.de-mood{font-size:20px;}
+.de-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;
+  color:var(--text);margin-bottom:6px;}
+.de-body{font-size:13px;color:var(--text-mid);line-height:1.7;}
+.de-del{background:none;border:none;color:var(--text-soft);cursor:pointer;
+  padding:4px;font-size:14px;}
+.mood-row{display:flex;gap:10px;justify-content:center;margin:12px 0;}
+.mood-opt{font-size:26px;cursor:pointer;transition:all 0.2s;padding:6px;border-radius:10px;}
+.mood-opt.sel{background:var(--accent-pale);transform:scale(1.2);}
+
+/* INPUTS */
+.text-input{width:100%;border:1px solid var(--border);background:var(--surface);
+  color:var(--text);border-radius:12px;padding:12px 14px;
+  font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border 0.2s;}
+.text-input:focus{border-color:var(--gold);}
+textarea.text-input{min-height:88px;resize:none;line-height:1.7;}
+label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--text-soft);margin-bottom:5px;display:block;}
+.action-btn{padding:13px 20px;border-radius:14px;border:none;
+  background:linear-gradient(135deg,#7A5C2E,#B8945A);color:white;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;
+  transition:all 0.2s;display:flex;align-items:center;gap:6px;}
+.action-btn.outline{background:transparent;color:var(--gold);border:1px solid var(--gold);}
+.action-btn:active{transform:scale(0.97);opacity:0.9;}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:18px 0;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.divider span{font-size:10px;color:var(--text-soft);font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:36px 20px;color:var(--text-soft);}
+.empty-state .es-icon{font-size:42px;margin-bottom:12px;opacity:0.45;}
+.empty-state p{font-size:14px;line-height:1.6;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--surface);border-radius:24px 24px 0 0;
+  padding:22px 20px 38px;width:100%;max-width:430px;
+  transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.32,0.72,0,1);
+  max-height:90vh;overflow-y:auto;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-handle{width:38px;height:4px;background:var(--border);border-radius:30px;margin:0 auto 18px;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;margin-bottom:18px;}
+
+/* CONFIG */
+.config-row{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;border-bottom:1px solid var(--border);}
+.config-row:last-child{border-bottom:none;}
+.config-label{font-size:14px;font-weight:500;color:var(--text);}
+.config-sub{font-size:11px;color:var(--text-soft);margin-top:2px;}
+.toggle-wrap{width:46px;height:26px;border-radius:30px;background:var(--border);
+  cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;}
+.toggle-wrap.on{background:var(--gold);}
+.toggle-knob{width:20px;height:20px;border-radius:50%;background:white;
+  position:absolute;top:3px;left:3px;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.2);}
+.toggle-wrap.on .toggle-knob{left:23px;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+/* ——— BÍBLIA ——— */
+.bible-progress-card{
+  background:linear-gradient(155deg,#3B2A14 0%,#6B4A20 50%,#9A6E35 100%);
+  border-radius:22px;padding:22px 20px;margin-bottom:18px;
+  box-shadow:0 6px 24px rgba(44,36,22,0.25);}
+.bible-progress-bar-wrap{background:rgba(255,255,255,0.18);border-radius:30px;height:8px;overflow:hidden;}
+.bible-progress-bar{height:8px;border-radius:30px;
+  background:linear-gradient(90deg,#FFD98E,#F5B942,#E8963C);
+  transition:width 0.8s cubic-bezier(0.4,0,0.2,1);}
+
+.week-chip{padding:6px 14px;border-radius:30px;border:1px solid var(--border);
+  background:var(--surface);font-size:12px;font-weight:600;color:var(--text-mid);
+  cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.week-chip.sel{background:var(--gold);color:white;border-color:var(--gold);}
+
+.reading-day-row{background:var(--surface);border:1px solid var(--border);
+  border-radius:18px;padding:16px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.2s;}
+.reading-day-row:active{transform:scale(0.98);}
+.rdr-num{width:44px;height:44px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;transition:all 0.3s;}
+.rdr-num-default{background:var(--accent-pale);border:1px solid var(--border);color:var(--gold-dark);}
+.dark .rdr-num-default{color:var(--gold-light);}
+.rdr-num-done{background:linear-gradient(135deg,#2E7D32,#4CAF50);color:white;border:none;
+  box-shadow:0 2px 8px rgba(76,175,80,0.35);}
+.rdr-num-today{background:linear-gradient(135deg,#7A5C2E,#B8945A);color:white;border:none;
+  box-shadow:0 2px 8px rgba(184,148,90,0.4);}
+.rdr-info{flex:1;}
+.rdr-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.3;}
+.rdr-chapters{font-size:11px;color:var(--text-soft);}
+.rdr-check{width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  cursor:pointer;transition:all 0.2s;font-size:14px;}
+.rdr-check.done{background:var(--gold);border-color:var(--gold);color:white;}
+.rdr-check.done::after{content:'✓';font-weight:700;}
+
+/* Leitura full */
+.reading-back{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+  color:var(--gold);cursor:pointer;margin-bottom:16px;}
+.reading-book-header{margin-bottom:20px;}
+.reading-book-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;
+  color:var(--text);line-height:1.2;margin-bottom:4px;}
+.reading-book-meta{font-size:12px;color:var(--text-soft);}
+.chapter-block{margin-bottom:24px;}
+.chapter-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;
+  color:var(--gold);margin-bottom:12px;letter-spacing:0.04em;}
+.verse-row{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start;}
+.verse-num{font-size:10px;font-weight:700;color:var(--gold);min-width:20px;
+  padding-top:4px;opacity:0.8;}
+.verse-text{font-size:14px;color:var(--text);line-height:1.8;flex:1;}
+.reading-done-btn{width:100%;padding:15px;border-radius:16px;border:none;
+  background:linear-gradient(135deg,#2E7D32,#4CAF50);color:white;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;
+  margin-top:24px;transition:all 0.2s;display:flex;align-items:center;
+  justify-content:center;gap:8px;}
+.reading-done-btn.done-state{background:linear-gradient(135deg,#1B5E20,#388E3C);}
+.reading-done-btn:active{transform:scale(0.98);}
+
+.csv-loading{text-align:center;padding:32px 20px;color:var(--text-soft);}
+.csv-spinner{width:36px;height:36px;border:3px solid var(--border);
+  border-top-color:var(--gold);border-radius:50%;margin:0 auto 14px;
+  animation:spin 0.9s linear infinite;}
+
+/* ——— PERFIL ——— */
+.profile-alliance{
+  background:linear-gradient(155deg,#2C1810 0%,#5C3A1E 50%,#8B5E2E 100%);
+  border-radius:24px;padding:28px 20px 24px;margin-bottom:4px;
+  box-shadow:0 6px 24px rgba(44,36,22,0.3);}
+.alliance-avatars{display:flex;align-items:center;justify-content:center;gap:20px;}
+.avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.avatar-circle{width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;
+  border:3px solid rgba(255,255,255,0.3);box-shadow:0 4px 16px rgba(0,0,0,0.3);}
+.avatar-him{background:linear-gradient(135deg,#1A3A5C,#2E6DA4);color:#90CAF9;}
+.avatar-her{background:linear-gradient(135deg,#5C1A3A,#A42E6D);color:#F48FB1;}
+.avatar-name{font-size:14px;font-weight:600;color:white;}
+.avatar-role{font-size:10px;color:rgba(255,255,255,0.55);font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;}
+.alliance-ring{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.alliance-symbol{font-size:28px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));}
+
+.profile-metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.profile-metric{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:16px 14px;text-align:center;}
+.pm-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;
+  color:var(--gold);line-height:1;}
+.pm-label{font-size:11px;color:var(--text-soft);margin-top:4px;font-weight:500;line-height:1.3;}
+.pm-icon{font-size:18px;margin-bottom:4px;}
+
+.achievement{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:14px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:14px;}
+.ach-icon{font-size:28px;flex-shrink:0;}
+.ach-info{}
+.ach-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.ach-desc{font-size:12px;color:var(--text-soft);}
+.achievement.locked{opacity:0.4;}
+.achievement.locked .ach-icon{filter:grayscale(1);}
+
+/* COUNTDOWN */
+.countdown-pill{display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:600;color:var(--gold-dark);
+  background:var(--accent-pale);border:1px solid var(--border);
+  padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+.dark .countdown-pill{color:var(--gold-light);}
+
+/* HISTORICO DEVOCIONAIS IA */
+.ai-history-item{background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;}
+.ai-history-item:active{transform:scale(0.98);}
+.ahi-date{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:5px;}
+.ahi-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;
+  color:var(--text);line-height:1.2;}
+.ahi-ref{font-size:11px;color:var(--text-soft);margin-top:3px;}
+</style>
 </head>
-<body class="min-h-screen bg-[#fcfbfa] text-[#3e3327] dark:bg-[#121110] dark:text-[#f3f1ed] flex flex-col max-w-md mx-auto shadow-2xl relative pb-24">
+<body>
 
-    <header class="bg-white dark:bg-[#1c1a18] border-b border-neutral-100 dark:border-neutral-800/60 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-sm transition-colors">
-        <div>
-            <span id="txt-data-topo" class="text-[10px] font-bold text-amber-800 dark:text-amber-500 tracking-widest uppercase">Carregando...</span>
-            <h1 class="serif text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">Menos de Nós</h1>
+<header>
+  <div class="header-left">
+    <span id="header-date">Carregando...</span>
+    <h1>Menos de Nós</h1>
+  </div>
+  <div class="header-right">
+    <div class="icon-btn" onclick="toggleDark()" id="dark-btn" title="Tema">🌙</div>
+    <div class="icon-btn" onclick="openModal('config-modal')"
+      style="font-size:14px;" title="Configurações">⚙️</div>
+    <div class="icon-btn"
+      style="background:linear-gradient(135deg,#7A5C2E,#B8945A);color:white;
+      font-size:11px;font-weight:700;width:auto;padding:0 11px;border-radius:20px;">✦ M&amp;I</div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-item active" onclick="goTo('inicio',this)">
+    <span class="nav-icon">🏠</span><span class="nav-label">Início</span>
+  </div>
+  <div class="nav-item" onclick="goTo('devocional',this)">
+    <span class="nav-icon">📖</span><span class="nav-label">Devocional</span>
+  </div>
+  <div class="nav-item" onclick="goTo('biblia',this)">
+    <span class="nav-icon">📜</span><span class="nav-label">Bíblia</span>
+  </div>
+  <div class="nav-item" onclick="goTo('oracao',this)">
+    <span class="nav-icon">🙏</span><span class="nav-label">Oração</span>
+  </div>
+  <div class="nav-item" onclick="goTo('perfil',this)">
+    <span class="nav-icon">👤</span><span class="nav-label">Perfil</span>
+  </div>
+</nav>
+
+<div id="toast"></div>
+
+<main>
+
+<!-- ========== INÍCIO ========== -->
+<section id="view-inicio" class="view active">
+  <div class="verse-banner">
+    <div class="vb-label">✦ Versículo do Dia</div>
+    <div class="vb-text" id="daily-verse"></div>
+    <div class="vb-ref" id="daily-ref"></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num" id="stat-streak">0</div><div class="stat-lbl">dias seguidos</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-devo">0</div><div class="stat-lbl">devocionais</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-prayer">0</div><div class="stat-lbl">orações</div></div>
+  </div>
+  <div class="quick-grid">
+    <div class="quick-btn" onclick="goTo('devocional',null)">
+      <span class="qb-icon">📖</span>
+      <span class="qb-label">Devocional de hoje</span>
+      <span class="qb-sub">Gerado pela IA</span>
+    </div>
+    <div class="quick-btn" onclick="goTo('biblia',null)">
+      <span class="qb-icon">📜</span>
+      <span class="qb-label">Plano de leitura</span>
+      <span class="qb-sub">365 dias da Bíblia</span>
+    </div>
+    <div class="quick-btn" onclick="openModal('prayer-modal')">
+      <span class="qb-icon">🙏</span>
+      <span class="qb-label">Nova oração</span>
+      <span class="qb-sub">Registrar pedido</span>
+    </div>
+    <div class="quick-btn" onclick="openModal('diary-modal')">
+      <span class="qb-icon">📝</span>
+      <span class="qb-label">Escrever no diário</span>
+      <span class="qb-sub">Gratidão do casal</span>
+    </div>
+  </div>
+  <div class="divider"><span>Devocional de Hoje</span></div>
+  <div id="home-ai-devo"></div>
+  <div class="divider"><span>Biblioteca</span></div>
+  <div id="home-devo-list"></div>
+</section>
+
+<!-- ========== DEVOCIONAL ========== -->
+<section id="view-devocional" class="view">
+  <div class="section-title">📖 Devocional</div>
+  <p class="section-sub">Meditação diária gerada pela IA especialmente para o seu casal.</p>
+  <div id="devo-ai-area"></div>
+  <div class="divider"><span>Histórico IA</span></div>
+  <div id="devo-ai-history"></div>
+  <div class="divider"><span>Biblioteca Fixa</span></div>
+  <div id="devo-fixed-list"></div>
+</section>
+
+<!-- ========== DEVO FULL ========== -->
+<section id="view-devo-full" class="view">
+  <div id="devo-full-content"></div>
+</section>
+
+<!-- ========== ORAÇÃO ========== -->
+<section id="view-oracao" class="view">
+  <div class="section-title">🙏 Lista de Oração</div>
+  <p class="section-sub">Levai ao Senhor os pedidos do vosso lar. Ele ouve cada um.</p>
+  <div class="card">
+    <label class="lbl">Novo pedido</label>
+    <input type="text" class="text-input" id="prayer-title-in" placeholder="Ex: Cura da minha mãe..." style="margin-bottom:10px;">
+    <textarea class="text-input" id="prayer-desc-in" placeholder="Detalhes (opcional)..." style="min-height:64px;margin-bottom:10px;"></textarea>
+    <label class="lbl">Categoria</label>
+    <div class="cat-chips" id="prayer-cats">
+      <div class="cat-chip sel" data-cat="Família">👨‍👩‍👧 Família</div>
+      <div class="cat-chip" data-cat="Saúde">🏥 Saúde</div>
+      <div class="cat-chip" data-cat="Finanças">💰 Finanças</div>
+      <div class="cat-chip" data-cat="Graça">🕊️ Graça</div>
+      <div class="cat-chip" data-cat="Missões">🌍 Missões</div>
+    </div>
+    <button class="action-btn" style="width:100%;justify-content:center;margin-top:6px;" onclick="addPrayer()">✦ Adicionar Oração</button>
+  </div>
+  <div class="divider"><span>Pedidos ativos</span></div>
+  <div id="prayer-list"></div>
+  <div class="divider"><span>Respondidas ✓</span></div>
+  <div id="prayer-answered-list"></div>
+</section>
+
+<!-- ========== PROMESSAS ========== -->
+<section id="view-promessas" class="view">
+  <div class="section-title">✨ Promessas Divinas</div>
+  <p class="section-sub">Tesouro eterno para o casal que crê. Toque para copiar.</p>
+  <div class="promise-filter" id="promise-filter">
+    <div class="cat-chip sel" data-theme="all">Todas</div>
+    <div class="cat-chip" data-theme="amor">💑 Amor</div>
+    <div class="cat-chip" data-theme="fe">🙏 Fé</div>
+    <div class="cat-chip" data-theme="force">⚔️ Força</div>
+    <div class="cat-chip" data-theme="paz">🕊️ Paz</div>
+    <div class="cat-chip" data-theme="bencao">✦ Bênção</div>
+  </div>
+  <div id="promise-list"></div>
+</section>
+
+<!-- ========== DIÁRIO ========== -->
+<section id="view-diario" class="view">
+  <div class="section-title">📝 Diário do Casal</div>
+  <p class="section-sub">Registrem as graças e vitórias que Deus escreve em vocês.</p>
+  <button class="action-btn" style="width:100%;justify-content:center;margin-bottom:18px;" onclick="openModal('diary-modal')">✦ Nova entrada</button>
+  <div id="diary-list"></div>
+</section>
+
+<!-- ========== PROMESSAS ========== -->
+<section id="view-promessas" class="view">
+  <div class="section-title">✨ Promessas Divinas</div>
+  <p class="section-sub">Tesouro eterno para o casal que crê. Toque para copiar.</p>
+  <div class="promise-filter" id="promise-filter">
+    <div class="cat-chip sel" data-theme="all">Todas</div>
+    <div class="cat-chip" data-theme="amor">💑 Amor</div>
+    <div class="cat-chip" data-theme="fe">🙏 Fé</div>
+    <div class="cat-chip" data-theme="force">⚔️ Força</div>
+    <div class="cat-chip" data-theme="paz">🕊️ Paz</div>
+    <div class="cat-chip" data-theme="bencao">✦ Bênção</div>
+  </div>
+  <div id="promise-list"></div>
+</section>
+
+<!-- ========== BÍBLIA ========== -->
+<section id="view-biblia" class="view">
+  <!-- Painel de progresso -->
+  <div class="bible-progress-card" id="bible-progress-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:4px;">📜 Plano Anual</div>
+        <div class="serif" style="font-size:22px;font-weight:600;color:white;line-height:1.1;">Bíblia em 365 Dias</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:4px;">Almeida Corrigida e Fiel · ACF</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:28px;font-weight:700;font-family:'Cormorant Garamond',serif;color:white;" id="bp-pct">0%</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.7);" id="bp-days-done">0 de 365 dias</div>
+      </div>
+    </div>
+    <div class="bible-progress-bar-wrap">
+      <div class="bible-progress-bar" id="bible-progress-bar" style="width:0%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:10px;">
+      <div style="font-size:11px;color:rgba(255,255,255,0.65);" id="bp-streak">🔥 0 dias seguidos</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.65);" id="bp-today-label">Hoje: Dia 1</div>
+    </div>
+  </div>
+
+  <!-- Filtro de semanas -->
+  <div style="display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;" id="week-filter"></div>
+
+  <!-- Lista de dias -->
+  <div id="reading-days-list"></div>
+</section>
+
+<!-- ========== LEITURA DO DIA ========== -->
+<section id="view-reading" class="view">
+  <div id="reading-content"></div>
+</section>
+
+<!-- ========== PERFIL ========== -->
+<section id="view-perfil" class="view">
+  <!-- Aliança visual -->
+  <div class="profile-alliance">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+      color:rgba(255,255,255,0.65);margin-bottom:18px;text-align:center;">✦ Nossa Aliança ✦</div>
+    <div class="alliance-avatars">
+      <div class="avatar-wrap">
+        <div class="avatar-circle avatar-him" id="avatar-him">M</div>
+        <div class="avatar-name" id="avatar-name-him">Marcus</div>
+        <div class="avatar-role">Ele</div>
+      </div>
+      <div class="alliance-ring">
+        <div class="alliance-symbol">💍</div>
+      </div>
+      <div class="avatar-wrap">
+        <div class="avatar-circle avatar-her" id="avatar-her">I</div>
+        <div class="avatar-name" id="avatar-name-her">Ingrid</div>
+        <div class="avatar-role">Ela</div>
+      </div>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;
+      color:rgba(255,255,255,0.7);text-align:center;margin-top:18px;line-height:1.7;">
+      "Quanto a nós e à nossa casa, serviremos ao Senhor."<br>
+      <span style="font-size:11px;opacity:0.6;">— Josué 24:15</span>
+    </div>
+  </div>
+
+  <!-- Métricas -->
+  <div class="section-title" style="margin-top:22px;">📊 Progresso Espiritual</div>
+  <p class="section-sub">Frutos da fidelidade de vocês diante do Senhor.</p>
+
+  <div id="profile-metrics"></div>
+
+  <!-- Gráfico de leitura bíblica -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px;">📜 Leitura Bíblica — Últimas 4 Semanas</div>
+    <canvas id="reading-chart" height="120"></canvas>
+  </div>
+
+  <!-- Gráfico de devocionais -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px;">📖 Devocionais — Histórico Mensal</div>
+    <canvas id="devo-chart" height="100"></canvas>
+  </div>
+
+  <!-- Conquistas -->
+  <div class="section-title" style="margin-top:4px;">🏆 Conquistas</div>
+  <p class="section-sub">Marcos da jornada espiritual do casal.</p>
+  <div id="achievements-list"></div>
+
+  <!-- Links rápidos -->
+  <div class="divider"><span>Mais</span></div>
+  <div class="quick-grid">
+    <div class="quick-btn" onclick="goTo('promessas',null)">
+      <span class="qb-icon">✨</span>
+      <span class="qb-label">Promessas</span>
+      <span class="qb-sub">Versículos favoritos</span>
+    </div>
+    <div class="quick-btn" onclick="goTo('diario',null)">
+      <span class="qb-icon">📝</span>
+      <span class="qb-label">Diário</span>
+      <span class="qb-sub">Nossa história</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== MODAL ORAÇÃO ===== -->
+<div id="prayer-modal" class="modal-overlay" onclick="closeModalOutside('prayer-modal',event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🙏 Nova Oração</div>
+    <label class="lbl">Título do pedido</label>
+    <input type="text" class="text-input" id="m-prayer-title" placeholder="Ex: Cura de alguém..." style="margin-bottom:12px;">
+    <label class="lbl">Descrição</label>
+    <textarea class="text-input" id="m-prayer-desc" placeholder="Detalhe o pedido..."></textarea>
+    <div class="cat-chips" id="m-prayer-cats" style="margin:12px 0;">
+      <div class="cat-chip sel" data-cat="Família">👨‍👩‍👧 Família</div>
+      <div class="cat-chip" data-cat="Saúde">🏥 Saúde</div>
+      <div class="cat-chip" data-cat="Finanças">💰 Finanças</div>
+      <div class="cat-chip" data-cat="Graça">🕊️ Graça</div>
+      <div class="cat-chip" data-cat="Missões">🌍 Missões</div>
+    </div>
+    <button class="action-btn" style="width:100%;justify-content:center;" onclick="addPrayerFromModal()">✦ Registrar Oração</button>
+  </div>
+</div>
+
+<!-- ===== MODAL DIÁRIO ===== -->
+<div id="diary-modal" class="modal-overlay" onclick="closeModalOutside('diary-modal',event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📝 Nova Entrada</div>
+    <label class="lbl">Título</label>
+    <input type="text" class="text-input" id="diary-title-in" placeholder="Ex: Gratidão pela cura..." style="margin-bottom:12px;">
+    <label class="lbl">Como estamos?</label>
+    <div class="mood-row" id="diary-moods">
+      <span class="mood-opt sel" data-mood="🙏">🙏</span>
+      <span class="mood-opt" data-mood="😊">😊</span>
+      <span class="mood-opt" data-mood="💕">💕</span>
+      <span class="mood-opt" data-mood="🌟">🌟</span>
+      <span class="mood-opt" data-mood="😔">😔</span>
+      <span class="mood-opt" data-mood="🔥">🔥</span>
+    </div>
+    <label class="lbl">Reflexão do casal</label>
+    <textarea class="text-input" id="diary-body-in"
+      placeholder="O que Deus fez hoje? Quais graças receberam?..."
+      style="min-height:100px;margin-bottom:14px;"></textarea>
+    <button class="action-btn" style="width:100%;justify-content:center;" onclick="saveDiaryEntry()">✦ Salvar no Diário</button>
+  </div>
+</div>
+
+<!-- ===== MODAL CONFIG ===== -->
+<div id="config-modal" class="modal-overlay" onclick="closeModalOutside('config-modal',event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⚙️ Configurações</div>
+
+    <div class="config-row">
+      <div>
+        <div class="config-label">Modo escuro</div>
+        <div class="config-sub">Tema para leitura noturna</div>
+      </div>
+      <div class="toggle-wrap" id="toggle-dark" onclick="toggleDark()">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+
+    <div class="config-row">
+      <div>
+        <div class="config-label">Temas preferidos</div>
+        <div class="config-sub">Personalizar devocionais gerados pela IA</div>
+      </div>
+    </div>
+    <div class="cat-chips" id="theme-chips">
+      <div class="cat-chip sel" data-theme="Amor conjugal">💑 Amor</div>
+      <div class="cat-chip sel" data-theme="Oração">🙏 Oração</div>
+      <div class="cat-chip" data-theme="Fidelidade">⚔️ Fidelidade</div>
+      <div class="cat-chip" data-theme="Perdão">💫 Perdão</div>
+      <div class="cat-chip" data-theme="Missão familiar">🏠 Missão</div>
+      <div class="cat-chip" data-theme="Graça">🕊️ Graça</div>
+      <div class="cat-chip" data-theme="Provisão">💰 Provisão</div>
+      <div class="cat-chip" data-theme="Fé">✦ Fé</div>
+    </div>
+
+    <div class="config-row" style="margin-top:8px;">
+      <div>
+        <div class="config-label">Nomes do casal</div>
+        <div class="config-sub">Para personalizar os devocionais</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+      <div>
+        <label class="lbl">Ele</label>
+        <input type="text" class="text-input" id="name-him" placeholder="Nome dele">
+      </div>
+      <div>
+        <label class="lbl">Ela</label>
+        <input type="text" class="text-input" id="name-her" placeholder="Nome dela">
+      </div>
+    </div>
+
+    <button class="action-btn" style="width:100%;justify-content:center;" onclick="saveConfig()">✦ Salvar Configurações</button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA FIXA
+// ============================================================
+const DEVOCIONAIS = [
+  {id:1,title:"Amor que Sacrifica",tag:"Amor Conjugal",icon:"💑",ref:"Efésios 5:25-28",
+   verse:"Maridos, amai vossas mulheres, como também Cristo amou a igreja e a si mesmo se entregou por ela.",
+   intro:"O casamento cristão não é uma parceria de conveniência, mas um reflexo vivo do amor de Cristo pela Sua Igreja.",
+   body:["O apóstolo Paulo, ao escrever aos efésios, não se contentou em dar conselhos práticos sobre a vida em comum. Ele foi mais longe — muito mais longe — ao conectar o amor conjugal à maior história de amor jamais narrada: o sacrifício de Cristo pela Sua noiva, a Igreja.","O marido é chamado a amar de um modo que vai além da simpatia ou da atração natural. Trata-se de um amor de aliança, um amor que decide, que escolhe diariamente, que permanece firme quando os sentimentos oscilam. E à esposa é dada a beleza de receber esse amor e retribuir com a graça da reverência.","O casal que medita nessa verdade diariamente descobre que o casamento não é apenas uma bênção a desfrutar, mas uma vocação a viver — e que nessa vocação há glória, há santificação, há o próprio Deus sendo revelado ao mundo."],
+   application:"Perguntem um ao outro: em que área posso sacrificar minha vontade pelo bem do outro esta semana?",
+   prayer:"Senhor Jesus, enche nosso amor de sacrifício e graça. Que nosso casamento seja reflexo do Teu amor. Amém.",
+   questions:["Em que área você percebe que ainda ama mais por conveniência do que por convicção?","Como o amor sacrificial de Cristo te inspira a amar diferente esta semana?","Que pequeno gesto de serviço você pode oferecer ao cônjuge hoje?"]},
+  {id:2,title:"A Casa sobre a Rocha",tag:"Fundamentos",icon:"🏠",ref:"Mateus 7:24-27",
+   verse:"Todo aquele que ouve estas minhas palavras e as pratica será como um homem prudente que edificou a sua casa sobre a rocha.",
+   intro:"Toda família enfrenta tempestades. A questão não é se as chuvas virão, mas sobre que fundamento o lar está construído.",
+   body:["Jesus encerra o Sermão do Monte com uma parábola de dois construtores. Aparentemente, ambas as casas pareciam idênticas por fora — talvez até a do tolo fosse mais bonita, construída em areia à beira do rio. Mas a diferença estava invisível: o fundamento.","Nos casamentos, vivemos muito à luz do que aparece. Mas o que sustenta o lar quando a tempestade bate — quando vem a doença, a perda financeira, a discordância profunda — é o fundamento assentado em silêncio, na Palavra meditada a dois.","Edificar sobre a Rocha não é um evento único; é um processo diário. É cada pequena escolha de trazer Deus para o centro do lar. O casal que faz isso descobre que a Rocha não é fria nem rígida — ela é o próprio Cristo vivo."],
+   application:"Identifiquem juntos uma prática espiritual que querem construir como hábito firme no lar.",
+   prayer:"Senhor, sê Tu a Rocha de nosso lar. Que cada decisão seja assentada em Tua Palavra. Amém.",
+   questions:["Qual 'areia' sutil ainda sustenta parte de nosso lar?","Que hábito espiritual, se praticado toda semana, transformaria nosso casamento?","Como podem se encorajar quando a prática diária com Deus se torna difícil?"]},
+  {id:3,title:"O Dom da Unidade",tag:"Comunhão",icon:"🕊️",ref:"João 17:22-23",
+   verse:"E eu lhes dei a glória que me deste, para que sejam um, como nós somos um.",
+   intro:"A unidade que Jesus pede não é uniformidade, mas uma comunhão profunda que reflete a harmonia da própria Trindade.",
+   body:["Na oração sacerdotal de João 17, Jesus revela o coração eterno de Deus para Seus filhos. Ele pede ao Pai que eles sejam um — e o modelo dessa unidade é nada menos que a comunhão entre o Pai e o Filho.","A unidade conjugal não é aquela que apaga as diferenças, mas aquela que as abraça com graça. É justamente nas diferenças que Deus trabalha. A glória que Jesus deu a Seus discípulos é o próprio Espírito Santo, o Espírito da unidade.","Busquem não a concordância forçada, mas a unidade genuína que nasce de dois corações prostrados diante do mesmo Senhor. Essa é a unidade que o mundo não consegue explicar."],
+   application:"Conversem sobre uma diferença entre vocês e busquem ver o presente de Deus nessa diferença.",
+   prayer:"Pai, que nós sejamos um, como Tu e o Filho sois um. Que nossa diferença vire complemento. Amém.",
+   questions:["Em que área as diferenças mais enriquecem o casamento?","O que impede mais unidade espiritual no dia a dia?","Como criar mais espaço para o Espírito Santo nas conversas?"]},
+  {id:4,title:"Perdoai Como Fomos Perdoados",tag:"Perdão",icon:"💫",ref:"Colossenses 3:13",
+   verse:"Perdoai-vos mutuamente, caso alguém tenha queixa de outro. Assim como o Senhor vos perdoou, assim fazei vós também.",
+   intro:"O perdão no casamento não é um sentimento natural — é um ato de fé. É crer que o Evangelho tem poder para libertar nosso lar.",
+   body:["Paulo escreve esta instrução dentro de uma lista impressionante de virtudes: misericórdia, benignidade, humildade, mansidão. E no topo de tudo, o amor. No centro está o perdão.","Não há casamento sem ofensas. Palavras ditas no calor do momento. Expectativas não comunicadas que se tornaram mágoas silenciosas. Cada casal, sem exceção, carrega essa realidade.","Quando o perdão flui do Evangelho, ele não é fraqueza, mas força sobrenatural. Não minimiza a dor, mas a redime. E a cada ato de perdão genuíno, o casal tece um fio a mais na tapeçaria de uma história de graça."],
+   application:"Há uma mágoa não resolvida? Hoje pode ser o dia de dar o primeiro passo — não por sentimento, mas por fé.",
+   prayer:"Senhor, que o Evangelho flua de nós para o casamento. Onde há mágoa, sana. Faze-nos um povo perdoador. Amém.",
+   questions:["Existe algo que você ainda segura e que precisa perdoar?","Como lembrar do perdão que recebeu de Deus muda sua disposição?","De que forma prática vocês podem 'acertar as contas' antes de dormir?"]},
+  {id:5,title:"Guardiões do Lar",tag:"Liderança",icon:"🛡️",ref:"Josué 24:15",
+   verse:"Quanto a mim e à minha casa, serviremos ao Senhor.",
+   intro:"Josué não fez votação. Ele declarou. Há um tipo de liderança espiritual que não espera aprovação.",
+   body:["A declaração de Josué é pronunciada num momento de decisão coletiva: todo o povo está sendo chamado a escolher a qual deus servirá. E Josué responde, em nome da família, sem hesitar.","A liderança espiritual no lar não é autoridade para dominar, mas responsabilidade de orientar. O homem que lidera bem não o faz com autoritarismo, mas com o exemplo de um coração genuinamente rendido a Deus.","Guardar o lar espiritualmente significa velar sobre o que entra — não apenas pelas portas físicas, mas pelas portas invisíveis. Significa liderar pelo exemplo na oração, na generosidade, na honestidade."],
+   application:"Que decisão prática vocês podem tomar esta semana para posicionar mais claramente seu lar sob a Palavra?",
+   prayer:"Senhor, declaramos: quanto a nós e à nossa casa, serviremos ao Senhor. Sê o Senhor de cada cômodo. Amém.",
+   questions:["Há algo no lar ocupando o espaço que deveria ser de Deus?","Como tornar o serviço ao Senhor mais visível e intencional?","Que legado espiritual vocês querem deixar?"]},
+  {id:6,title:"A Beleza do Serviço Mútuo",tag:"Serviço",icon:"🌿",ref:"Gálatas 5:13",
+   verse:"Servi-vos uns aos outros pelo amor.",
+   intro:"O amor que Paulo descreve não é sentimento nem teoria — é verbo, é ação, é torcer o joelho para lavar pés que cansaram.",
+   body:["Em Gálatas, Paulo diz que a liberdade em Cristo não deve servir à carne — mas que, pelo amor, devemos nos tornar servos uns dos outros. A liberdade cristã encontra sua expressão mais bela no serviço.","O serviço não é apenas dividir tarefas domésticas. É observar o cônjuge com atenção suficiente para perceber o que ele precisa antes que peça. É, como Jesus, lavar os pés do outro — mesmo quando os papéis diriam que não é 'sua vez'.","O casal que cultiva essa cultura de serviço mútuo descobre que o lar torna-se um laboratório de graça. As irritações diminuem porque o foco sai de 'o que recebi' e vai para 'o que posso dar'."],
+   application:"Esta semana, cada um identifique uma tarefa que o cônjuge faz e faça por ele sem avisar. Seja surpresa.",
+   prayer:"Senhor Jesus, ensina-nos a servir uns aos outros com a mesma graça que Tu nos serves. Amém.",
+   questions:["Em que área você tem esperado ser servido mais do que tem servido?","Como tornar o serviço ao cônjuge mais criativo?","O que muda quando você serve 'pelo amor' em vez de por obrigação?"]}
+];
+
+const PROMISES = [
+  {ref:"Jeremias 29:11",text:"Porque sou eu que conheço os planos que tenho para vós, diz o Senhor, planos de paz e não de calamidade, para vos dar um futuro e uma esperança.",theme:"bencao"},
+  {ref:"Filipenses 4:6-7",text:"Não vos inquieteis com nada; antes, apresentai em tudo as vossas petições a Deus em oração e súplica, com ação de graças. E a paz de Deus guardará os vossos corações.",theme:"paz"},
+  {ref:"Salmo 37:4",text:"Deleita-te também no Senhor, e ele te concederá os desejos do teu coração.",theme:"bencao"},
+  {ref:"Isaías 41:10",text:"Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus; eu te fortaleço, e te ajudo, e te sustento com a minha destra fiel.",theme:"force"},
+  {ref:"Provérbios 3:5-6",text:"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.",theme:"fe"},
+  {ref:"1 Coríntios 13:7-8",text:"O amor tudo sofre, tudo crê, tudo espera, tudo suporta. O amor jamais acabará.",theme:"amor"},
+  {ref:"Malaquias 3:10",text:"Trazei todos os dízimos à casa do tesouro... e provai-me nisto, diz o Senhor dos Exércitos, se eu não vos abrir as janelas do céu.",theme:"bencao"},
+  {ref:"Salmo 127:1",text:"Se o Senhor não edificar a casa, em vão trabalham os que a edificam.",theme:"fe"},
+  {ref:"Romanos 8:28",text:"Todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.",theme:"fe"},
+  {ref:"Cânticos 8:7",text:"As muitas águas não podem apagar o amor, nem os rios o submergirão.",theme:"amor"},
+  {ref:"Deuteronômio 31:8",text:"O Senhor vai adiante de ti; ele será contigo, não te deixará, nem te desamparará; não temas, nem te atemorizes.",theme:"force"},
+  {ref:"Salmo 91:1-2",text:"Aquele que habita no esconderijo do Altíssimo e descansa à sombra do Onipotente pode dizer: Tu és o meu refúgio e a minha fortaleza, o meu Deus em quem confio.",theme:"paz"},
+  {ref:"Efésios 3:20",text:"Ora, àquele que é poderoso para fazer tudo muito mais abundantemente além daquilo que pedimos ou pensamos, segundo o poder que em nós opera.",theme:"bencao"},
+  {ref:"João 15:9",text:"Como o Pai me amou, também eu vos amei; permanecei no meu amor.",theme:"amor"},
+  {ref:"Josué 1:9",text:"Não to mandei eu? Sê forte e corajoso! Não te atemorizes nem te desanimes, porque o Senhor, teu Deus, será contigo em qualquer lugar para onde fores.",theme:"force"},
+  {ref:"Neemias 8:10",text:"A alegria do Senhor é a vossa força.",theme:"force"}
+];
+
+const VERSES = [
+  {text:"Vós, maridos, amai vossas mulheres, como também Cristo amou a igreja.",ref:"Efésios 5:25"},
+  {text:"O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha.",ref:"1 Coríntios 13:4"},
+  {text:"Se o Senhor não edificar a casa, em vão trabalham os que a edificam.",ref:"Salmo 127:1"},
+  {text:"Quanto a mim e à minha casa, serviremos ao Senhor.",ref:"Josué 24:15"},
+  {text:"Deleita-te também no Senhor, e ele te concederá os desejos do teu coração.",ref:"Salmo 37:4"},
+  {text:"As muitas águas não podem apagar o amor, nem os rios o submergirão.",ref:"Cânticos 8:7"},
+  {text:"A alegria do Senhor é a vossa força.",ref:"Neemias 8:10"}
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let S = {
+  completedDevoIds:[],prayers:[],diary:[],favoritePromises:[],
+  streak:0,darkMode:false,promiseFilter:'all',
+  prayerCat:'Família',mPrayerCat:'Família',selectedMood:'🙏',
+  prevView:'devocional',
+  preferredThemes:['Amor conjugal','Oração'],
+  nameHim:'',nameHer:'',
+  aiDevocionais:{},   // keyed by dateKey (YYYY-MM-DD)
+};
+
+function load(){try{const s=localStorage.getItem('mnmd_v3');if(s)Object.assign(S,JSON.parse(s));}catch(e){}}
+function save(){try{localStorage.setItem('mnmd_v3',JSON.stringify(S));}catch(e){}}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function dateKey(d){d=d||new Date();return d.toISOString().slice(0,10);}
+function todayKey(){return dateKey();}
+function dayOfYear(){const n=new Date(),s=new Date(n.getFullYear(),0,0);return Math.floor((n-s)/86400000);}
+function fmtDate(ts){return new Date(ts).toLocaleDateString('pt-BR',{day:'numeric',month:'short',year:'numeric'});}
+function todayLabel(){return new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});}
+function msToMidnight(){const n=new Date(),m=new Date(n);m.setHours(24,0,0,0);return m-n;}
+function hms(ms){const h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000),s=Math.floor((ms%60000)/1000);return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+
+// ============================================================
+// DARK MODE
+// ============================================================
+function toggleDark(){
+  S.darkMode=!S.darkMode;
+  document.body.classList.toggle('dark',S.darkMode);
+  document.getElementById('dark-btn').textContent=S.darkMode?'☀️':'🌙';
+  const tw=document.getElementById('toggle-dark');
+  if(tw)tw.classList.toggle('on',S.darkMode);
+  save();
+}
+
+// ============================================================
+// NAV
+// ============================================================
+function goTo(v,el){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+  const view=document.getElementById('view-'+v);
+  if(view)view.classList.add('active');
+  if(el)el.classList.add('active');
+  else{
+    const map={inicio:'Início',devocional:'Devocional',oracao:'Oração',promessas:'Promessas',diario:'Diário'};
+    document.querySelectorAll('.nav-label').forEach(l=>{if(l.textContent===map[v])l.parentElement.classList.add('active');});
+  }
+  if(v==='inicio')renderHome();
+  if(v==='devocional')renderDevo();
+  if(v==='oracao')renderPrayers();
+  if(v==='promessas')renderPromises();
+  if(v==='diario')renderDiary();
+}
+
+function activeViewName(){
+  const a=document.querySelector('.view.active');
+  return a?a.id.replace('view-',''):'inicio';
+}
+
+// ============================================================
+// HOME
+// ============================================================
+function renderHome(){
+  const doy=dayOfYear();
+  const v=VERSES[doy%VERSES.length];
+  document.getElementById('daily-verse').textContent='"'+v.text+'"';
+  document.getElementById('daily-ref').textContent=v.ref;
+  const lbl=todayLabel();
+  document.getElementById('header-date').textContent=lbl.charAt(0).toUpperCase()+lbl.slice(1);
+  document.getElementById('stat-streak').textContent=S.streak;
+  document.getElementById('stat-devo').textContent=S.completedDevoIds.length;
+  document.getElementById('stat-prayer').textContent=S.prayers.filter(p=>!p.answered).length;
+
+  // AI devo today
+  renderAiDevoCard(document.getElementById('home-ai-devo'));
+
+  // fixed list preview
+  const c=document.getElementById('home-devo-list');
+  c.innerHTML='';
+  DEVOCIONAIS.slice(0,3).forEach(d=>c.appendChild(buildDevoCard(d,true)));
+}
+
+// ============================================================
+// DEVOCIONAL MAIN VIEW
+// ============================================================
+function renderDevo(){
+  renderAiDevoCard(document.getElementById('devo-ai-area'));
+  renderAiHistory();
+  const c=document.getElementById('devo-fixed-list');
+  c.innerHTML='';
+  DEVOCIONAIS.forEach(d=>c.appendChild(buildDevoCard(d,false)));
+}
+
+// ============================================================
+// AI DEVOCIONAL DO DIA
+// ============================================================
+let countdown_interval=null;
+
+function renderAiDevoCard(container){
+  if(!container)return;
+  container.innerHTML='';
+  const tk=todayKey();
+  const saved=S.aiDevocionais[tk];
+
+  if(saved && saved.content){
+    container.appendChild(buildAiDevoCard(saved,tk));
+  } else if(saved && saved.loading){
+    container.appendChild(buildLoadingCard());
+  } else {
+    container.appendChild(buildGenerateCard());
+  }
+}
+
+function buildGenerateCard(){
+  const div=document.createElement('div');
+  div.className='card';
+  div.style.textAlign='center';
+  div.style.padding='28px 20px';
+  div.innerHTML=`
+    <div style="font-size:40px;margin-bottom:14px;">✨</div>
+    <div class="serif" style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Devocional de Hoje</div>
+    <p style="font-size:13px;color:var(--text-soft);line-height:1.6;margin-bottom:18px;">
+      A IA vai gerar uma meditação única para o seu casal — disponível somente hoje.
+    </p>
+    <button class="action-btn" style="width:100%;justify-content:center;" onclick="generateAiDevo()">
+      ✦ Gerar Devocional de Hoje
+    </button>
+  `;
+  return div;
+}
+
+function buildLoadingCard(){
+  const div=document.createElement('div');
+  div.className='ai-generating';
+  div.id='ai-loading-card';
+  div.innerHTML=`
+    <div class="ai-gen-spinner"></div>
+    <div class="ai-gen-title">Preparando sua meditação<span class="ai-gen-dots"></span></div>
+    <p class="ai-gen-sub">A IA está criando um devocional especial para o casal hoje.</p>
+  `;
+  return div;
+}
+
+function buildAiDevoCard(saved,tk){
+  const done=S.completedDevoIds.includes('ai-'+tk);
+  const ms=msToMidnight();
+  const wrapper=document.createElement('div');
+  wrapper.id='ai-devo-wrapper';
+
+  // countdown pill
+  const pill=document.createElement('div');
+  pill.className='countdown-pill';
+  pill.innerHTML=`🕐 Disponível por: <span id="ai-countdown">${hms(ms)}</span>`;
+  wrapper.appendChild(pill);
+
+  const banner=document.createElement('div');
+  banner.className='ai-devo-banner';
+  banner.innerHTML=`
+    <div class="ai-devo-top">
+      <div class="adt-label">✦ Devocional de Hoje · IA</div>
+      <div class="adt-title">${saved.content.title||'Meditação do Dia'}</div>
+      <div class="adt-ref">${saved.content.ref||''}</div>
+    </div>
+    <div class="ai-devo-body">
+      <div class="adt-excerpt">${(saved.content.intro||'').substring(0,180)}...</div>
+      <div class="adt-actions">
+        <button class="adt-btn adt-btn-main" onclick="openAiDevo('${tk}')">📖 Ler meditação completa</button>
+        <button class="adt-btn adt-btn-outline" onclick="regenAiDevo()" title="Regerar">${done?'✅ Lido':'🔄'}</button>
+      </div>
+    </div>
+  `;
+  wrapper.appendChild(banner);
+
+  // Start countdown
+  if(countdown_interval)clearInterval(countdown_interval);
+  countdown_interval=setInterval(()=>{
+    const el=document.getElementById('ai-countdown');
+    if(el){const r=msToMidnight();if(r<=0){clearInterval(countdown_interval);renderAiDevoCard(document.getElementById('home-ai-devo'));renderAiDevoCard(document.getElementById('devo-ai-area'));}else el.textContent=hms(r);}
+    else clearInterval(countdown_interval);
+  },1000);
+
+  return wrapper;
+}
+
+async function generateAiDevo(){
+  const tk=todayKey();
+  S.aiDevocionais[tk]={loading:true};
+  save();
+
+  // Show loading in both spots
+  ['home-ai-devo','devo-ai-area'].forEach(id=>{
+    const c=document.getElementById(id);
+    if(c){c.innerHTML='';c.appendChild(buildLoadingCard());}
+  });
+
+  const themes=S.preferredThemes.length?S.preferredThemes.join(', '):'casamento cristão';
+  const couple=S.nameHim&&S.nameHer?`O casal se chama ${S.nameHim} e ${S.nameHer}.`:'';
+  const today=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+  const prompt=`Você é um pastor e teólogo reformado. Crie um devocional bíblico completo para um casal cristão.
+
+Data de hoje: ${today}
+${couple}
+Temas preferidos: ${themes}
+
+Retorne APENAS JSON válido, sem markdown, sem explicações, no seguinte formato:
+{
+  "title": "Título do devocional (criativo, poético)",
+  "ref": "Livro Capítulo:Versículos",
+  "verse": "Texto do versículo principal",
+  "intro": "Parágrafo introdutório de 2-3 frases",
+  "body": ["Parágrafo 1 (4-6 frases aprofundando teologicamente)", "Parágrafo 2 (4-6 frases aplicando ao casamento)", "Parágrafo 3 (3-5 frases de encorajamento)"],
+  "application": "Uma aplicação prática para o casal fazer hoje (2-3 frases)",
+  "prayer": "Oração do casal (3-5 frases, em primeira pessoa do plural)",
+  "questions": ["Pergunta reflexiva 1 para discutir juntos", "Pergunta reflexiva 2", "Pergunta reflexiva 3"]
+}`;
+
+  try {
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await resp.json();
+    const raw=data.content.map(i=>i.text||'').join('');
+    const clean=raw.replace(/```json|```/g,'').trim();
+    const parsed=JSON.parse(clean);
+    S.aiDevocionais[tk]={content:parsed,generatedAt:Date.now(),loading:false};
+    save();
+  } catch(e){
+    // Fallback devocional
+    const doy=dayOfYear();
+    const base=DEVOCIONAIS[doy%DEVOCIONAIS.length];
+    S.aiDevocionais[tk]={
+      content:{
+        title:base.title+' — Meditação do Dia',
+        ref:base.ref,verse:base.verse,intro:base.intro,
+        body:base.body,application:base.application,
+        prayer:base.prayer,questions:base.questions
+      },
+      generatedAt:Date.now(),loading:false,fallback:true
+    };
+    save();
+    showToast('Usando devocional local (offline)');
+  }
+
+  ['home-ai-devo','devo-ai-area'].forEach(id=>{
+    renderAiDevoCard(document.getElementById(id));
+  });
+}
+
+function regenAiDevo(){
+  const tk=todayKey();
+  delete S.aiDevocionais[tk];
+  save();
+  ['home-ai-devo','devo-ai-area'].forEach(id=>{
+    renderAiDevoCard(document.getElementById(id));
+  });
+  showToast('Devocional removido. Gere um novo!');
+}
+
+function renderAiHistory(){
+  const c=document.getElementById('devo-ai-history');
+  if(!c)return;
+  c.innerHTML='';
+  const keys=Object.keys(S.aiDevocionais)
+    .filter(k=>S.aiDevocionais[k].content&&k!==todayKey())
+    .sort((a,b)=>b.localeCompare(a))
+    .slice(0,7);
+  if(!keys.length){
+    c.innerHTML='<div style="font-size:13px;color:var(--text-soft);padding:8px 0;">Os devocionais gerados pela IA aparecerão aqui.</div>';
+    return;
+  }
+  keys.forEach(k=>{
+    const d=S.aiDevocionais[k];
+    const item=document.createElement('div');
+    item.className='ai-history-item';
+    const dt=new Date(k+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'});
+    item.innerHTML=`
+      <div class="ahi-date">✦ ${dt}</div>
+      <div class="ahi-title">${d.content.title||'Devocional'}</div>
+      <div class="ahi-ref">${d.content.ref||''}</div>
+    `;
+    item.onclick=()=>openAiDevo(k);
+    c.appendChild(item);
+  });
+}
+
+function openAiDevo(tk){
+  const saved=S.aiDevocionais[tk];
+  if(!saved||!saved.content)return;
+  const d=saved.content;
+  S.prevView=activeViewName();
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-devo-full').classList.add('active');
+
+  const done=S.completedDevoIds.includes('ai-'+tk);
+  const isToday=tk===todayKey();
+  const bodyHTML=d.body.map(p=>`<p>${p}</p>`).join('');
+  const qHTML=(d.questions||[]).map((q,i)=>`<div class="devo-q-item"><div class="devo-q-num">${i+1}</div><div class="devo-q-text">${q}</div></div>`).join('');
+
+  document.getElementById('devo-full-content').innerHTML=`
+    <div class="devo-full-back" onclick="backFromDevo()">← Voltar</div>
+    ${isToday?'<span class="tag tag-ai" style="display:inline-block;margin-bottom:10px;">✦ Gerado pela IA · Hoje</span>':'<span class="tag tag-gold" style="display:inline-block;margin-bottom:10px;">📚 Arquivo IA</span>'}
+    <div class="devo-full-title">${d.title||'Devocional'}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+      ${done?'<span class="tag tag-green">✓ Concluído</span>':''}
+    </div>
+    <div class="devo-verse-box"><p>"${d.verse||''}"</p><cite>— ${d.ref||''}</cite></div>
+    <div class="devo-body">${bodyHTML}</div>
+    <div class="devo-section">🌿 Aplicação Prática</div>
+    <div class="card card-subtle" style="font-size:14px;color:var(--text-mid);line-height:1.75;box-shadow:none;">${d.application||''}</div>
+    <div class="devo-prayer">
+      <div class="devo-prayer-lbl">🙏 Oração do Dia</div>
+      <div class="devo-prayer-text">${d.prayer||''}</div>
+    </div>
+    <div class="devo-section">💬 Para Refletir Juntos</div>
+    ${qHTML}
+    <button class="mark-done-btn" id="done-btn" onclick="markDone('ai-${tk}')">${done?'✅ Devocional já concluído':'✦ Marcar como concluído'}</button>
+    <div style="height:12px;"></div>
+  `;
+}
+
+// ============================================================
+// FIXED DEVOS
+// ============================================================
+function buildDevoCard(d,compact){
+  const done=S.completedDevoIds.includes(d.id);
+  const div=document.createElement('div');
+  div.className='card devo-card';
+  div.innerHTML=`
+    <div class="dc-head">
+      <div class="dc-badge ${done?'dc-badge-done':''}">${done?'✅':d.icon}</div>
+      <div>
+        <div class="dc-title">${d.title}</div>
+        <div class="dc-meta">${d.ref}</div>
+      </div>
+    </div>
+    <div class="dc-excerpt">${d.intro.substring(0,compact?110:160)}...</div>
+    <div class="dc-footer">
+      <span class="tag ${done?'tag-green':'tag-gold'}">${done?'✓ Lido':d.tag}</span>
+      <span class="read-more">Ler meditação →</span>
+    </div>
+  `;
+  div.onclick=()=>openFixedDevo(d.id);
+  return div;
+}
+
+function openFixedDevo(id){
+  const d=DEVOCIONAIS.find(x=>x.id===id);
+  if(!d)return;
+  S.prevView=activeViewName();
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-devo-full').classList.add('active');
+
+  const done=S.completedDevoIds.includes(id);
+  const bodyHTML=d.body.map(p=>`<p>${p}</p>`).join('');
+  const qHTML=d.questions.map((q,i)=>`<div class="devo-q-item"><div class="devo-q-num">${i+1}</div><div class="devo-q-text">${q}</div></div>`).join('');
+
+  document.getElementById('devo-full-content').innerHTML=`
+    <div class="devo-full-back" onclick="backFromDevo()">← Voltar</div>
+    <span class="tag tag-gold" style="display:inline-block;margin-bottom:10px;">📚 Biblioteca</span>
+    <div class="devo-full-title">${d.title}</div>
+    <div style="margin-bottom:6px;">${done?'<span class="tag tag-green">✓ Concluído</span>':''}</div>
+    <div class="devo-verse-box"><p>"${d.verse}"</p><cite>— ${d.ref}</cite></div>
+    <div class="devo-body">${bodyHTML}</div>
+    <div class="devo-section">🌿 Aplicação Prática</div>
+    <div class="card card-subtle" style="font-size:14px;color:var(--text-mid);line-height:1.75;box-shadow:none;">${d.application}</div>
+    <div class="devo-prayer">
+      <div class="devo-prayer-lbl">🙏 Oração do Dia</div>
+      <div class="devo-prayer-text">${d.prayer}</div>
+    </div>
+    <div class="devo-section">💬 Para Refletir Juntos</div>
+    ${qHTML}
+    <button class="mark-done-btn" id="done-btn" onclick="markDone(${id})">${done?'✅ Devocional já concluído':'✦ Marcar como concluído'}</button>
+    <div style="height:12px;"></div>
+  `;
+}
+
+function backFromDevo(){goTo(S.prevView,null);}
+
+function markDone(id){
+  if(S.completedDevoIds.includes(id)){showToast('Já concluíste esta meditação! 🙏');return;}
+  S.completedDevoIds.push(id);
+  S.streak+=1;
+  save();
+  const btn=document.getElementById('done-btn');
+  if(btn)btn.textContent='✅ Devocional já concluído';
+  showToast('Devocional concluído! Que bênção! ✦');
+}
+
+// ============================================================
+// PRAYERS
+// ============================================================
+function renderPrayers(){
+  const list=document.getElementById('prayer-list');
+  const ans=document.getElementById('prayer-answered-list');
+  list.innerHTML='';ans.innerHTML='';
+  const active=S.prayers.filter(p=>!p.answered);
+  const answered=S.prayers.filter(p=>p.answered);
+  if(!active.length)list.innerHTML='<div class="empty-state"><div class="es-icon">🙏</div><p>Nenhum pedido ativo.<br>Leve seu coração ao Senhor.</p></div>';
+  else active.forEach(p=>list.appendChild(buildPrayerItem(p)));
+  if(!answered.length)ans.innerHTML='<div style="font-size:13px;color:var(--text-soft);padding:8px 0;">Nenhuma oração respondida ainda.</div>';
+  else answered.forEach(p=>ans.appendChild(buildPrayerItem(p)));
+}
+
+const CAT_COLORS={
+  'Família':'background:#FFF3E0;color:#E65100;',
+  'Saúde':'background:#E3F2FD;color:#0D47A1;',
+  'Finanças':'background:#E8F5E9;color:#1B5E20;',
+  'Graça':'background:#F3E5F5;color:#4A148C;',
+  'Missões':'background:#FCE4EC;color:#880E4F;'
+};
+
+function buildPrayerItem(p){
+  const div=document.createElement('div');
+  div.className='prayer-item'+(p.answered?' answered':'');
+  div.innerHTML=`
+    <div class="pi-check ${p.answered?'checked':''}" onclick="togglePrayer('${p.id}')"></div>
+    <div class="pi-content">
+      <div class="pi-title">${p.title}</div>
+      ${p.desc?`<div class="pi-meta" style="margin-top:3px;">${p.desc}</div>`:''}
+      <div style="display:flex;align-items:center;gap:8px;margin-top:5px;">
+        <span class="pi-cat" style="${CAT_COLORS[p.category]||''}">${p.category}</span>
+        <span class="pi-meta">${fmtDate(p.date)}</span>
+      </div>
+    </div>
+    <button class="pi-del" onclick="deletePrayer('${p.id}')">🗑</button>
+  `;
+  return div;
+}
+
+function addPrayer(){
+  const t=document.getElementById('prayer-title-in').value.trim();
+  if(!t){showToast('Digite o título do pedido');return;}
+  S.prayers.unshift({id:Date.now().toString(),title:t,
+    desc:document.getElementById('prayer-desc-in').value.trim(),
+    category:S.prayerCat,answered:false,date:Date.now()});
+  save();
+  document.getElementById('prayer-title-in').value='';
+  document.getElementById('prayer-desc-in').value='';
+  renderPrayers();showToast('Oração registrada! Ele ouve ✦');
+}
+
+function addPrayerFromModal(){
+  const t=document.getElementById('m-prayer-title').value.trim();
+  if(!t){showToast('Digite o título do pedido');return;}
+  S.prayers.unshift({id:Date.now().toString(),title:t,
+    desc:document.getElementById('m-prayer-desc').value.trim(),
+    category:S.mPrayerCat,answered:false,date:Date.now()});
+  save();closeModal('prayer-modal');
+  document.getElementById('m-prayer-title').value='';
+  document.getElementById('m-prayer-desc').value='';
+  renderPrayers();showToast('Oração registrada! Ele ouve ✦');
+}
+
+function togglePrayer(id){
+  const p=S.prayers.find(x=>x.id===id);
+  if(p){p.answered=!p.answered;save();renderPrayers();}
+  if(S.prayers.find(x=>x.id===id)?.answered)showToast('Oração respondida! Glória a Deus! 🎉');
+}
+function deletePrayer(id){S.prayers=S.prayers.filter(p=>p.id!==id);save();renderPrayers();}
+
+// ============================================================
+// PROMISES
+// ============================================================
+function renderPromises(){
+  const list=document.getElementById('promise-list');
+  list.innerHTML='';
+  const filtered=S.promiseFilter==='all'?PROMISES:PROMISES.filter(p=>p.theme===S.promiseFilter);
+  filtered.forEach((p,i)=>{
+    const fav=S.favoritePromises.includes(i);
+    const div=document.createElement('div');
+    div.className='promise-card';
+    div.innerHTML=`
+      <button class="fav-btn" onclick="toggleFav(${i},event)">${fav?'❤️':'🤍'}</button>
+      <div class="p-ref">${p.ref}</div>
+      <div class="p-text">"${p.text}"</div>
+      <span class="p-theme theme-${p.theme}">${themeLabel(p.theme)}</span>
+    `;
+    div.onclick=()=>copyVerse(p.ref,p.text);
+    list.appendChild(div);
+  });
+}
+
+function themeLabel(t){return{amor:'💑 Amor',fe:'🙏 Fé',force:'⚔️ Força',paz:'🕊️ Paz',bencao:'✦ Bênção'}[t]||t;}
+function toggleFav(i,e){
+  e.stopPropagation();
+  const idx=S.favoritePromises.indexOf(i);
+  if(idx>=0)S.favoritePromises.splice(idx,1);else S.favoritePromises.push(i);
+  save();renderPromises();
+  showToast(idx>=0?'Removido dos favoritos':'❤️ Guardado no coração!');
+}
+function copyVerse(ref,text){
+  const full=`"${text}" — ${ref}`;
+  if(navigator.clipboard)navigator.clipboard.writeText(full).then(()=>showToast('Versículo copiado! ✦'));
+  else showToast('Versículo: '+ref);
+}
+
+// ============================================================
+// DIARY
+// ============================================================
+function renderDiary(){
+  const list=document.getElementById('diary-list');
+  list.innerHTML='';
+  if(!S.diary.length){
+    list.innerHTML='<div class="empty-state"><div class="es-icon">📝</div><p>Nenhuma entrada ainda.<br>Comecem a registrar a história de vocês.</p></div>';
+    return;
+  }
+  S.diary.slice().reverse().forEach(e=>{
+    const div=document.createElement('div');
+    div.className='diary-entry';
+    div.innerHTML=`
+      <div class="de-head">
+        <div><div class="de-date">${fmtDate(e.date)}</div><div class="de-title">${e.title}</div></div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="de-mood">${e.mood}</span>
+          <button class="de-del" onclick="deleteDiary('${e.id}')">🗑</button>
         </div>
-        <div class="flex items-center gap-3">
-            <button onclick="toggleDarkMode()" class="w-8 h-8 rounded-full flex items-center justify-center bg-neutral-50 dark:bg-neutral-800 border border-neutral-200/40 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 active:scale-95 transition-all">
-                <span id="icon-dark-mode" class="material-icons-round text-lg">dark_mode</span>
-            </button>
-            <div class="flex items-center gap-1 bg-amber-50/60 dark:bg-amber-950/40 px-3 py-1.5 rounded-full border border-amber-100/50 dark:border-amber-900/40">
-                <span class="material-icons-round text-sm text-amber-800 dark:text-amber-500">spa</span>
-                <span class="text-xs font-bold text-neutral-700 dark:text-neutral-300">M & I</span>
-            </div>
-        </div>
-    </header>
+      </div>
+      <div class="de-body">${e.body}</div>
+    `;
+    list.appendChild(div);
+  });
+}
 
-    <div id="toast" class="hidden fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-neutral-900/95 dark:bg-neutral-100/95 text-white dark:text-neutral-900 text-xs px-5 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 max-w-xs text-center font-medium"></div>
+function saveDiaryEntry(){
+  const t=document.getElementById('diary-title-in').value.trim();
+  const b=document.getElementById('diary-body-in').value.trim();
+  if(!t||!b){showToast('Preencha o título e a reflexão');return;}
+  S.diary.push({id:Date.now().toString(),title:t,body:b,mood:S.selectedMood,date:Date.now()});
+  save();closeModal('diary-modal');
+  document.getElementById('diary-title-in').value='';
+  document.getElementById('diary-body-in').value='';
+  renderDiary();showToast('Entrada salva no diário ✦');
+}
+function deleteDiary(id){S.diary=S.diary.filter(e=>e.id!==id);save();renderDiary();}
 
-    <main class="flex-1 p-5 overflow-y-auto no-scrollbar">
+// ============================================================
+// MODALS
+// ============================================================
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function closeModalOutside(id,e){if(e.target===document.getElementById(id))closeModal(id);}
 
-        <section id="view-inicio" class="space-y-4 block">
-            <div class="bg-gradient-to-r from-amber-50 to-orange-50/30 dark:from-amber-950/20 dark:to-transparent rounded-2xl p-5 border border-amber-100/40 dark:border-amber-900/30 space-y-1">
-                <h2 class="serif text-lg font-bold text-neutral-900 dark:text-neutral-100">Bem-vindos ao vosso Altar</h2>
-                <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Edificando o casamento sobre o fundamento eterno da Palavra divina.</p>
-            </div>
+// ============================================================
+// CHIPS GENERIC
+// ============================================================
+function initChips(cid,stateKey,multi){
+  document.getElementById(cid).querySelectorAll('.cat-chip').forEach(chip=>{
+    chip.onclick=()=>{
+      if(multi){
+        chip.classList.toggle('sel');
+        S[stateKey]=Array.from(document.getElementById(cid).querySelectorAll('.cat-chip.sel')).map(c=>c.dataset.theme||c.dataset.cat);
+      } else {
+        document.getElementById(cid).querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('sel'));
+        chip.classList.add('sel');
+        S[stateKey]=chip.dataset.cat||chip.dataset.theme;
+        if(stateKey==='promiseFilter')renderPromises();
+      }
+    };
+  });
+}
 
-            <div id="wrapper-devocional-ativo" class="space-y-4">
-                <div class="text-center py-10 text-xs text-neutral-400 animate-pulse">Sincronizando santuário familiar no Firebase...</div>
-            </div>
-        </section>
+// ============================================================
+// CONFIG
+// ============================================================
+function saveConfig(){
+  S.nameHim=document.getElementById('name-him').value.trim();
+  S.nameHer=document.getElementById('name-her').value.trim();
+  S.preferredThemes=Array.from(document.getElementById('theme-chips').querySelectorAll('.cat-chip.sel')).map(c=>c.dataset.theme);
+  save();closeModal('config-modal');
+  showToast('Configurações salvas ✦');
+}
 
-        <section id="view-leitura" class="hidden space-y-4">
-            <div class="mb-2 flex justify-between items-end">
-                <div>
-                    <h2 class="serif text-xl font-bold text-neutral-900 dark:text-neutral-100">Leitura Bíblica</h2>
-                    <p class="text-xs text-neutral-500 dark:text-neutral-400">Alimentação espiritual através do plano cronológico.</p>
-                </div>
-                <div id="csv-status-badge" class="text-[10px] bg-neutral-100 dark:bg-neutral-800 text-neutral-400 px-2 py-0.5 rounded font-mono">Processando CSV...</div>
-            </div>
-            
-            <div class="bg-white dark:bg-[#1c1a18] border border-neutral-100 dark:border-neutral-800/50 rounded-3xl p-6
+function loadConfigUI(){
+  if(document.getElementById('name-him'))document.getElementById('name-him').value=S.nameHim||'';
+  if(document.getElementById('name-her'))document.getElementById('name-her').value=S.nameHer||'';
+  document.getElementById('theme-chips').querySelectorAll('.cat-chip').forEach(c=>{
+    c.classList.toggle('sel',S.preferredThemes.includes(c.dataset.theme));
+  });
+  const tw=document.getElementById('toggle-dark');
+  if(tw)tw.classList.toggle('on',S.darkMode);
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('DOMContentLoaded',()=>{
+  load();
+  document.body.classList.toggle('dark',S.darkMode);
+  document.getElementById('dark-btn').textContent=S.darkMode?'☀️':'🌙';
+
+  initChips('prayer-cats','prayerCat',false);
+  initChips('m-prayer-cats','mPrayerCat',false);
+  initChips('promise-filter','promiseFilter',false);
+  initChips('theme-chips','preferredThemes',true);
+
+  document.getElementById('diary-moods').querySelectorAll('.mood-opt').forEach(m=>{
+    m.onclick=()=>{
+      document.getElementById('diary-moods').querySelectorAll('.mood-opt').forEach(x=>x.classList.remove('sel'));
+      m.classList.add('sel');S.selectedMood=m.dataset.mood;
+    };
+  });
+
+  // Restore promise filter
+  if(S.promiseFilter&&S.promiseFilter!=='all'){
+    document.getElementById('promise-filter').querySelectorAll('.cat-chip').forEach(c=>{
+      c.classList.toggle('sel',c.dataset.theme===S.promiseFilter);
+    });
+  }
+
+  loadConfigUI();
+  renderHome();
+});
+</script>
+</body>
+</html>
