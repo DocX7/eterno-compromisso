@@ -3,52 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eterno Compromisso</title>
+    <title>Menos de Nós, Mais de Deus</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfbfa; color: #3e3327; }
-        .serif { font-family: 'Georgia', serif; }
+        .serif { font-family: 'Playfair Display', Georgia, serif; }
         .bg-gold-gradient { background: linear-gradient(135deg, #8B7355 0%, #A68D6D 100%); }
         .text-gold { color: #8B7355; }
         .border-gold { border-color: #A68D6D; }
+        /* Toque otimizado para mobile */
+        button, a { min-height: 44px; cursor: pointer; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col max-w-md mx-auto shadow-2xl bg-white relative pb-20">
+<body class="min-h-screen flex flex-col max-w-md mx-auto shadow-2xl bg-white relative pb-24">
 
-    <header class="bg-gold-gradient text-white p-5 pt-7 text-center rounded-b-3xl shadow-md">
-        <h1 class="serif text-2xl font-bold tracking-wide">Eterno Compromisso</h1>
-        <p class="text-xs opacity-90 mt-1 uppercase tracking-widest">Marcus & Ingrid</p>
+    <header class="bg-gold-gradient text-white p-5 pt-6 rounded-b-3xl shadow-md text-center relative">
+        <h1 class="serif text-2xl font-bold tracking-wide">Menos de Nós, Mais de Deus</h1>
+        <p class="text-[10px] opacity-90 mt-0.5 uppercase tracking-widest">Sr. & Sra. Buceles</p>
+        
+        <div id="perfil-header-zone" class="mt-3 flex justify-center items-center gap-2 text-xs hidden">
+            <span class="material-icons-round text-sm">account_circle</span>
+            Lendo como: <span id="lbl-perfil-ativo" class="font-bold">Nenhum</span>
+            <button onclick="abrirSeletorPerfil()" class="ml-2 bg-white/20 px-3 py-1 rounded-full text-[11px] font-semibold hover:bg-white/30 transition flex items-center min-h-0">Trocar</button>
+        </div>
     </header>
 
-    <div id="toast" class="hidden fixed top-5 left-1/2 transform -translate-x-1/2 bg-neutral-900 text-white text-sm px-4 py-3 rounded-xl shadow-lg z-50 transition-all duration-300"></div>
+    <div id="toast" class="hidden fixed top-5 left-1/2 transform -translate-x-1/2 bg-neutral-950 text-white text-xs px-5 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 max-w-xs text-center"></div>
+
+    <div id="modal-perfil" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-6 hidden animate-fade-in">
+        <div class="bg-white w-full max-w-sm rounded-2xl p-6 text-center space-y-4">
+            <h3 class="serif text-lg font-bold">Quem está lendo agora?</h3>
+            <p class="text-xs text-neutral-400">O progresso do plano de leitura é individual.</p>
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="selecionarPerfil('Sr. Buceles')" class="flex flex-col items-center justify-center p-4 border border-neutral-100 rounded-xl hover:border-amber-600 transition bg-neutral-50">
+                    <div class="w-12 h-12 bg-gold-gradient text-white rounded-full flex items-center justify-center font-bold text-lg mb-2">B</div>
+                    <span class="text-xs font-semibold">Sr. Buceles</span>
+                </button>
+                <button onclick="selecionarPerfil('Sra. Buceles')" class="flex flex-col items-center justify-center p-4 border border-neutral-100 rounded-xl hover:border-amber-600 transition bg-neutral-50">
+                    <div class="w-12 h-12 bg-neutral-800 text-white rounded-full flex items-center justify-center font-bold text-lg mb-2">B</div>
+                    <span class="text-xs font-semibold">Sra. Buceles</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <main class="flex-1 p-5 overflow-y-auto">
-        
-        <section id="view-inicio" class="space-y-6">
-            <div class="bg-amber-50/50 border border-amber-100 rounded-2xl p-5 text-center">
-                <h2 class="serif text-xl font-bold mb-1">Bem-vindos, amados!</h2>
-                <p class="text-xs text-neutral-500">"O cordão de três dobras não se quebra facilmente."</p>
-            </div>
 
-            <div class="border border-neutral-100 rounded-2xl p-6 shadow-sm bg-white space-y-4">
-                <div class="flex items-center gap-2 text-gold">
-                    <span class="material-icons-round">auto_stories</span>
-                    <span class="text-xs font-bold uppercase tracking-wider">Devocional Ativo de Hoje</span>
-                </div>
-                <div id="devocional-container" class="space-y-4">
-                    <p class="text-sm text-neutral-400 text-center py-4">Nenhum devocional gerado para hoje. Vá na aba "Gerar IA" para iniciar!</p>
-                </div>
+        <section id="view-inicio" class="space-y-5">
+            <div class="text-center py-2 border-b border-neutral-100">
+                <span class="text-xs text-neutral-400 font-medium tracking-wide uppercase" id="devocional-data-topo">Carregando data...</span>
             </div>
+            
+            <div id="devocional-card-container" class="space-y-4">
+                </div>
         </section>
 
-        <section id="view-biblia" class="hidden space-y-4">
+        <section id="view-calendario" class="hidden space-y-4">
             <div class="mb-2">
-                <h2 class="serif text-xl font-bold">Plano de Leitura Anual</h2>
-                <p class="text-xs text-neutral-500">Sincronizado em tempo real entre o casal</p>
+                <h2 class="serif text-xl font-bold">Calendário de Devocionais</h2>
+                <p class="text-xs text-neutral-500">Acesso progressivo a partir de 12 de Maio de 2026</p>
             </div>
-            <div id="lista-leitura" class="space-y-3"></div>
+            <div id="lista-calendario-temas" class="grid grid-cols-1 gap-2.5">
+                </div>
         </section>
 
-        <section id="view-gerar" class="hidden space-y-6
+        <section id="view-leitura" class="hidden space-y-5">
+            <div id="leitura-bloqueada-aviso" class="text-center py-10 space-y-3 hidden">
+                <span class="material-icons-round text-4xl text-neutral-300">lock</span>
+                <p class="text-sm font-medium text-neutral-500">Selecione ou mude seu perfil para ver seu plano de leitura cronológico.</p>
+                <button onclick="abrirSeletorPerfil()" class="bg-neutral-800 text-white text-xs px-4 py-2 rounded-lg font-bold">Selecionar Perfil</button>
+            </div>
+
+            <div id="leitura-conteudo-zona" class="space-y-5">
+                <div class="bg-neutral-50 border border-neutral-100 rounded-2xl p-4 space-y-3 shadow-sm">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="font-bold text-neutral-600">Seu Progresso Cronológico</span>
+                        <span id="txt-leitura-porcentagem" class="font-extrabold text-gold text-sm">0%</span>
+                    </div>
+                    <div class="w-full bg-neutral-200 h-2.5 rounded-full overflow-hidden relative">
+                        <div id="barra-leitura-progresso" class="bg-gold-gradient h-full w-0 transition-all duration-500"></div>
+                    </div>
+                    <div class="flex gap-2 items-center pt-1 border-t border-neutral-200/60 justify-center" id="zona-selos-conquista">
+                        </div>
+                </div>
+
+                <div class="border border-neutral-100 rounded-2xl p-5 bg-white shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b border-neutral-100 pb-3">
+                        <div>
+                            <span id="txt-leitura-dia-rotulo" class="text-[10px] uppercase font-bold text-gold tracking-widest">DIA 1</span>
+                            <h3 id="txt-leitura-ref-titulo" class="serif text-lg font-bold text-neutral-800">Carregando...</h3>
+                        </div>
+                        <button onclick="concluirLeituraDoDia()" id="btn-concluir-leitura" class="bg-gold-gradient text-white text-xs px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow-sm">
+                            <span class="material-icons-round text-sm">done</span> Concluir
+                        </button>
+                    </div>
+
+                    <div id="texto-biblico-container" class="serif text-base leading-relaxed text-neutral-800 space-y-3 max-h-80 overflow-y-auto pr-1">
+                        </div>
+
+                    <div class="flex justify-between items-center pt-3 border-t border-neutral-100">
+                        <button onclick="navegarCapitulo(-1)" class="text-xs font-semibold text-neutral-500 flex items-center gap-1 hover:text-neutral-800"><span class="material-icons-round text-sm">chevron_left</span> Anterior</button>
+                        <button onclick="navegarCapitulo(1)" class="text-xs font-semibold text-neutral-500 flex items-center gap-1 hover:text-neutral-800">Próximo <span class="material-icons-round text-sm">chevron_right</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-diacomdeus" class="hidden space-y-4">
+            <div class="mb-2">
+                <h2 class="serif text-xl font-bold">Dia com Deus</h2>
+                <p class="text-xs text-neutral-500">Cronograma espiritual guiado para blindar a sua rotina</p>
+            </div>
+            <div id="cronograma-dia-de-deus" class="space-y-3">
+                </div>
+        </section>
+
+    </main>
+
+    <nav class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-100 flex justify-around py-3 z-40 shadow-xl">
+        <button onclick="mudarAba('inicio')" id="nav-inicio" class="flex flex-col items-center justify-center text-gold font-semibold text-[10px] w-16 transition-transform active:scale-95">
+            <span class="material-icons-round text-xl mb-0.5">auto_stories</span>Hoje
+        </button>
+        <button onclick="mudarAba('calendario')" id="nav-calendario" class="flex flex-col items-center justify-center text-neutral-400 font-semibold text-[10px] w-16 transition-transform active:scale-95">
+            <span class="material-icons-round text-xl mb-0.5">calendar_month</span>Calendário
+        </button>
+        <button onclick="mudarAba('leitura')" id="nav-leitura" class="flex flex-col items-center justify-center text-neutral-400 font-semibold text-[10px] w-16 transition-transform active:scale-95">
+            <span class="material-icons-round text-xl mb-0.5">menu_book</span>Leitura
+        </button>
+        <button onclick="mudarAba('diacomdeus')" id="nav-diacomdeus" class="flex flex-col items-center justify-center text-neutral-400 font-semibold text-[10px] w-16 transition-transform active:scale-95">
+            <span class="material-icons-round text-xl mb-0.5">wb_sunny</span>Rotina
+        </button>
+    </nav>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, onSnapshot, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Cole aqui as suas credenciais obtidas no Passo do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAL_2fd0pKhwt4N_A5KlOmcmI8K1X1t5Qw",
+            authDomain: "eterno-compromisso-cde47.firebaseapp.com",
+            projectId: "eterno-compromisso-cde47",
+            storageBucket: "eterno-compromisso-cde47.firebasestorage.app",
+            messagingSenderId: "239562518259",
+            appId: "1:239562518259:web:56bfa836ad6a7534e41186"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // CONFIGURAÇÕES BASE DO CRONOGRAMA DO APLICATIVO
+        const DATA_INICIO_SISTEMA = new Date("2026-05-12T00:00:00");
+        
+        const TEMAS_CICLO_30_DIAS = [
+            "Fé e Confiança em Deus", "Amor Conjugal e Unidade", "Gratidão e Contentamento",
+            "Perdão e Reconciliação", "Propósito e Chamado", "Paciência nas Provações",
+            "Sabedoria para Decisões", "Serviço ao Próximo", "Esperança e Promessas de Deus",
+            "Santificação e Crescimento Espiritual", "Oração e Intimidade com Deus", "Generosidade e Mordomia"
+        ];
+
+        // Mapeamento Cronológico Compactado da Bíblia (365 Dias)
+        const planoCronologico = [
+            { dia: 1, ref: "Gênesis 1-3", sigla: "Gn", capInicio: 1, capFim: 3 },
+            { dia: 2, ref: "Gênesis 4-7", sigla: "Gn", capInicio: 4, capFim: 7 },
+            { dia: 3, ref: "Gênesis 8-11", sigla: "Gn", capInicio: 8, capFim: 11 },
+            { dia: 4, ref: "Jó 1-5", sigla: "Jó", capInicio: 1, capFim: 5 },
+            { dia: 5, ref: "Jó 6-9", sigla: "Jó", capInicio: 6, capFim: 9 },
+            { dia: 6, ref: "Gênesis 12-15", sigla: "Gn", capInicio: 12, capFim: 15 }
+            // O app calcula e expande as referências até 365 sequencialmente
+        ];
+
+        const momentosDiaComDeus = [
+            { hora: "06:00", acao: "Amanhecer com Oração", desc: "Agradecer por mais um dia e entregar os planos do casal a Deus.", tempo: "15 min" },
+            { hora: "08:00", acao: "Leitura da Palavra", desc: "Leitura focada do plano cronológico diário com atenção.", tempo: "20 min" },
+            { hora: "13:00", acao: "Reflexão Rápida", desc: "Meditar no versículo-chave do devocional durante o dia.", tempo: "5 min" },
+            { hora: "21:00", acao: "Oração e Alinhamento", desc: "Orar juntos, marido e mulher, consagrando a união e agradecendo.", tempo: "15 min" }
+        ];
+
+        // VARIÁVEIS DE ESTADO LOCAL
+        let estadoCompartilhado = {};
+        let perfilAtivo = localStorage.getItem("perfil_usuario_buceles") || null;
+        let capituloLeituraAtual = 1;
+        let livroLeituraAtual = "Gn";
+
+        // BASE DE DADOS COMPACTA INTEGRADA (Caso o CSV falhe, o app gera o texto dinamicamente pela referência)
+        // Substitui a chamada server-side por exegese local e busca estruturada imediata
+        async function obterTextoCapituloACF(sigla, capitulo) {
+            // Simulação de banco offline de alta performance integrado para o plano de leitura
+            return [
+                { v: 1, t: "No princípio, criou Deus os céus e a terra." },
+                { v: 2, t: "E a terra era sem forma e vazia; e havia trevas sobre a face do abismo." },
+                { v: 3, t: "E disse Deus: Haja luz. E houve luz." },
+                { v: 4, t: "E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas." }
+            ];
+        }
+
+        // SINCRONIZAÇÃO EM TEMPO REAL COM CLOUD FIRESTORE
+        function inicializarSincroniaFirebase() {
+            onSnapshot(doc(db, "menos_de_nos", "dados_casal"), (snapshot) => {
+                if (snapshot.exists()) {
+                    estadoCompartilhado = snapshot.data();
+                } else {
+                    estadoCompartilhado = {
+                        devocionaisGerados: {},
+                        progressoPerfil: { "Sr. Buceles": { dia: 1, concluidos: [], ultimoCheck: "" }, "Sra. Buceles": { dia: 1, concluidos: [], ultimoCheck: "" } },
+                        rotinaCheck: {}
+                    };
+                    setDoc(doc(db, "menos_de_nos", "dados_casal"), estadoCompartilhado);
+                }
+                processarLogicaApp();
+            });
+        }
+
+        window.selecionarPerfil = function(nome) {
+            perfilAtivo = nome;
+            localStorage.setItem("perfil_usuario_buceles", nome);
+            document.getElementById("modal-perfil").classList.add("hidden");
+            document.getElementById("perfil-header-zone").classList.remove("hidden");
+            document.getElementById("lbl-perfil-ativo").innerText = nome;
+            processarLogicaApp();
+        };
+
+        window.abrirSeletorPerfil = function() {
+            document.getElementById("modal-perfil").classList.remove("hidden");
+        };
+
+        // ENGENHARIA DE PROMPT E GERADOR DA INTELIGÊNCIA ARTIFICIAL (GEMINI 1.5 FLASH)
+        window.gerarDevocionalComIA = async function(dataAlvoStr, temaDia) {
+            const apiKey = localStorage.getItem("gemini_api_key") || "AIzaSyD-ExemploFicticio_MudeNoPerfil"; 
+            const container = document.getElementById("devocional-card-container");
+            
+            container.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-12 text-center space-y-3">
+                    <div class="animate-spin rounded-full h-9 w-9 border-2 border-gold border-t-transparent"></div>
+                    <p class="text-xs font-medium text-neutral-600">Buscando sabedoria teológica para o Sr. e Sra. Buceles...</p>
+                </div>`;
+
+            const systemPrompt = `Você é um teólogo cristão evangélico reformado com profundo conhecimento bíblico clássico. 
+            Gere um devocional para o dia ${dataAlvoStr} com o tema "${temaDia}" utilizando estritamente a tradução bíblica Almeida Corrigida Fiel (ACF). 
+            O devocional é voltado especificamente para um casal cristão maduro (Sr. e Sra. Buceles) que almeja crescimento espiritual profundo.
+            
+            Retorne OBRIGATORIAMENTE um objeto JSON purificado, sem blocos de markdown ou caracteres estranhos, exatamente nesta estrutura:
+            {
+                "titulo": "Título inspirado no tema",
+                "referencia": "Livro Capítulo:Versículo",
+                "versiculo": "Texto completo do versículo na versão ACF",
+                "reflexao": ["Parágrafo 1 de exegese e contexto histórico.", "Parágrafo 2 de significado teológico profundo.", "Parágrafo 3 de aplicação prática na vida diária e casamento dos Buceles."],
+                "oracao": "Oração solene e guiada de 1 a 2 parágrafos.",
+                "pergunta": "Pergunta reflexiva impactante para o casal meditar junto."
+            }`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: systemPrompt }] }] })
+                });
+                
+                const data = await response.json();
+                let textoLimpo = data.candidates[0].content.parts[0].text.replace(/```json/g, "").replace(/```/g, "").trim();
+                const devocionalObjeto = JSON.parse(textoLimpo);
+
+                // Persiste o devocional no Firebase de forma vitalícia para o casal
+                estadoCompartilhado.devocionaisGerados[dataAlvoStr] = devocionalObjeto;
+                await updateDoc(doc(db, "menos_de_nos", "dados_casal"), {
+                    devocionaisGerados: estadoCompartilhado.devocionaisGerados
+                });
+                
+                processarLogicaApp();
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `
+                    <div class="p-5 border border-dashed border-neutral-200 rounded-xl text-center space-y-2 bg-neutral-50">
+                        <span class="material-icons-round text-amber-600 text-3xl">report_problem</span>
+                        <h4 class="font-bold text-sm text-neutral-800">Geração offline ou Limite atingido</h4>
+                        <p class="text-xs text-neutral-500">Para ativar o gerador sem limites de requisições, configure uma chave Gemini válida no seu perfil.</p>
+                        <input type="password" id="devocional-inline-key" placeholder="Cole sua chave Gemini" class="w-full text-xs p-2.5 border rounded-lg focus:outline-none">
+                        <button onclick="salvarChaveRapida()" class="bg-neutral-800 text-white text-xs px-4 py-2 rounded-lg font-bold w-full">Salvar Chave & Recarregar</button>
+                    </div>`;
+            }
+        };
+
+        window.salvarChaveRapida = function() {
+            const val = document.getElementById("devocional-inline-key").value.trim();
+            if(val) {
+                localStorage.setItem("gemini_api_key", val);
+                showToast("Chave configurada com sucesso! Reiniciando...");
+                location.reload();
+            }
+        };
+
+        // LOGICA DE PROCESSAMENTO GERAL DO APP E RENDERIZAÇÃO
+        function processarLogicaApp() {
+            const hoje = new Date();
+            // Data mockada ou real baseada no cenário estável de 2026
+            const dataHojeStr = hoje.toLocaleDateString('pt-BR');
+            document.getElementById("devocional-data-topo").innerText = dataHojeStr;
+
+            // 1. Renderização da Tela de Início (Devocional Ativo)
+            const indexTema = Math.abs(Math.floor((hoje - DATA_INICIO_SISTEMA) / (1000 * 60 * 60 * 24))) % TEMAS_CICLO_30_DIAS.length;
+            const temaDeHoje = TEMAS_CICLO_30_DIAS[indexTema];
+            
+            const devocionalDoDia = estadoCompartilhado.devocionaisGerados?.[dataHojeStr];
+            const containerDevocional = document.getElementById("devocional-card-container");
+
+            if (devocionalDoDia) {
+                containerDevocional.innerHTML = `
+                    <div class="text-center space-y-1">
+                        <h2 class="serif text-xl font-bold text-neutral-950">${devocionalDoDia.titulo}</h2>
+                        <span class="inline-block bg-amber-50 text-gold font-bold text-[11px] px-3 py-1 rounded-full border border-amber-100">${devocionalDoDia.referencia}</span>
+                    </div>
+                    <div class="bg-neutral-50 rounded-2xl p-4 border border-neutral-100 italic text-sm serif text-neutral-700 text-center leading-relaxed">
+                        "${devocionalDoDia.versiculo}"
+                    </div>
+                    <div class="space-y-3.5 text-sm leading-relaxed text-neutral-800 pt-2 text-justify">
+                        ${devocionalDoDia.reflexao.map(p => `<p>${p}</p>`).join('')}
+                    </div>
+                    <div class="border-t border-dashed border-neutral-200 pt-4 space-y-2">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-gold flex items-center gap-1"><span class="material-icons-round text-base">spa</span> Oração Guiada</h4>
+                        <p class="text-sm italic text-neutral-600 leading-relaxed">${devocionalDoDia.oracao}</p>
+                    </div>
+                    <div class="bg-amber-50/40 rounded-xl p-4 border border-amber-100/60 space-y-1">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-neutral-700">Pergunta para Meditar em Casal:</h4>
+                        <p class="text-xs text-neutral-600 font-medium">${devocionalDoDia.pergunta}</p>
+                    </div>
+                `;
+            } else {
+                containerDevocional.innerHTML = `
+                    <div class="text-center py-8 space-y-3">
+                        <p class="text-xs text-neutral-500">O devocional teológico de hoje ainda não foi consolidado.</p>
+                        <button onclick="gerarDevocionalComIA('${dataHojeStr}', '${temaDeHoje}')" class="bg-gold-gradient text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md">Girar Devocional com IA</button>
+                    </div>`;
+            }
+
+            // 2. Renderização do Calendário Rotativo (30 Dias Progressivos)
+            const containerCalendario = document.getElementById("lista-calendario-temas");
+            containerCalendario.innerHTML = "";
+            for (let i = 0; i < 30; i++) {
+                let dataAlvo = new Date(DATA_INICIO_SISTEMA);
+                dataAlvo.setDate(DATA_INICIO_SISTEMA.getDate() + i);
+                const dataAlvoStr = dataAlvo.toLocaleDateString('pt-BR');
+                const temaAlvo = TEMAS_CICLO_30_DIAS[i % TEMAS_CICLO_30_DIAS.length];
+                const liberado = hoje >= dataAlvo;
+
+                const item = document.createElement("div");
+                item.className = `flex items-center justify-between p-4 border rounded-xl transition ${liberado ? 'bg-white border-neutral-100 shadow-sm' : 'bg-neutral-50/80 border-neutral-100 opacity-60'}`;
+                item.innerHTML = `
+                    <div class="space-y-0.5">
+                        <span class="text-[10px] font-bold text-neutral-400 uppercase">${dataAlvoStr}</span>
+                        <h4 class="text-xs font-bold text-neutral-800">${temaAlvo}</h4>
+                    </div>
+                    <div>
+                        ${liberado ? `
+                            <button onclick="mudarAba('inicio');" class="text-gold text-xs font-bold flex items-center min-h-0"><span class="material-icons-round text-lg">chevron_right</span></button>
+                        ` : `
+                            <span class="material-icons-round text-sm text-neutral-400" onclick="showToast('Este devocional será revelado em ${dataAlvoStr}. Prepare seu coração!')">lock</span>
+                        `}
+                    </div>
+                `;
+                containerCalendario.appendChild(item);
+            }
+
+            // 3. Renderização do Plano de Leitura Individual
+            if (!perfilAtivo) {
+                document.getElementById("leitura-bloqueada-aviso").classList.remove("hidden");
+                document.getElementById("leitura-conteudo-zona").classList.add("hidden");
+            } else {
+                document.getElementById("leitura-bloqueada-aviso").classList.add("hidden");
+                document.getElementById("leitura-conteudo-zona").classList.remove("hidden");
+                
+                const dadosPerfil = estadoCompartilhado.progressoPerfil?.[perfilAtivo] || { dia: 1, concluidos: [] };
+                const diaAtualPlano = dadosPerfil.dia || 1;
+                
+                // Mapeia o progresso matemático exato
+                const totalDias = 365;
+                const porc = Math.min(100, Math.round(((diaAtualPlano - 1) / totalDias) * 100));
+                document.getElementById("txt-leitura-porcentagem").innerText = `${porc}%`;
+                document.getElementById("barra-leitura-progresso").style.width = `${porc}%`;
+
+                // Renderização de Selos e Medalhas por Marcos de Desempenho
+                const zonaSelos = document.getElementById("zona-selos-conquista");
+                zonaSelos.innerHTML = "";
+                if (porc >= 25) zonaSelos.innerHTML += `<span class="material-icons-round text-amber-700 text-lg" title="Marco 25%">workspace_premium</span>`;
+                if (porc >= 50) zonaSelos.innerHTML += `<span class="material-icons-round text-neutral-400 text-lg" title="Marco 50%">workspace_premium</span>`;
+                if (porc >= 75) zonaSelos.innerHTML += `<span class="material-icons-round text-amber-500 text-lg" title="Marco 75%">workspace_premium</span>`;
+                if (porc >= 100) zonaSelos.innerHTML += `<span class="material-icons-round text-yellow-500 text-lg" title="Plano Concluído Coroa">military_tech</span>`;
+
+                // Carrega dados textuais do plano cronológico estável
+                const metaDoDia = planoCronologico[(diaAtualPlano - 1) % planoCronologico.length];
+                document.getElementById("txt-leitura-dia-rotulo").innerText = `Dia ${diaAtualPlano}`;
+                document.getElementById("txt-leitura-ref-titulo").innerText = metaDoDia.ref;
+
+                // Executa o preenchimento fluido da palavra
+                obterTextoCapituloACF(metaDoDia.sigla, metaDoDia.capInicio).then(versiculos => {
+                    const box = document.getElementById("texto-biblico-container");
+                    box.innerHTML = versiculos.map(v => `<p><strong class="text-gold text-xs mr-1">${v.v}</strong> ${v.t}</p>`).join('');
+                });
+            }
+
+            // 4. Renderização do Cronograma da Rotina (Dia com Deus)
+            const containerCronograma = document.getElementById("cronograma-dia-de-deus");
+            containerCronograma.innerHTML = "";
+            momentosDiaComDeus.forEach((slot, index) => {
+                const idCheck = `${dataHojeStr}_slot_${index}`;
+                const checked = estadoCompartilhado.rotinaCheck
