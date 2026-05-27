@@ -119,7 +119,7 @@ main{padding:18px 18px 88px;}
 .dark .tag-ai{color:var(--gold-light);}
 .read-more{font-size:12px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:3px;}
 
-/* AI DEVOCIONAL DO DIA */
+/* AI DEVOCIONAL */
 .ai-devo-banner{border-radius:22px;overflow:hidden;margin-bottom:18px;
   border:1px solid var(--border);box-shadow:0 4px 20px var(--shadow);}
 .ai-devo-top{background:linear-gradient(135deg,#2C1810 0%,#5C3A1E 50%,#8B5E2E 100%);
@@ -143,7 +143,7 @@ main{padding:18px 18px 88px;}
 .adt-btn-outline{background:transparent;color:var(--gold);border:1px solid var(--gold);}
 .adt-btn:active{transform:scale(0.97);}
 
-/* ESTADO DE GERAÇÃO IA */
+/* AI GENERATING */
 .ai-generating{background:var(--surface);border:1px solid var(--border);
   border-radius:22px;padding:32px 20px;margin-bottom:18px;text-align:center;}
 .ai-gen-spinner{width:40px;height:40px;border:3px solid var(--border);
@@ -189,11 +189,6 @@ main{padding:18px 18px 88px;}
   margin-top:26px;transition:all 0.2s;display:flex;align-items:center;
   justify-content:center;gap:8px;}
 .mark-done-btn:active{transform:scale(0.98);opacity:0.9;}
-
-/* STREAMING */
-.stream-cursor{display:inline-block;width:2px;height:1em;background:var(--gold);
-  vertical-align:text-bottom;animation:blink 0.8s steps(1) infinite;}
-@keyframes blink{50%{opacity:0;}}
 
 /* PRAYERS */
 .prayer-item{background:var(--surface);border:1px solid var(--border);
@@ -335,9 +330,10 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
 .week-chip.sel{background:var(--gold);color:white;border-color:var(--gold);}
 
 .reading-day-row{background:var(--surface);border:1px solid var(--border);
-  border-radius:18px;padding:16px 16px;margin-bottom:10px;
+  border-radius:18px;padding:16px;margin-bottom:10px;
   display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.2s;}
 .reading-day-row:active{transform:scale(0.98);}
+.reading-day-row.today-row{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);}
 .rdr-num{width:44px;height:44px;border-radius:14px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
   font-size:13px;font-weight:700;transition:all 0.3s;}
@@ -363,25 +359,30 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
 .reading-book-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;
   color:var(--text);line-height:1.2;margin-bottom:4px;}
 .reading-book-meta{font-size:12px;color:var(--text-soft);}
-.chapter-block{margin-bottom:24px;}
+.chapter-block{margin-bottom:28px;}
 .chapter-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;
-  color:var(--gold);margin-bottom:12px;letter-spacing:0.04em;}
+  color:var(--gold);margin-bottom:12px;letter-spacing:0.04em;
+  display:flex;align-items:center;gap:8px;}
+.chapter-title::after{content:'';flex:1;height:1px;background:var(--border);}
 .verse-row{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start;}
 .verse-num{font-size:10px;font-weight:700;color:var(--gold);min-width:20px;
   padding-top:4px;opacity:0.8;}
-.verse-text{font-size:14px;color:var(--text);line-height:1.8;flex:1;}
+.verse-text{font-size:14px;color:var(--text);line-height:1.85;flex:1;}
 .reading-done-btn{width:100%;padding:15px;border-radius:16px;border:none;
   background:linear-gradient(135deg,#2E7D32,#4CAF50);color:white;
   font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;
   margin-top:24px;transition:all 0.2s;display:flex;align-items:center;
   justify-content:center;gap:8px;}
-.reading-done-btn.done-state{background:linear-gradient(135deg,#1B5E20,#388E3C);}
+.reading-done-btn.done-state{background:linear-gradient(135deg,#1B5E20,#388E3C);opacity:0.8;}
 .reading-done-btn:active{transform:scale(0.98);}
 
-.csv-loading{text-align:center;padding:32px 20px;color:var(--text-soft);}
-.csv-spinner{width:36px;height:36px;border:3px solid var(--border);
-  border-top-color:var(--gold);border-radius:50%;margin:0 auto 14px;
+.csv-loading{text-align:center;padding:40px 20px;color:var(--text-soft);}
+.csv-spinner{width:40px;height:40px;border:3px solid var(--border);
+  border-top-color:var(--gold);border-radius:50%;margin:0 auto 16px;
   animation:spin 0.9s linear infinite;}
+.csv-load-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;
+  color:var(--text);margin-bottom:6px;}
+.csv-load-sub{font-size:12px;line-height:1.6;}
 
 /* ——— PERFIL ——— */
 .profile-alliance{
@@ -414,7 +415,6 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
   border-radius:16px;padding:14px 16px;margin-bottom:10px;
   display:flex;align-items:center;gap:14px;}
 .ach-icon{font-size:28px;flex-shrink:0;}
-.ach-info{}
 .ach-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
 .ach-desc{font-size:12px;color:var(--text-soft);}
 .achievement.locked{opacity:0.4;}
@@ -427,7 +427,7 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
   padding:4px 10px;border-radius:20px;margin-bottom:10px;}
 .dark .countdown-pill{color:var(--gold-light);}
 
-/* HISTORICO DEVOCIONAIS IA */
+/* HISTORICO IA */
 .ai-history-item{background:var(--surface);border:1px solid var(--border);
   border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;}
 .ai-history-item:active{transform:scale(0.98);}
@@ -436,6 +436,10 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
 .ahi-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;
   color:var(--text);line-height:1.2;}
 .ahi-ref{font-size:11px;color:var(--text-soft);margin-top:3px;}
+
+/* CANVAS CHARTS */
+.chart-wrap{position:relative;width:100%;}
+canvas{width:100% !important;display:block;}
 </style>
 </head>
 <body>
@@ -447,8 +451,7 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
   </div>
   <div class="header-right">
     <div class="icon-btn" onclick="toggleDark()" id="dark-btn" title="Tema">🌙</div>
-    <div class="icon-btn" onclick="openModal('config-modal')"
-      style="font-size:14px;" title="Configurações">⚙️</div>
+    <div class="icon-btn" onclick="openModal('config-modal')" style="font-size:14px;" title="Configurações">⚙️</div>
     <div class="icon-btn"
       style="background:linear-gradient(135deg,#7A5C2E,#B8945A);color:white;
       font-size:11px;font-weight:700;width:auto;padding:0 11px;border-radius:20px;">✦ M&amp;I</div>
@@ -580,25 +583,9 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
   <div id="diary-list"></div>
 </section>
 
-<!-- ========== PROMESSAS ========== -->
-<section id="view-promessas" class="view">
-  <div class="section-title">✨ Promessas Divinas</div>
-  <p class="section-sub">Tesouro eterno para o casal que crê. Toque para copiar.</p>
-  <div class="promise-filter" id="promise-filter">
-    <div class="cat-chip sel" data-theme="all">Todas</div>
-    <div class="cat-chip" data-theme="amor">💑 Amor</div>
-    <div class="cat-chip" data-theme="fe">🙏 Fé</div>
-    <div class="cat-chip" data-theme="force">⚔️ Força</div>
-    <div class="cat-chip" data-theme="paz">🕊️ Paz</div>
-    <div class="cat-chip" data-theme="bencao">✦ Bênção</div>
-  </div>
-  <div id="promise-list"></div>
-</section>
-
 <!-- ========== BÍBLIA ========== -->
 <section id="view-biblia" class="view">
-  <!-- Painel de progresso -->
-  <div class="bible-progress-card" id="bible-progress-card">
+  <div class="bible-progress-card">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
       <div>
         <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:4px;">📜 Plano Anual</div>
@@ -619,10 +606,7 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
     </div>
   </div>
 
-  <!-- Filtro de semanas -->
-  <div style="display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;" id="week-filter"></div>
-
-  <!-- Lista de dias -->
+  <div style="display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;" id="week-filter"></div>
   <div id="reading-days-list"></div>
 </section>
 
@@ -633,7 +617,6 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
 
 <!-- ========== PERFIL ========== -->
 <section id="view-perfil" class="view">
-  <!-- Aliança visual -->
   <div class="profile-alliance">
     <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
       color:rgba(255,255,255,0.65);margin-bottom:18px;text-align:center;">✦ Nossa Aliança ✦</div>
@@ -659,30 +642,24 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
     </div>
   </div>
 
-  <!-- Métricas -->
   <div class="section-title" style="margin-top:22px;">📊 Progresso Espiritual</div>
   <p class="section-sub">Frutos da fidelidade de vocês diante do Senhor.</p>
+  <div id="profile-metrics" class="profile-metric-grid"></div>
 
-  <div id="profile-metrics"></div>
-
-  <!-- Gráfico de leitura bíblica -->
   <div class="card" style="margin-bottom:14px;">
     <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px;">📜 Leitura Bíblica — Últimas 4 Semanas</div>
-    <canvas id="reading-chart" height="120"></canvas>
+    <div class="chart-wrap"><canvas id="reading-chart" height="120"></canvas></div>
   </div>
 
-  <!-- Gráfico de devocionais -->
   <div class="card" style="margin-bottom:14px;">
     <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px;">📖 Devocionais — Histórico Mensal</div>
-    <canvas id="devo-chart" height="100"></canvas>
+    <div class="chart-wrap"><canvas id="devo-chart" height="100"></canvas></div>
   </div>
 
-  <!-- Conquistas -->
   <div class="section-title" style="margin-top:4px;">🏆 Conquistas</div>
   <p class="section-sub">Marcos da jornada espiritual do casal.</p>
   <div id="achievements-list"></div>
 
-  <!-- Links rápidos -->
   <div class="divider"><span>Mais</span></div>
   <div class="quick-grid">
     <div class="quick-btn" onclick="goTo('promessas',null)">
@@ -696,6 +673,7 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
       <span class="qb-sub">Nossa história</span>
     </div>
   </div>
+  <div style="height:8px;"></div>
 </section>
 
 </main>
@@ -749,22 +727,12 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">⚙️ Configurações</div>
-
     <div class="config-row">
-      <div>
-        <div class="config-label">Modo escuro</div>
-        <div class="config-sub">Tema para leitura noturna</div>
-      </div>
-      <div class="toggle-wrap" id="toggle-dark" onclick="toggleDark()">
-        <div class="toggle-knob"></div>
-      </div>
+      <div><div class="config-label">Modo escuro</div><div class="config-sub">Tema para leitura noturna</div></div>
+      <div class="toggle-wrap" id="toggle-dark" onclick="toggleDark()"><div class="toggle-knob"></div></div>
     </div>
-
     <div class="config-row">
-      <div>
-        <div class="config-label">Temas preferidos</div>
-        <div class="config-sub">Personalizar devocionais gerados pela IA</div>
-      </div>
+      <div><div class="config-label">Temas preferidos</div><div class="config-sub">Personalizar devocionais gerados pela IA</div></div>
     </div>
     <div class="cat-chips" id="theme-chips">
       <div class="cat-chip sel" data-theme="Amor conjugal">💑 Amor</div>
@@ -776,31 +744,149 @@ label.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:up
       <div class="cat-chip" data-theme="Provisão">💰 Provisão</div>
       <div class="cat-chip" data-theme="Fé">✦ Fé</div>
     </div>
-
     <div class="config-row" style="margin-top:8px;">
-      <div>
-        <div class="config-label">Nomes do casal</div>
-        <div class="config-sub">Para personalizar os devocionais</div>
-      </div>
+      <div><div class="config-label">Nomes do casal</div><div class="config-sub">Para personalizar os devocionais</div></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
-      <div>
-        <label class="lbl">Ele</label>
-        <input type="text" class="text-input" id="name-him" placeholder="Nome dele">
-      </div>
-      <div>
-        <label class="lbl">Ela</label>
-        <input type="text" class="text-input" id="name-her" placeholder="Nome dela">
-      </div>
+      <div><label class="lbl">Ele</label><input type="text" class="text-input" id="name-him" placeholder="Nome dele"></div>
+      <div><label class="lbl">Ela</label><input type="text" class="text-input" id="name-her" placeholder="Nome dela"></div>
     </div>
-
     <button class="action-btn" style="width:100%;justify-content:center;" onclick="saveConfig()">✦ Salvar Configurações</button>
   </div>
 </div>
 
 <script>
 // ============================================================
-// DATA FIXA
+// BIBLE BOOKS — 66 livros com abreviação do CSV ACF
+// ============================================================
+const BIBLE_BOOKS = [
+  {name:'Gênesis',     abbr:'Gn',  chapters:50},
+  {name:'Êxodo',       abbr:'Ex',  chapters:40},
+  {name:'Levítico',    abbr:'Lv',  chapters:27},
+  {name:'Números',     abbr:'Nm',  chapters:36},
+  {name:'Deuteronômio',abbr:'Dt',  chapters:34},
+  {name:'Josué',       abbr:'Js',  chapters:24},
+  {name:'Juízes',      abbr:'Jz',  chapters:21},
+  {name:'Rute',        abbr:'Rt',  chapters:4},
+  {name:'1 Samuel',    abbr:'1Sm', chapters:31},
+  {name:'2 Samuel',    abbr:'2Sm', chapters:24},
+  {name:'1 Reis',      abbr:'1Rs', chapters:22},
+  {name:'2 Reis',      abbr:'2Rs', chapters:25},
+  {name:'1 Crônicas',  abbr:'1Cr', chapters:29},
+  {name:'2 Crônicas',  abbr:'2Cr', chapters:36},
+  {name:'Esdras',      abbr:'Ed',  chapters:10},
+  {name:'Neemias',     abbr:'Ne',  chapters:13},
+  {name:'Ester',       abbr:'Et',  chapters:10},
+  {name:'Jó',          abbr:'Jó',  chapters:42},
+  {name:'Salmos',      abbr:'Sl',  chapters:150},
+  {name:'Provérbios',  abbr:'Pv',  chapters:31},
+  {name:'Eclesiastes', abbr:'Ec',  chapters:12},
+  {name:'Cânticos',    abbr:'Ct',  chapters:8},
+  {name:'Isaías',      abbr:'Is',  chapters:66},
+  {name:'Jeremias',    abbr:'Jr',  chapters:52},
+  {name:'Lamentações', abbr:'Lm',  chapters:5},
+  {name:'Ezequiel',    abbr:'Ez',  chapters:48},
+  {name:'Daniel',      abbr:'Dn',  chapters:12},
+  {name:'Oséias',      abbr:'Os',  chapters:14},
+  {name:'Joel',        abbr:'Jl',  chapters:3},
+  {name:'Amós',        abbr:'Am',  chapters:9},
+  {name:'Obadias',     abbr:'Ob',  chapters:1},
+  {name:'Jonas',       abbr:'Jn',  chapters:4},
+  {name:'Miquéias',    abbr:'Mq',  chapters:7},
+  {name:'Naum',        abbr:'Na',  chapters:3},
+  {name:'Habacuque',   abbr:'Hc',  chapters:3},
+  {name:'Sofonias',    abbr:'Sf',  chapters:3},
+  {name:'Ageu',        abbr:'Ag',  chapters:2},
+  {name:'Zacarias',    abbr:'Zc',  chapters:14},
+  {name:'Malaquias',   abbr:'Ml',  chapters:4},
+  {name:'Mateus',      abbr:'Mt',  chapters:28},
+  {name:'Marcos',      abbr:'Mc',  chapters:16},
+  {name:'Lucas',       abbr:'Lc',  chapters:24},
+  {name:'João',        abbr:'Jo',  chapters:21},
+  {name:'Atos',        abbr:'At',  chapters:28},
+  {name:'Romanos',     abbr:'Rm',  chapters:16},
+  {name:'1 Coríntios', abbr:'1Co', chapters:16},
+  {name:'2 Coríntios', abbr:'2Co', chapters:13},
+  {name:'Gálatas',     abbr:'Gl',  chapters:6},
+  {name:'Efésios',     abbr:'Ef',  chapters:6},
+  {name:'Filipenses',  abbr:'Fp',  chapters:4},
+  {name:'Colossenses', abbr:'Cl',  chapters:4},
+  {name:'1 Tessalonicenses', abbr:'1Ts', chapters:5},
+  {name:'2 Tessalonicenses', abbr:'2Ts', chapters:3},
+  {name:'1 Timóteo',   abbr:'1Tm', chapters:6},
+  {name:'2 Timóteo',   abbr:'2Tm', chapters:4},
+  {name:'Tito',        abbr:'Tt',  chapters:3},
+  {name:'Filemom',     abbr:'Fm',  chapters:1},
+  {name:'Hebreus',     abbr:'Hb',  chapters:13},
+  {name:'Tiago',       abbr:'Tg',  chapters:5},
+  {name:'1 Pedro',     abbr:'1Pe', chapters:5},
+  {name:'2 Pedro',     abbr:'2Pe', chapters:3},
+  {name:'1 João',      abbr:'1Jo', chapters:5},
+  {name:'2 João',      abbr:'2Jo', chapters:1},
+  {name:'3 João',      abbr:'3Jo', chapters:1},
+  {name:'Judas',       abbr:'Jd',  chapters:1},
+  {name:'Apocalipse',  abbr:'Ap',  chapters:22},
+];
+
+// abbr → book lookup
+const ABBR_MAP = {};
+BIBLE_BOOKS.forEach(b => { ABBR_MAP[b.abbr] = b; });
+
+// ============================================================
+// GENERATE 365-DAY READING PLAN
+// ============================================================
+function generateReadingPlan(){
+  const TOTAL = BIBLE_BOOKS.reduce((s,b)=>s+b.chapters,0); // 1189
+  const base  = Math.floor(TOTAL/365); // 3
+  const extra = TOTAL - base * 365;    // 94 days get 4 chapters
+
+  const plan=[];
+  let bookIdx=0, chapter=1;
+
+  for(let day=1;day<=365;day++){
+    if(bookIdx>=BIBLE_BOOKS.length) break;
+
+    // Spread 4-chapter days evenly (Bresenham)
+    const isExtra = Math.floor(day*extra/365) > Math.floor((day-1)*extra/365);
+    const target  = base + (isExtra?1:0);
+
+    const dayReadings=[];
+    let read=0;
+
+    while(read<target && bookIdx<BIBLE_BOOKS.length){
+      const book=BIBLE_BOOKS[bookIdx];
+      const startCh=chapter;
+      const canRead=Math.min(target-read, book.chapters-chapter+1);
+      const endCh=chapter+canRead-1;
+      dayReadings.push({abbr:book.abbr, book:book.name, start:startCh, end:endCh});
+      read+=canRead;
+      if(endCh>=book.chapters){bookIdx++;chapter=1;}
+      else{chapter=endCh+1;}
+    }
+
+    // Build strings
+    const chapterList=dayReadings.map(r=>
+      r.start===r.end?`${r.book} ${r.start}`:`${r.book} ${r.start}–${r.end}`
+    ).join(', ');
+
+    const first=dayReadings[0];
+    const last=dayReadings[dayReadings.length-1];
+    let title;
+    if(dayReadings.length===1){
+      title=first.start===first.end?`${first.book} ${first.start}`:`${first.book} ${first.start}–${first.end}`;
+    } else {
+      title=`${first.book} ${first.start} — ${last.book} ${last.end}`;
+    }
+
+    plan.push({day, title, chapterList, readings:dayReadings});
+  }
+  return plan;
+}
+
+let READING_PLAN = [];
+
+// ============================================================
+// DEVOCIONAL DATA
 // ============================================================
 const DEVOCIONAIS = [
   {id:1,title:"Amor que Sacrifica",tag:"Amor Conjugal",icon:"💑",ref:"Efésios 5:25-28",
@@ -881,16 +967,18 @@ const VERSES = [
 // ============================================================
 let S = {
   completedDevoIds:[],prayers:[],diary:[],favoritePromises:[],
+  completedReadingDays:[], // array of day numbers 1-365
+  readingWeekFilter:1,
   streak:0,darkMode:false,promiseFilter:'all',
   prayerCat:'Família',mPrayerCat:'Família',selectedMood:'🙏',
   prevView:'devocional',
   preferredThemes:['Amor conjugal','Oração'],
-  nameHim:'',nameHer:'',
-  aiDevocionais:{},   // keyed by dateKey (YYYY-MM-DD)
+  nameHim:'Marcus',nameHer:'Ingrid',
+  aiDevocionais:{},
 };
 
-function load(){try{const s=localStorage.getItem('mnmd_v3');if(s)Object.assign(S,JSON.parse(s));}catch(e){}}
-function save(){try{localStorage.setItem('mnmd_v3',JSON.stringify(S));}catch(e){}}
+function load(){try{const s=localStorage.getItem('mnmd_v4');if(s)Object.assign(S,JSON.parse(s));}catch(e){}}
+function save(){try{localStorage.setItem('mnmd_v4',JSON.stringify(S));}catch(e){}}
 
 // ============================================================
 // HELPERS
@@ -901,7 +989,7 @@ function dayOfYear(){const n=new Date(),s=new Date(n.getFullYear(),0,0);return M
 function fmtDate(ts){return new Date(ts).toLocaleDateString('pt-BR',{day:'numeric',month:'short',year:'numeric'});}
 function todayLabel(){return new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});}
 function msToMidnight(){const n=new Date(),m=new Date(n);m.setHours(24,0,0,0);return m-n;}
-function hms(ms){const h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000),s=Math.floor((ms%60000)/1000);return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+function hms(ms){const h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000),s=Math.floor((ms%60000)/1000);return`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
 
 // ============================================================
 // DARK MODE
@@ -923,16 +1011,23 @@ function goTo(v,el){
   document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
   const view=document.getElementById('view-'+v);
   if(view)view.classList.add('active');
-  if(el)el.classList.add('active');
+  if(el){el.classList.add('active');}
   else{
-    const map={inicio:'Início',devocional:'Devocional',oracao:'Oração',promessas:'Promessas',diario:'Diário'};
-    document.querySelectorAll('.nav-label').forEach(l=>{if(l.textContent===map[v])l.parentElement.classList.add('active');});
+    const navLabels={inicio:'Início',devocional:'Devocional',biblia:'Bíblia',oracao:'Oração',perfil:'Perfil'};
+    const lbl=navLabels[v];
+    if(lbl){
+      document.querySelectorAll('.nav-label').forEach(l=>{
+        if(l.textContent===lbl)l.parentElement.classList.add('active');
+      });
+    }
   }
   if(v==='inicio')renderHome();
   if(v==='devocional')renderDevo();
   if(v==='oracao')renderPrayers();
   if(v==='promessas')renderPromises();
   if(v==='diario')renderDiary();
+  if(v==='biblia')renderBible();
+  if(v==='perfil')renderProfile();
 }
 
 function activeViewName(){
@@ -953,18 +1048,14 @@ function renderHome(){
   document.getElementById('stat-streak').textContent=S.streak;
   document.getElementById('stat-devo').textContent=S.completedDevoIds.length;
   document.getElementById('stat-prayer').textContent=S.prayers.filter(p=>!p.answered).length;
-
-  // AI devo today
   renderAiDevoCard(document.getElementById('home-ai-devo'));
-
-  // fixed list preview
   const c=document.getElementById('home-devo-list');
   c.innerHTML='';
   DEVOCIONAIS.slice(0,3).forEach(d=>c.appendChild(buildDevoCard(d,true)));
 }
 
 // ============================================================
-// DEVOCIONAL MAIN VIEW
+// DEVOCIONAL
 // ============================================================
 function renderDevo(){
   renderAiDevoCard(document.getElementById('devo-ai-area'));
@@ -974,9 +1065,6 @@ function renderDevo(){
   DEVOCIONAIS.forEach(d=>c.appendChild(buildDevoCard(d,false)));
 }
 
-// ============================================================
-// AI DEVOCIONAL DO DIA
-// ============================================================
 let countdown_interval=null;
 
 function renderAiDevoCard(container){
@@ -984,21 +1072,15 @@ function renderAiDevoCard(container){
   container.innerHTML='';
   const tk=todayKey();
   const saved=S.aiDevocionais[tk];
-
-  if(saved && saved.content){
-    container.appendChild(buildAiDevoCard(saved,tk));
-  } else if(saved && saved.loading){
-    container.appendChild(buildLoadingCard());
-  } else {
-    container.appendChild(buildGenerateCard());
-  }
+  if(saved&&saved.content){container.appendChild(buildAiDevoCard(saved,tk));}
+  else if(saved&&saved.loading){container.appendChild(buildLoadingCard());}
+  else{container.appendChild(buildGenerateCard());}
 }
 
 function buildGenerateCard(){
   const div=document.createElement('div');
   div.className='card';
-  div.style.textAlign='center';
-  div.style.padding='28px 20px';
+  div.style.cssText='text-align:center;padding:28px 20px;';
   div.innerHTML=`
     <div style="font-size:40px;margin-bottom:14px;">✨</div>
     <div class="serif" style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Devocional de Hoje</div>
@@ -1015,7 +1097,6 @@ function buildGenerateCard(){
 function buildLoadingCard(){
   const div=document.createElement('div');
   div.className='ai-generating';
-  div.id='ai-loading-card';
   div.innerHTML=`
     <div class="ai-gen-spinner"></div>
     <div class="ai-gen-title">Preparando sua meditação<span class="ai-gen-dots"></span></div>
@@ -1030,7 +1111,6 @@ function buildAiDevoCard(saved,tk){
   const wrapper=document.createElement('div');
   wrapper.id='ai-devo-wrapper';
 
-  // countdown pill
   const pill=document.createElement('div');
   pill.className='countdown-pill';
   pill.innerHTML=`🕐 Disponível por: <span id="ai-countdown">${hms(ms)}</span>`;
@@ -1054,11 +1134,10 @@ function buildAiDevoCard(saved,tk){
   `;
   wrapper.appendChild(banner);
 
-  // Start countdown
   if(countdown_interval)clearInterval(countdown_interval);
   countdown_interval=setInterval(()=>{
     const el=document.getElementById('ai-countdown');
-    if(el){const r=msToMidnight();if(r<=0){clearInterval(countdown_interval);renderAiDevoCard(document.getElementById('home-ai-devo'));renderAiDevoCard(document.getElementById('devo-ai-area'));}else el.textContent=hms(r);}
+    if(el){const r=msToMidnight();if(r<=0){clearInterval(countdown_interval);['home-ai-devo','devo-ai-area'].forEach(id=>renderAiDevoCard(document.getElementById(id)));}else el.textContent=hms(r);}
     else clearInterval(countdown_interval);
   },1000);
 
@@ -1067,13 +1146,9 @@ function buildAiDevoCard(saved,tk){
 
 async function generateAiDevo(){
   const tk=todayKey();
-  S.aiDevocionais[tk]={loading:true};
-  save();
-
-  // Show loading in both spots
+  S.aiDevocionais[tk]={loading:true};save();
   ['home-ai-devo','devo-ai-area'].forEach(id=>{
-    const c=document.getElementById(id);
-    if(c){c.innerHTML='';c.appendChild(buildLoadingCard());}
+    const c=document.getElementById(id);if(c){c.innerHTML='';c.appendChild(buildLoadingCard());}
   });
 
   const themes=S.preferredThemes.length?S.preferredThemes.join(', '):'casamento cristão';
@@ -1086,164 +1161,96 @@ Data de hoje: ${today}
 ${couple}
 Temas preferidos: ${themes}
 
-Retorne APENAS JSON válido, sem markdown, sem explicações, no seguinte formato:
-{
-  "title": "Título do devocional (criativo, poético)",
-  "ref": "Livro Capítulo:Versículos",
-  "verse": "Texto do versículo principal",
-  "intro": "Parágrafo introdutório de 2-3 frases",
-  "body": ["Parágrafo 1 (4-6 frases aprofundando teologicamente)", "Parágrafo 2 (4-6 frases aplicando ao casamento)", "Parágrafo 3 (3-5 frases de encorajamento)"],
-  "application": "Uma aplicação prática para o casal fazer hoje (2-3 frases)",
-  "prayer": "Oração do casal (3-5 frases, em primeira pessoa do plural)",
-  "questions": ["Pergunta reflexiva 1 para discutir juntos", "Pergunta reflexiva 2", "Pergunta reflexiva 3"]
-}`;
+Retorne APENAS JSON válido, sem markdown, sem explicações:
+{"title":"Título poético","ref":"Livro Cap:Vers","verse":"Texto do versículo","intro":"Intro de 2-3 frases","body":["Parágrafo 1","Parágrafo 2","Parágrafo 3"],"application":"Aplicação prática","prayer":"Oração do casal","questions":["Pergunta 1","Pergunta 2","Pergunta 3"]}`;
 
-  try {
+  try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
     });
     const data=await resp.json();
     const raw=data.content.map(i=>i.text||'').join('');
     const clean=raw.replace(/```json|```/g,'').trim();
     const parsed=JSON.parse(clean);
-    S.aiDevocionais[tk]={content:parsed,generatedAt:Date.now(),loading:false};
-    save();
-  } catch(e){
-    // Fallback devocional
-    const doy=dayOfYear();
-    const base=DEVOCIONAIS[doy%DEVOCIONAIS.length];
-    S.aiDevocionais[tk]={
-      content:{
-        title:base.title+' — Meditação do Dia',
-        ref:base.ref,verse:base.verse,intro:base.intro,
-        body:base.body,application:base.application,
-        prayer:base.prayer,questions:base.questions
-      },
-      generatedAt:Date.now(),loading:false,fallback:true
-    };
-    save();
-    showToast('Usando devocional local (offline)');
+    S.aiDevocionais[tk]={content:parsed,generatedAt:Date.now(),loading:false};save();
+  }catch(e){
+    const doy=dayOfYear();const base=DEVOCIONAIS[doy%DEVOCIONAIS.length];
+    S.aiDevocionais[tk]={content:{title:base.title+' — Meditação do Dia',ref:base.ref,verse:base.verse,intro:base.intro,body:base.body,application:base.application,prayer:base.prayer,questions:base.questions},generatedAt:Date.now(),loading:false,fallback:true};
+    save();showToast('Usando devocional local (offline)');
   }
-
-  ['home-ai-devo','devo-ai-area'].forEach(id=>{
-    renderAiDevoCard(document.getElementById(id));
-  });
+  ['home-ai-devo','devo-ai-area'].forEach(id=>renderAiDevoCard(document.getElementById(id)));
 }
 
 function regenAiDevo(){
-  const tk=todayKey();
-  delete S.aiDevocionais[tk];
-  save();
-  ['home-ai-devo','devo-ai-area'].forEach(id=>{
-    renderAiDevoCard(document.getElementById(id));
-  });
+  const tk=todayKey();delete S.aiDevocionais[tk];save();
+  ['home-ai-devo','devo-ai-area'].forEach(id=>renderAiDevoCard(document.getElementById(id)));
   showToast('Devocional removido. Gere um novo!');
 }
 
 function renderAiHistory(){
-  const c=document.getElementById('devo-ai-history');
-  if(!c)return;
-  c.innerHTML='';
-  const keys=Object.keys(S.aiDevocionais)
-    .filter(k=>S.aiDevocionais[k].content&&k!==todayKey())
-    .sort((a,b)=>b.localeCompare(a))
-    .slice(0,7);
-  if(!keys.length){
-    c.innerHTML='<div style="font-size:13px;color:var(--text-soft);padding:8px 0;">Os devocionais gerados pela IA aparecerão aqui.</div>';
-    return;
-  }
+  const c=document.getElementById('devo-ai-history');if(!c)return;c.innerHTML='';
+  const keys=Object.keys(S.aiDevocionais).filter(k=>S.aiDevocionais[k].content&&k!==todayKey()).sort((a,b)=>b.localeCompare(a)).slice(0,7);
+  if(!keys.length){c.innerHTML='<div style="font-size:13px;color:var(--text-soft);padding:8px 0;">Os devocionais gerados pela IA aparecerão aqui.</div>';return;}
   keys.forEach(k=>{
     const d=S.aiDevocionais[k];
-    const item=document.createElement('div');
-    item.className='ai-history-item';
+    const item=document.createElement('div');item.className='ai-history-item';
     const dt=new Date(k+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'});
-    item.innerHTML=`
-      <div class="ahi-date">✦ ${dt}</div>
-      <div class="ahi-title">${d.content.title||'Devocional'}</div>
-      <div class="ahi-ref">${d.content.ref||''}</div>
-    `;
-    item.onclick=()=>openAiDevo(k);
-    c.appendChild(item);
+    item.innerHTML=`<div class="ahi-date">✦ ${dt}</div><div class="ahi-title">${d.content.title||'Devocional'}</div><div class="ahi-ref">${d.content.ref||''}</div>`;
+    item.onclick=()=>openAiDevo(k);c.appendChild(item);
   });
 }
 
 function openAiDevo(tk){
-  const saved=S.aiDevocionais[tk];
-  if(!saved||!saved.content)return;
+  const saved=S.aiDevocionais[tk];if(!saved||!saved.content)return;
   const d=saved.content;
   S.prevView=activeViewName();
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-devo-full').classList.add('active');
-
   const done=S.completedDevoIds.includes('ai-'+tk);
   const isToday=tk===todayKey();
   const bodyHTML=d.body.map(p=>`<p>${p}</p>`).join('');
   const qHTML=(d.questions||[]).map((q,i)=>`<div class="devo-q-item"><div class="devo-q-num">${i+1}</div><div class="devo-q-text">${q}</div></div>`).join('');
-
   document.getElementById('devo-full-content').innerHTML=`
     <div class="devo-full-back" onclick="backFromDevo()">← Voltar</div>
     ${isToday?'<span class="tag tag-ai" style="display:inline-block;margin-bottom:10px;">✦ Gerado pela IA · Hoje</span>':'<span class="tag tag-gold" style="display:inline-block;margin-bottom:10px;">📚 Arquivo IA</span>'}
     <div class="devo-full-title">${d.title||'Devocional'}</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
-      ${done?'<span class="tag tag-green">✓ Concluído</span>':''}
-    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;">${done?'<span class="tag tag-green">✓ Concluído</span>':''}</div>
     <div class="devo-verse-box"><p>"${d.verse||''}"</p><cite>— ${d.ref||''}</cite></div>
     <div class="devo-body">${bodyHTML}</div>
     <div class="devo-section">🌿 Aplicação Prática</div>
     <div class="card card-subtle" style="font-size:14px;color:var(--text-mid);line-height:1.75;box-shadow:none;">${d.application||''}</div>
-    <div class="devo-prayer">
-      <div class="devo-prayer-lbl">🙏 Oração do Dia</div>
-      <div class="devo-prayer-text">${d.prayer||''}</div>
-    </div>
-    <div class="devo-section">💬 Para Refletir Juntos</div>
-    ${qHTML}
+    <div class="devo-prayer"><div class="devo-prayer-lbl">🙏 Oração do Dia</div><div class="devo-prayer-text">${d.prayer||''}</div></div>
+    <div class="devo-section">💬 Para Refletir Juntos</div>${qHTML}
     <button class="mark-done-btn" id="done-btn" onclick="markDone('ai-${tk}')">${done?'✅ Devocional já concluído':'✦ Marcar como concluído'}</button>
     <div style="height:12px;"></div>
   `;
 }
 
-// ============================================================
-// FIXED DEVOS
-// ============================================================
 function buildDevoCard(d,compact){
   const done=S.completedDevoIds.includes(d.id);
-  const div=document.createElement('div');
-  div.className='card devo-card';
+  const div=document.createElement('div');div.className='card devo-card';
   div.innerHTML=`
     <div class="dc-head">
       <div class="dc-badge ${done?'dc-badge-done':''}">${done?'✅':d.icon}</div>
-      <div>
-        <div class="dc-title">${d.title}</div>
-        <div class="dc-meta">${d.ref}</div>
-      </div>
+      <div><div class="dc-title">${d.title}</div><div class="dc-meta">${d.ref}</div></div>
     </div>
     <div class="dc-excerpt">${d.intro.substring(0,compact?110:160)}...</div>
     <div class="dc-footer">
       <span class="tag ${done?'tag-green':'tag-gold'}">${done?'✓ Lido':d.tag}</span>
       <span class="read-more">Ler meditação →</span>
-    </div>
-  `;
-  div.onclick=()=>openFixedDevo(d.id);
-  return div;
+    </div>`;
+  div.onclick=()=>openFixedDevo(d.id);return div;
 }
 
 function openFixedDevo(id){
-  const d=DEVOCIONAIS.find(x=>x.id===id);
-  if(!d)return;
+  const d=DEVOCIONAIS.find(x=>x.id===id);if(!d)return;
   S.prevView=activeViewName();
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-devo-full').classList.add('active');
-
   const done=S.completedDevoIds.includes(id);
   const bodyHTML=d.body.map(p=>`<p>${p}</p>`).join('');
   const qHTML=d.questions.map((q,i)=>`<div class="devo-q-item"><div class="devo-q-num">${i+1}</div><div class="devo-q-text">${q}</div></div>`).join('');
-
   document.getElementById('devo-full-content').innerHTML=`
     <div class="devo-full-back" onclick="backFromDevo()">← Voltar</div>
     <span class="tag tag-gold" style="display:inline-block;margin-bottom:10px;">📚 Biblioteca</span>
@@ -1253,12 +1260,8 @@ function openFixedDevo(id){
     <div class="devo-body">${bodyHTML}</div>
     <div class="devo-section">🌿 Aplicação Prática</div>
     <div class="card card-subtle" style="font-size:14px;color:var(--text-mid);line-height:1.75;box-shadow:none;">${d.application}</div>
-    <div class="devo-prayer">
-      <div class="devo-prayer-lbl">🙏 Oração do Dia</div>
-      <div class="devo-prayer-text">${d.prayer}</div>
-    </div>
-    <div class="devo-section">💬 Para Refletir Juntos</div>
-    ${qHTML}
+    <div class="devo-prayer"><div class="devo-prayer-lbl">🙏 Oração do Dia</div><div class="devo-prayer-text">${d.prayer}</div></div>
+    <div class="devo-section">💬 Para Refletir Juntos</div>${qHTML}
     <button class="mark-done-btn" id="done-btn" onclick="markDone(${id})">${done?'✅ Devocional já concluído':'✦ Marcar como concluído'}</button>
     <div style="height:12px;"></div>
   `;
@@ -1268,9 +1271,7 @@ function backFromDevo(){goTo(S.prevView,null);}
 
 function markDone(id){
   if(S.completedDevoIds.includes(id)){showToast('Já concluíste esta meditação! 🙏');return;}
-  S.completedDevoIds.push(id);
-  S.streak+=1;
-  save();
+  S.completedDevoIds.push(id);S.streak+=1;save();
   const btn=document.getElementById('done-btn');
   if(btn)btn.textContent='✅ Devocional já concluído';
   showToast('Devocional concluído! Que bênção! ✦');
@@ -1300,8 +1301,7 @@ const CAT_COLORS={
 };
 
 function buildPrayerItem(p){
-  const div=document.createElement('div');
-  div.className='prayer-item'+(p.answered?' answered':'');
+  const div=document.createElement('div');div.className='prayer-item'+(p.answered?' answered':'');
   div.innerHTML=`
     <div class="pi-check ${p.answered?'checked':''}" onclick="togglePrayer('${p.id}')"></div>
     <div class="pi-content">
@@ -1312,32 +1312,24 @@ function buildPrayerItem(p){
         <span class="pi-meta">${fmtDate(p.date)}</span>
       </div>
     </div>
-    <button class="pi-del" onclick="deletePrayer('${p.id}')">🗑</button>
-  `;
+    <button class="pi-del" onclick="deletePrayer('${p.id}')">🗑</button>`;
   return div;
 }
 
 function addPrayer(){
   const t=document.getElementById('prayer-title-in').value.trim();
   if(!t){showToast('Digite o título do pedido');return;}
-  S.prayers.unshift({id:Date.now().toString(),title:t,
-    desc:document.getElementById('prayer-desc-in').value.trim(),
-    category:S.prayerCat,answered:false,date:Date.now()});
-  save();
-  document.getElementById('prayer-title-in').value='';
-  document.getElementById('prayer-desc-in').value='';
+  S.prayers.unshift({id:Date.now().toString(),title:t,desc:document.getElementById('prayer-desc-in').value.trim(),category:S.prayerCat,answered:false,date:Date.now()});
+  save();document.getElementById('prayer-title-in').value='';document.getElementById('prayer-desc-in').value='';
   renderPrayers();showToast('Oração registrada! Ele ouve ✦');
 }
 
 function addPrayerFromModal(){
   const t=document.getElementById('m-prayer-title').value.trim();
   if(!t){showToast('Digite o título do pedido');return;}
-  S.prayers.unshift({id:Date.now().toString(),title:t,
-    desc:document.getElementById('m-prayer-desc').value.trim(),
-    category:S.mPrayerCat,answered:false,date:Date.now()});
+  S.prayers.unshift({id:Date.now().toString(),title:t,desc:document.getElementById('m-prayer-desc').value.trim(),category:S.mPrayerCat,answered:false,date:Date.now()});
   save();closeModal('prayer-modal');
-  document.getElementById('m-prayer-title').value='';
-  document.getElementById('m-prayer-desc').value='';
+  document.getElementById('m-prayer-title').value='';document.getElementById('m-prayer-desc').value='';
   renderPrayers();showToast('Oração registrada! Ele ouve ✦');
 }
 
@@ -1352,21 +1344,17 @@ function deletePrayer(id){S.prayers=S.prayers.filter(p=>p.id!==id);save();render
 // PROMISES
 // ============================================================
 function renderPromises(){
-  const list=document.getElementById('promise-list');
-  list.innerHTML='';
+  const list=document.getElementById('promise-list');list.innerHTML='';
   const filtered=S.promiseFilter==='all'?PROMISES:PROMISES.filter(p=>p.theme===S.promiseFilter);
   filtered.forEach((p,i)=>{
     const fav=S.favoritePromises.includes(i);
-    const div=document.createElement('div');
-    div.className='promise-card';
+    const div=document.createElement('div');div.className='promise-card';
     div.innerHTML=`
       <button class="fav-btn" onclick="toggleFav(${i},event)">${fav?'❤️':'🤍'}</button>
       <div class="p-ref">${p.ref}</div>
       <div class="p-text">"${p.text}"</div>
-      <span class="p-theme theme-${p.theme}">${themeLabel(p.theme)}</span>
-    `;
-    div.onclick=()=>copyVerse(p.ref,p.text);
-    list.appendChild(div);
+      <span class="p-theme theme-${p.theme}">${themeLabel(p.theme)}</span>`;
+    div.onclick=()=>copyVerse(p.ref,p.text);list.appendChild(div);
   });
 }
 
@@ -1375,8 +1363,7 @@ function toggleFav(i,e){
   e.stopPropagation();
   const idx=S.favoritePromises.indexOf(i);
   if(idx>=0)S.favoritePromises.splice(idx,1);else S.favoritePromises.push(i);
-  save();renderPromises();
-  showToast(idx>=0?'Removido dos favoritos':'❤️ Guardado no coração!');
+  save();renderPromises();showToast(idx>=0?'Removido dos favoritos':'❤️ Guardado no coração!');
 }
 function copyVerse(ref,text){
   const full=`"${text}" — ${ref}`;
@@ -1388,25 +1375,16 @@ function copyVerse(ref,text){
 // DIARY
 // ============================================================
 function renderDiary(){
-  const list=document.getElementById('diary-list');
-  list.innerHTML='';
-  if(!S.diary.length){
-    list.innerHTML='<div class="empty-state"><div class="es-icon">📝</div><p>Nenhuma entrada ainda.<br>Comecem a registrar a história de vocês.</p></div>';
-    return;
-  }
+  const list=document.getElementById('diary-list');list.innerHTML='';
+  if(!S.diary.length){list.innerHTML='<div class="empty-state"><div class="es-icon">📝</div><p>Nenhuma entrada ainda.<br>Comecem a registrar a história de vocês.</p></div>';return;}
   S.diary.slice().reverse().forEach(e=>{
-    const div=document.createElement('div');
-    div.className='diary-entry';
+    const div=document.createElement('div');div.className='diary-entry';
     div.innerHTML=`
       <div class="de-head">
         <div><div class="de-date">${fmtDate(e.date)}</div><div class="de-title">${e.title}</div></div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="de-mood">${e.mood}</span>
-          <button class="de-del" onclick="deleteDiary('${e.id}')">🗑</button>
-        </div>
+        <div style="display:flex;align-items:center;gap:8px;"><span class="de-mood">${e.mood}</span><button class="de-del" onclick="deleteDiary('${e.id}')">🗑</button></div>
       </div>
-      <div class="de-body">${e.body}</div>
-    `;
+      <div class="de-body">${e.body}</div>`;
     list.appendChild(div);
   });
 }
@@ -1417,11 +1395,453 @@ function saveDiaryEntry(){
   if(!t||!b){showToast('Preencha o título e a reflexão');return;}
   S.diary.push({id:Date.now().toString(),title:t,body:b,mood:S.selectedMood,date:Date.now()});
   save();closeModal('diary-modal');
-  document.getElementById('diary-title-in').value='';
-  document.getElementById('diary-body-in').value='';
+  document.getElementById('diary-title-in').value='';document.getElementById('diary-body-in').value='';
   renderDiary();showToast('Entrada salva no diário ✦');
 }
 function deleteDiary(id){S.diary=S.diary.filter(e=>e.id!==id);save();renderDiary();}
+
+// ============================================================
+// ——— BÍBLIA ———
+// ============================================================
+let bibleCache = null; // parsed: {abbr: {chapter: [{verse, text}]}}
+let bibleLoadPromise = null;
+
+const CSV_URL = 'https://raw.githubusercontent.com/DocX7/eterno-compromisso/main/1.%20B%C3%ADblia%20ACF.csv';
+
+async function loadBibleData(){
+  if(bibleCache) return bibleCache;
+  if(bibleLoadPromise) return bibleLoadPromise;
+
+  bibleLoadPromise = (async()=>{
+    const resp = await fetch(CSV_URL);
+    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    const text = await resp.text();
+    const index = {};
+
+    const lines = text.split(/\r?\n/);
+    for(const line of lines){
+      const trimmed = line.trim();
+      if(!trimmed) continue;
+      const s1=trimmed.indexOf('/');
+      const s2=trimmed.indexOf('/',s1+1);
+      const s3=trimmed.indexOf('/',s2+1);
+      if(s1<0||s2<0||s3<0) continue;
+      const abbr = trimmed.substring(0,s1).trim();
+      const ch   = parseInt(trimmed.substring(s1+1,s2));
+      const vs   = parseInt(trimmed.substring(s2+1,s3));
+      // rest is "verseNum text" — strip leading number
+      const rest = trimmed.substring(s3+1).replace(/^\d+\s+/,'').trim();
+
+      if(!abbr||isNaN(ch)||isNaN(vs)||!rest) continue;
+      if(!index[abbr]) index[abbr]={};
+      if(!index[abbr][ch]) index[abbr][ch]=[];
+      index[abbr][ch].push({verse:vs, text:rest});
+    }
+    bibleCache = index;
+    return index;
+  })();
+
+  return bibleLoadPromise;
+}
+
+function getChapterVerses(index, abbr, chapter){
+  const book = index[abbr];
+  if(!book) return [];
+  const ch = book[chapter];
+  if(!ch) return [];
+  return ch.slice().sort((a,b)=>a.verse-b.verse);
+}
+
+// -------- Render Bible main view --------
+function renderBible(){
+  const today = dayOfYear();
+  const done  = S.completedReadingDays.length;
+  const pct   = Math.round(done/365*100);
+  const currentWeek = Math.ceil(today/7);
+
+  // Update progress card
+  document.getElementById('bp-pct').textContent = pct+'%';
+  document.getElementById('bp-days-done').textContent = done+' de 365 dias';
+  document.getElementById('bible-progress-bar').style.width = pct+'%';
+  document.getElementById('bp-today-label').textContent = 'Hoje: Dia '+today;
+
+  // Reading streak
+  let rStreak=0;
+  for(let d=today;d>=1;d--){if(S.completedReadingDays.includes(d))rStreak++;else break;}
+  document.getElementById('bp-streak').textContent = '🔥 '+rStreak+' dias seguidos';
+
+  // Week filter
+  if(!S.readingWeekFilter || S.readingWeekFilter < 1) S.readingWeekFilter = currentWeek;
+  renderWeekFilter(currentWeek);
+  renderReadingDays(S.readingWeekFilter, today);
+}
+
+function renderWeekFilter(currentWeek){
+  const el = document.getElementById('week-filter');
+  el.innerHTML='';
+  const total = 53;
+  for(let w=1;w<=total;w++){
+    const chip = document.createElement('div');
+    chip.className = 'week-chip'+(w===S.readingWeekFilter?' sel':'');
+    const isCurrentWeek = w===currentWeek;
+    chip.innerHTML = isCurrentWeek?`<span style="opacity:.6;font-size:10px;">•</span> Semana ${w}`:`Semana ${w}`;
+    chip.dataset.week = w;
+    chip.onclick = ()=>{
+      S.readingWeekFilter = w;
+      document.querySelectorAll('.week-chip').forEach(c=>c.classList.remove('sel'));
+      chip.classList.add('sel');
+      renderReadingDays(w, dayOfYear());
+    };
+    el.appendChild(chip);
+
+    // Auto scroll to current week
+    if(w===S.readingWeekFilter){
+      setTimeout(()=>chip.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}),100);
+    }
+  }
+}
+
+function renderReadingDays(week, today){
+  const container = document.getElementById('reading-days-list');
+  container.innerHTML='';
+
+  const startDay = (week-1)*7+1;
+  const endDay   = Math.min(startDay+6, 365);
+
+  for(let d=startDay;d<=endDay;d++){
+    if(d>READING_PLAN.length) break;
+    const plan = READING_PLAN[d-1];
+    if(!plan) continue;
+
+    const isDone    = S.completedReadingDays.includes(d);
+    const isToday   = d===today;
+    const isPast    = d<today && !isDone;
+
+    const row = document.createElement('div');
+    row.className = 'reading-day-row'+(isToday?' today-row':'');
+    row.onclick = ()=>openReadingDay(d);
+
+    let numClass = isDone?'rdr-num-done':isToday?'rdr-num-today':'rdr-num-default';
+    let numContent = isDone?'✓':d;
+
+    const checkClass = isDone?'done':'';
+
+    row.innerHTML = `
+      <div class="rdr-num ${numClass}">${numContent}</div>
+      <div class="rdr-info">
+        <div class="rdr-title">${plan.title}</div>
+        <div class="rdr-chapters">${plan.chapterList}${isToday?' · <span style="color:var(--gold);font-weight:700;">Hoje</span>':''}</div>
+      </div>
+      <div class="rdr-check ${checkClass}" onclick="quickMarkReading(event,${d})"></div>
+    `;
+    container.appendChild(row);
+  }
+
+  if(container.children.length===0){
+    container.innerHTML='<div class="empty-state"><div class="es-icon">📜</div><p>Nenhum dia nesta semana.</p></div>';
+  }
+}
+
+function quickMarkReading(e, dayNum){
+  e.stopPropagation();
+  if(S.completedReadingDays.includes(dayNum)){
+    S.completedReadingDays = S.completedReadingDays.filter(d=>d!==dayNum);
+    save();showToast('Leitura desmarcada');
+  } else {
+    S.completedReadingDays.push(dayNum);
+    save();showToast('Leitura marcada como concluída! 📖');
+  }
+  renderBible();
+}
+
+// -------- Open reading day --------
+function openReadingDay(dayNum){
+  const plan = READING_PLAN[dayNum-1];
+  if(!plan) return;
+  S.prevView = activeViewName();
+
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-reading').classList.add('active');
+
+  const container = document.getElementById('reading-content');
+  const isDone = S.completedReadingDays.includes(dayNum);
+  const isToday = dayNum===dayOfYear();
+
+  container.innerHTML = `
+    <div class="reading-back" onclick="backFromReading()">← Voltar</div>
+    <div class="reading-book-header">
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        ${isToday?'<span class="tag tag-gold">📅 Hoje</span>':''}
+        ${isDone?'<span class="tag tag-green">✓ Lido</span>':''}
+      </div>
+      <div class="reading-book-title">${plan.title}</div>
+      <div class="reading-book-meta">Dia ${dayNum} de 365 · ${plan.chapterList}</div>
+    </div>
+    <div id="reading-text-area">
+      <div class="csv-loading">
+        <div class="csv-spinner"></div>
+        <div class="csv-load-title">Carregando a Palavra<span style="animation:dots 1.4s steps(4,end) infinite;display:inline-block;">...</span></div>
+        <p class="csv-load-sub">Buscando os capítulos da Bíblia ACF</p>
+      </div>
+    </div>
+    <button class="reading-done-btn ${isDone?'done-state':''}" id="reading-done-btn" onclick="markReadingDone(${dayNum})">
+      ${isDone?'✅ Leitura já concluída':'✦ Marcar Leitura como Concluída'}
+    </button>
+    <div style="height:20px;"></div>
+  `;
+
+  // Load text async
+  loadBibleData().then(index=>{
+    renderBibleText(index, plan, container);
+  }).catch(err=>{
+    const area = document.getElementById('reading-text-area');
+    if(area) area.innerHTML = `
+      <div class="card" style="text-align:center;padding:24px;">
+        <div style="font-size:32px;margin-bottom:12px;">⚠️</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">Sem conexão</div>
+        <p style="font-size:13px;color:var(--text-soft);line-height:1.6;">
+          Não foi possível carregar a Bíblia. Verifique sua conexão e tente novamente.
+        </p>
+        <button class="action-btn" style="margin-top:14px;width:100%;justify-content:center;" 
+          onclick="retryReadingDay(${dayNum})">🔄 Tentar novamente</button>
+      </div>`;
+  });
+}
+
+function retryReadingDay(dayNum){
+  bibleCache=null;bibleLoadPromise=null;
+  openReadingDay(dayNum);
+}
+
+function renderBibleText(index, plan, container){
+  const area = document.getElementById('reading-text-area');
+  if(!area) return;
+  area.innerHTML='';
+
+  for(const reading of plan.readings){
+    for(let ch=reading.start; ch<=reading.end; ch++){
+      const verses = getChapterVerses(index, reading.abbr, ch);
+      if(!verses.length){
+        // Try alternate lookup (Jó might be encoded differently)
+        const altAbbr = reading.abbr.normalize('NFD').replace(/[\u0300-\u036f]/,'');
+        const verses2 = getChapterVerses(index, altAbbr, ch);
+        if(!verses2.length) continue;
+        renderChapter(area, reading.book, ch, verses2);
+      } else {
+        renderChapter(area, reading.book, ch, verses);
+      }
+    }
+  }
+
+  if(!area.children.length){
+    area.innerHTML=`<div class="card" style="text-align:center;padding:24px;">
+      <p style="color:var(--text-soft);font-size:14px;">Não foi possível carregar os textos desta leitura.</p>
+    </div>`;
+  }
+}
+
+function renderChapter(container, bookName, chapter, verses){
+  const block = document.createElement('div');
+  block.className='chapter-block';
+  block.innerHTML=`<div class="chapter-title">${bookName} ${chapter}</div>`;
+  for(const v of verses){
+    const row=document.createElement('div');
+    row.className='verse-row';
+    row.innerHTML=`<span class="verse-num">${v.verse}</span><span class="verse-text">${v.text}</span>`;
+    block.appendChild(row);
+  }
+  container.appendChild(block);
+}
+
+function markReadingDone(dayNum){
+  const already = S.completedReadingDays.includes(dayNum);
+  if(already){showToast('Esta leitura já está concluída! 📖');return;}
+  S.completedReadingDays.push(dayNum);
+  save();
+  const btn=document.getElementById('reading-done-btn');
+  if(btn){btn.textContent='✅ Leitura já concluída';btn.classList.add('done-state');}
+  showToast('Que bênção! Palavra lida hoje! ✦');
+}
+
+function backFromReading(){
+  goTo('biblia',null);
+}
+
+// ============================================================
+// ——— PERFIL ———
+// ============================================================
+function renderProfile(){
+  // Update avatars
+  const him = S.nameHim||'Marcus';
+  const her = S.nameHer||'Ingrid';
+  const avatarHim = document.getElementById('avatar-him');
+  const avatarHer = document.getElementById('avatar-her');
+  if(avatarHim) avatarHim.textContent = him.charAt(0).toUpperCase();
+  if(avatarHer) avatarHer.textContent = her.charAt(0).toUpperCase();
+  const nameHimEl = document.getElementById('avatar-name-him');
+  const nameHerEl = document.getElementById('avatar-name-her');
+  if(nameHimEl) nameHimEl.textContent = him;
+  if(nameHerEl) nameHerEl.textContent = her;
+
+  // Metrics
+  const totalDevo   = S.completedDevoIds.length;
+  const totalReads  = S.completedReadingDays.length;
+  const totalPrayer = S.prayers.length;
+  const answerPray  = S.prayers.filter(p=>p.answered).length;
+  const biblePct    = Math.round(totalReads/365*100);
+
+  const metricsEl = document.getElementById('profile-metrics');
+  metricsEl.innerHTML = `
+    <div class="profile-metric">
+      <div class="pm-icon">📖</div>
+      <div class="pm-num">${totalDevo}</div>
+      <div class="pm-label">Devocionais<br>concluídos</div>
+    </div>
+    <div class="profile-metric">
+      <div class="pm-icon">📜</div>
+      <div class="pm-num">${totalReads}</div>
+      <div class="pm-label">Dias de leitura<br>bíblica</div>
+    </div>
+    <div class="profile-metric">
+      <div class="pm-icon">🔥</div>
+      <div class="pm-num">${S.streak}</div>
+      <div class="pm-label">Sequência<br>atual de dias</div>
+    </div>
+    <div class="profile-metric">
+      <div class="pm-icon">🙏</div>
+      <div class="pm-num">${answerPray}</div>
+      <div class="pm-label">Orações<br>respondidas</div>
+    </div>
+    <div class="profile-metric" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(184,148,90,0.08),rgba(184,148,90,0.04));">
+      <div class="pm-icon">📜</div>
+      <div class="pm-num">${biblePct}%</div>
+      <div class="pm-label">Bíblia concluída · ${totalReads} de 365 dias</div>
+      <div style="margin-top:10px;background:var(--border);border-radius:30px;height:6px;overflow:hidden;width:100%;">
+        <div style="height:6px;border-radius:30px;background:linear-gradient(90deg,#FFD98E,#B8945A);width:${biblePct}%;transition:width 1s;"></div>
+      </div>
+    </div>
+  `;
+
+  // Charts
+  setTimeout(()=>{drawReadingChart();drawDevoChart();},80);
+
+  // Achievements
+  const ACHIEVEMENTS = [
+    {icon:'🌱',title:'Primeira Semente',desc:'Primeiro devocional concluído',unlocked:totalDevo>=1},
+    {icon:'🔥',title:'Sete Dias de Graça',desc:'7 devocionais concluídos',unlocked:totalDevo>=7},
+    {icon:'📖',title:'Fiel ao Livro',desc:'7 dias de leitura bíblica concluídos',unlocked:totalReads>=7},
+    {icon:'💍',title:'Um Mês de Aliança',desc:'30 devocionais concluídos',unlocked:totalDevo>=30},
+    {icon:'📜',title:'Peregrino da Fé',desc:'30 dias de leitura bíblica concluídos',unlocked:totalReads>=30},
+    {icon:'🙏',title:'Cem Pedidos',desc:'100 orações registradas',unlocked:totalPrayer>=100},
+    {icon:'⭐',title:'Meio Caminho',desc:'50 devocionais concluídos',unlocked:totalDevo>=50},
+    {icon:'👑',title:'Guardião da Palavra',desc:'Bíblia inteira lida (365 dias)',unlocked:totalReads>=365},
+  ];
+
+  const achEl = document.getElementById('achievements-list');
+  achEl.innerHTML='';
+  ACHIEVEMENTS.forEach(a=>{
+    const div=document.createElement('div');
+    div.className='achievement'+(a.unlocked?'':' locked');
+    div.innerHTML=`<div class="ach-icon">${a.icon}</div><div class="ach-info"><div class="ach-title">${a.title}</div><div class="ach-desc">${a.desc}</div></div>${a.unlocked?'<span style="font-size:16px;">✅</span>':'<span style="font-size:12px;color:var(--text-soft);">🔒</span>'}`;
+    achEl.appendChild(div);
+  });
+}
+
+// -------- Bar chart helper --------
+function drawBarChart(canvasId, data, labels, barColor, maxOverride){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const W = canvas.parentElement.clientWidth||320;
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = canvas.height * window.devicePixelRatio;
+  canvas.style.width = W+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const H = canvas.height / window.devicePixelRatio;
+  ctx.clearRect(0,0,W,H);
+
+  const max = maxOverride || Math.max(...data, 1);
+  const n   = data.length;
+  const pad = 28;
+  const chartH = H - pad;
+  const slotW = (W-20) / n;
+  const barW  = Math.max(slotW * 0.55, 8);
+
+  const isDark = document.body.classList.contains('dark');
+  const textColor = isDark?'#8A7A5E':'#8C7A60';
+  const valColor  = isDark?'#C4B89A':'#5C4E38';
+
+  data.forEach((val,i)=>{
+    const x = 10 + i*slotW + (slotW-barW)/2;
+    const h = Math.max((val/max)*chartH, val>0?3:0);
+    const y = chartH - h;
+
+    // Bar gradient
+    const grad = ctx.createLinearGradient(0,y,0,y+h);
+    grad.addColorStop(0, barColor[0]);
+    grad.addColorStop(1, barColor[1]);
+    ctx.fillStyle = val>0 ? grad : (isDark?'rgba(255,255,255,0.04)':'rgba(0,0,0,0.05)');
+    ctx.beginPath();
+    if(ctx.roundRect){ctx.roundRect(x,y,barW,h+1,4);}
+    else{ctx.rect(x,y,barW,h+1);}
+    ctx.fill();
+
+    // Value
+    if(val>0){
+      ctx.fillStyle = valColor;
+      ctx.font = `bold ${Math.max(9,Math.min(11,barW-2))}px DM Sans`;
+      ctx.textAlign='center';
+      ctx.fillText(val, x+barW/2, Math.max(y-3,8));
+    }
+
+    // Label
+    ctx.fillStyle = textColor;
+    ctx.font = `${Math.max(8,Math.min(10,barW))}px DM Sans`;
+    ctx.textAlign='center';
+    ctx.fillText(labels[i]||'', x+barW/2, H-4);
+  });
+}
+
+function drawReadingChart(){
+  const today = dayOfYear();
+  // Last 4 weeks: week data
+  const data=[], labels=[];
+  for(let w=3;w>=0;w--){
+    const wStart = today - w*7 - 6;
+    const wEnd   = today - w*7;
+    let count=0;
+    for(let d=Math.max(wStart,1);d<=Math.min(wEnd,365);d++){
+      if(S.completedReadingDays.includes(d)) count++;
+    }
+    data.push(count);
+    const weekNum = Math.ceil(wEnd/7);
+    labels.push('Sem '+weekNum);
+  }
+  drawBarChart('reading-chart', data, labels, ['#FFD98E','#B8945A'], 7);
+}
+
+function drawDevoChart(){
+  // Devo completions grouped by month — use timestamp from completedDevoIds
+  // Since IDs can be numbers (fixed) or 'ai-YYYY-MM-DD', use current year months
+  const months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  const counts = new Array(12).fill(0);
+
+  // Count AI devocionais by month
+  Object.keys(S.aiDevocionais).forEach(k=>{
+    const d = S.aiDevocionais[k];
+    if(d.content && S.completedDevoIds.includes('ai-'+k)){
+      const month = new Date(k+'T12:00:00').getMonth();
+      if(month>=0&&month<12) counts[month]++;
+    }
+  });
+  // Count fixed devo by how many are done (approximate — no timestamp)
+  // Just show AI devos per month for now
+  const currentMonth = new Date().getMonth();
+  const startMonth = Math.max(0, currentMonth-3);
+  const data = counts.slice(startMonth, currentMonth+1);
+  const labels = months.slice(startMonth, currentMonth+1);
+  drawBarChart('devo-chart', data, labels, ['#D4A96A','#7A5C2E'], undefined);
+}
 
 // ============================================================
 // MODALS
@@ -1431,16 +1851,18 @@ function closeModal(id){document.getElementById(id).classList.remove('open');}
 function closeModalOutside(id,e){if(e.target===document.getElementById(id))closeModal(id);}
 
 // ============================================================
-// CHIPS GENERIC
+// CHIPS
 // ============================================================
 function initChips(cid,stateKey,multi){
-  document.getElementById(cid).querySelectorAll('.cat-chip').forEach(chip=>{
+  const el=document.getElementById(cid);
+  if(!el)return;
+  el.querySelectorAll('.cat-chip').forEach(chip=>{
     chip.onclick=()=>{
       if(multi){
         chip.classList.toggle('sel');
-        S[stateKey]=Array.from(document.getElementById(cid).querySelectorAll('.cat-chip.sel')).map(c=>c.dataset.theme||c.dataset.cat);
+        S[stateKey]=Array.from(el.querySelectorAll('.cat-chip.sel')).map(c=>c.dataset.theme||c.dataset.cat);
       } else {
-        document.getElementById(cid).querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('sel'));
+        el.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('sel'));
         chip.classList.add('sel');
         S[stateKey]=chip.dataset.cat||chip.dataset.theme;
         if(stateKey==='promiseFilter')renderPromises();
@@ -1461,8 +1883,10 @@ function saveConfig(){
 }
 
 function loadConfigUI(){
-  if(document.getElementById('name-him'))document.getElementById('name-him').value=S.nameHim||'';
-  if(document.getElementById('name-her'))document.getElementById('name-her').value=S.nameHer||'';
+  const nh=document.getElementById('name-him');
+  const ni=document.getElementById('name-her');
+  if(nh)nh.value=S.nameHim||'';
+  if(ni)ni.value=S.nameHer||'';
   document.getElementById('theme-chips').querySelectorAll('.cat-chip').forEach(c=>{
     c.classList.toggle('sel',S.preferredThemes.includes(c.dataset.theme));
   });
@@ -1484,8 +1908,15 @@ function showToast(msg){
 // ============================================================
 window.addEventListener('DOMContentLoaded',()=>{
   load();
+  READING_PLAN = generateReadingPlan();
+
   document.body.classList.toggle('dark',S.darkMode);
   document.getElementById('dark-btn').textContent=S.darkMode?'☀️':'🌙';
+
+  // Default week filter to current week
+  if(!S.readingWeekFilter||S.readingWeekFilter<1){
+    S.readingWeekFilter = Math.ceil(dayOfYear()/7);
+  }
 
   initChips('prayer-cats','prayerCat',false);
   initChips('m-prayer-cats','mPrayerCat',false);
@@ -1499,7 +1930,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     };
   });
 
-  // Restore promise filter
   if(S.promiseFilter&&S.promiseFilter!=='all'){
     document.getElementById('promise-filter').querySelectorAll('.cat-chip').forEach(c=>{
       c.classList.toggle('sel',c.dataset.theme===S.promiseFilter);
@@ -1508,6 +1938,9 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   loadConfigUI();
   renderHome();
+
+  // Prefetch bible data in background
+  setTimeout(()=>{loadBibleData().catch(()=>{});},3000);
 });
 </script>
 </body>
