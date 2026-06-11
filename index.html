@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function estaLogado() {
+      return request.auth != null;
+    }
+
+    function payloadDoCasalValido() {
+      return request.resource.data.keys().hasOnly([
+        'versao',
+        'casal',
+        'atualizadoMs',
+        'atualizadoEm',
+        'usuarioAnonimo',
+        'estado',
+        'progressoBiblico',
+        'devocionalDiario',
+        'devocionais',
+        'ferramentasIA',
+        'oracoes',
+        'diario',
+        'configuracoes',
+        'progresso'
+      ])
+      && request.resource.data.casal == 'Marcus e Ingrid'
+      && request.resource.data.versao is int
+      && request.resource.data.progressoBiblico is map
+      && request.resource.data.configuracoes is map;
+    }
+
+    match /casais/{casalId} {
+      allow get: if estaLogado() && casalId == 'marcus_e_ingrid';
+      allow list: if false;
+      allow create, update: if estaLogado()
+        && casalId == 'marcus_e_ingrid'
+        && payloadDoCasalValido();
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
