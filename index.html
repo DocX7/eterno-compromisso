@@ -459,6 +459,14 @@ textarea.ti{min-height:85px;resize:none;line-height:1.7}
       <div><label class="lbl">Ele</label><input type="text" class="ti" id="n-him" placeholder="Nome dele"></div>
       <div><label class="lbl">Ela</label><input type="text" class="ti" id="n-her" placeholder="Nome dela"></div>
     </div>
+    <div class="cr" style="margin-top:6px"><div><div class="crl">Integração com IA</div><div class="crs">Chave fixa configurada no código</div></div></div>
+    <label class="lbl">OpenAI API Key</label>
+    <input type="password" class="ti" id="openai-key" placeholder="Chave fixa configurada no código" autocomplete="off" style="margin-bottom:10px" disabled>
+    <label class="lbl">Modelo</label>
+    <input type="text" class="ti" id="openai-model" placeholder="gpt-5-mini" style="margin-bottom:8px">
+    <div style="font-size:11px;color:var(--txs);line-height:1.55;margin-bottom:15px">
+      A chave da OpenAI já está fixa no código. Você não precisa preencher esse campo. Para trocar a chave, altere a constante <strong>OPENAI_API_KEY_FIXA</strong>.
+    </div>
     <button class="abtn" style="width:100%;justify-content:center" onclick="saveCfg()">✦ Salvar Configurações</button>
   </div>
 </div>
@@ -639,6 +647,7 @@ let S={
   promFilt:'all',prayCat:'Família',mpCat:'Família',mood:'🙏',
   prevView:'devocional',themes:['Amor conjugal','Oração'],
   nameHim:'Marcus',nameHer:'Ingrid',aiDevo:{},
+  openaiApiKey:'',openaiModel:'gpt-5-mini',
   profiles:{marcus:{completedDays:[],streak:0},ingrid:{completedDays:[],streak:0}},
   activeProf:'marcus',wkFilt:0
 };
@@ -716,14 +725,14 @@ function mkGenCard(){
   const d=document.createElement('div');d.className='card';d.style.cssText='text-align:center;padding:26px 18px';
   d.innerHTML=`<div style="font-size:38px;margin-bottom:13px">✨</div>
     <div class="sr" style="font-size:19px;font-weight:600;color:var(--tx);margin-bottom:7px">Devocional de Hoje</div>
-    <p style="font-size:13px;color:var(--txs);line-height:1.6;margin-bottom:16px">A IA gerará uma meditação teológica completa — exegética, reflexiva e aplicada ao casamento.</p>
+    <p style="font-size:13px;color:var(--txs);line-height:1.6;margin-bottom:16px">A IA da OpenAI gerará uma meditação teológica completa — exegética, reflexiva e aplicada ao casamento.</p>
     <button class="abtn" style="width:100%;justify-content:center" onclick="genAiDevo()">✦ Gerar Devocional Teológico</button>`;
   return d;
 }
 function mkLoadCard(){
   const d=document.createElement('div');d.className='aig';
   d.innerHTML=`<div class="aig-sp"></div><div class="aig-t">Preparando a meditação<span class="dots"></span></div>
-    <p class="aig-s">A IA está elaborando um devocional teológico completo para o casal.</p>`;return d;
+    <p class="aig-s">A IA da OpenAI está elaborando um devocional teológico completo para o casal.</p>`;return d;
 }
 function mkAiCard(sv,tk){
   const done=S.completedDevoIds.includes('ai-'+tk),ms=toMS();
@@ -749,6 +758,57 @@ function mkAiCard(sv,tk){
   return w;
 }
 
+const OPENAI_API_KEY_FIXA = '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';
+const OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
+
+function openAIKey(){
+  return (OPENAI_API_KEY_FIXA || S.openaiApiKey || '').trim();
+}
+function openAIModel(){
+  return (S.openaiModel || 'gpt-5-mini').trim();
+}
+function cleanJsonText(txt){
+  let raw=String(txt||'').replace(/```json|```/g,'').trim();
+  const a=raw.indexOf('{'),b=raw.lastIndexOf('}');
+  if(a>=0&&b>a)raw=raw.slice(a,b+1);
+  return raw;
+}
+function extractOpenAIText(data){
+  if(!data)return '';
+  if(data.output_text)return data.output_text;
+  const parts=[];
+  (data.output||[]).forEach(item=>{
+    (item.content||[]).forEach(c=>{
+      if(typeof c.text==='string')parts.push(c.text);
+      else if(typeof c.output_text==='string')parts.push(c.output_text);
+    });
+  });
+  return parts.join('\n').trim();
+}
+async function callOpenAIJson(prompt){
+  const key=openAIKey();
+  if(!key)throw new Error('OPENAI_KEY_EMPTY');
+  const r=await fetch(OPENAI_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+    body:JSON.stringify({
+      model:openAIModel(),
+      store:false,
+      max_output_tokens:3200,
+      instructions:'Você escreve devocionais cristãos em português do Brasil. Responda sempre somente com JSON válido, sem markdown, sem comentários e sem texto fora do JSON.',
+      input:prompt
+    })
+  });
+  const data=await r.json().catch(()=>({}));
+  if(!r.ok){
+    const msg=(data.error&&data.error.message)||('Erro HTTP '+r.status);
+    throw new Error(msg);
+  }
+  const raw=extractOpenAIText(data);
+  if(!raw)throw new Error('A IA não retornou texto.');
+  return JSON.parse(cleanJsonText(raw));
+}
+
 async function genAiDevo(){
   const tk=todayKey();S.aiDevo[tk]={loading:true};save();
   ['h-ai','d-ai'].forEach(id=>{const c=document.getElementById(id);if(c){c.innerHTML='';c.appendChild(mkLoadCard());}});
@@ -765,16 +825,15 @@ DIRETRIZES: exegese do original grego/hebraico quando relevante, conexão com a 
 Retorne SOMENTE JSON válido sem markdown:
 {"title":"Título poético e teológico","ref":"Livro Cap:Vers","verse":"Texto da ACF","context":"Contexto histórico-canônico rico (3-4 frases)","intro":"Abertura impactante com problema existencial central (3-4 frases)","body":["EXEGESE: análise do texto original com palavras gregas/hebraicas, intertextualidade (6-8 frases)","TEOLOGIA: como aponta para Cristo e o arco redentor (5-7 frases)","APLICAÇÃO CONJUGAL: implicações profundas e específicas para o matrimônio cristão (5-7 frases)","ESPERANÇA PASTORAL: encorajamento baseado na graça, perspectiva escatológica (4-5 frases)"],"application":"Aplicação prática específica, concreta e mensurável para esta semana (3-5 frases)","prayer":"Oração pastoral profunda em primeira pessoa do plural, com adoração, confissão e confiança (6-8 frases)","questions":["Pergunta teológica sobre o caráter de Deus ou obra de Cristo no texto","Pergunta de autoconhecimento: onde você reconhece sua luta nesse texto?","Pergunta conjugal: como essa verdade muda concretamente a forma como você ama seu cônjuge?","Pergunta de ação: qual passo específico vocês dois tomarão juntos esta semana?"]}`;
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
-    const data=await r.json();
-    const raw=data.content.map(i=>i.text||'').join('');
-    const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    S.aiDevo[tk]={content:parsed,ts:Date.now(),loading:false};save();
+    const parsed=await callOpenAIJson(prompt);
+    S.aiDevo[tk]={content:parsed,ts:Date.now(),loading:false,model:openAIModel()};save();
+    showToast('Devocional gerado pela IA ✦');
   }catch(e){
     const base=DEVOS[doy()%DEVOS.length];
-    S.aiDevo[tk]={content:{title:base.title,ref:base.ref,verse:base.verse,context:base.context,intro:base.intro,body:base.body,application:base.application,prayer:base.prayer,questions:base.questions},ts:Date.now(),loading:false,fb:true};
-    save();showToast('Usando devocional local (sem internet)');
+    S.aiDevo[tk]={content:{title:base.title,ref:base.ref,verse:base.verse,context:base.context,intro:base.intro,body:base.body,application:base.application,prayer:base.prayer,questions:base.questions},ts:Date.now(),loading:false,fb:true,error:String(e&&e.message||e)};
+    save();
+    if(String(e&&e.message||'').includes('OPENAI_KEY_EMPTY'))showToast('Cole sua OpenAI API Key nas configurações');
+    else showToast('IA indisponível: usando devocional local');
   }
   ['h-ai','d-ai'].forEach(id=>rAiCard(document.getElementById(id)));
 }
@@ -1232,6 +1291,8 @@ function saveCfg(){
   S.nameHim=document.getElementById('n-him').value.trim()||'Marcus';
   S.nameHer=document.getElementById('n-her').value.trim()||'Ingrid';
   S.themes=Array.from(document.getElementById('th-chips').querySelectorAll('.cch.sel')).map(c=>c.dataset.theme);
+  const ok=document.getElementById('openai-key');if(ok && !ok.disabled)S.openaiApiKey=ok.value.trim();
+  const om=document.getElementById('openai-model');if(om)S.openaiModel=om.value.trim()||'gpt-5-mini';
   save();closeM('m-cfg');showToast('Configurações salvas ✦');
   document.getElementById('av-m').textContent=S.nameHim.charAt(0).toUpperCase();document.getElementById('an-m').textContent=S.nameHim;
   document.getElementById('av-i').textContent=S.nameHer.charAt(0).toUpperCase();document.getElementById('an-i').textContent=S.nameHer;
@@ -1239,6 +1300,8 @@ function saveCfg(){
 function loadCfgUI(){
   const nh=document.getElementById('n-him'),ni=document.getElementById('n-her');
   if(nh)nh.value=S.nameHim||'Marcus';if(ni)ni.value=S.nameHer||'Ingrid';
+  const ok=document.getElementById('openai-key'),om=document.getElementById('openai-model');
+  if(ok)ok.value='';if(om)om.value=S.openaiModel||'gpt-5-mini';
   document.getElementById('th-chips').querySelectorAll('.cch').forEach(c=>c.classList.toggle('sel',S.themes.includes(c.dataset.theme)));
   const td=document.getElementById('tg-dark');if(td)td.classList.toggle('on',S.dark);
 }
