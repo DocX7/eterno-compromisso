@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eterno-compromisso-v5-crescimento';
+const CACHE_NAME = 'eterno-compromisso-v6-design-acolhedor';
 const CORE_ASSETS = [
   './',
   './index.html',
