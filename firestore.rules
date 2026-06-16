@@ -1,8 +1,13 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function estaLogado() {
-      return request.auth != null;
+    function usuarioPermitido() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+          "contato.marcusbuceles@gmail.com",
+          "contato.ingridbuceles@gmail.com"
+        ];
     }
 
     function payloadDoCasalValido() {
@@ -11,7 +16,8 @@ service cloud.firestore {
         'casal',
         'atualizadoMs',
         'atualizadoEm',
-        'usuarioAnonimo',
+        'usuarioGoogle',
+        'usuarioAnonimo', // legado: permitido só para não quebrar migração de docs antigos
         'estado',
         'progressoBiblico',
         'devocionalDiario',
@@ -29,9 +35,9 @@ service cloud.firestore {
     }
 
     match /casais/{casalId} {
-      allow get: if estaLogado() && casalId == 'marcus_e_ingrid';
+      allow get: if usuarioPermitido() && casalId == 'marcus_e_ingrid';
       allow list: if false;
-      allow create, update: if estaLogado()
+      allow create, update: if usuarioPermitido()
         && casalId == 'marcus_e_ingrid'
         && payloadDoCasalValido();
       allow delete: if false;

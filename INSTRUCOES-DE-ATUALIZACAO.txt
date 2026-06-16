@@ -1,39 +1,18 @@
-ETERN0 COMPROMISSO — V19 MASTER ULTRA
-
-COMO PUBLICAR NO GITHUB PAGES
+ETERNO COMPROMISSO — V21 GOOGLE LOGIN SEGURO
 
 1. Extraia este ZIP.
-2. Entre na pasta eterno-compromisso-main.
-3. Envie/substitua TODOS os arquivos no repositório DocX7/eterno-compromisso.
-4. Mantenha estes arquivos na raiz do repositório:
-   - index.html
-   - biblia-acf.csv
-   - manifest.json
-   - service-worker.js
-   - offline.html
-   - 404.html
-   - .nojekyll
-   - firestore.rules
-   - README.md
-   - pasta icons
-5. Aguarde o GitHub Pages atualizar.
-6. Abra: https://docx7.github.io/eterno-compromisso/
+2. Substitua TODOS os arquivos antigos no repositório GitHub.
+3. Faça commit e push.
+4. No Firebase Console:
+   - Authentication > Sign-in method > Google > Enable
+   - Authentication > Sign-in method > Anonymous > Disable
+   - Authentication > Settings > Authorized domains > adicionar docx7.github.io
+5. Publique o arquivo firestore.rules em Firestore Database > Rules.
+6. Abra https://docx7.github.io/eterno-compromisso/
+7. Entre com:
+   - contato.marcusbuceles@gmail.com
+   - ou contato.ingridbuceles@gmail.com
 
-SE APARECER A VERSÃO ANTIGA
+Se aparecer versão antiga, limpe cache ou remova/reinstale o PWA da tela inicial.
 
-- No celular, feche o app, remova da tela inicial e adicione novamente.
-- No navegador, limpe cache ou abra em aba anônima.
-- Dentro do app, vá em Configurações > Diagnóstico > Limpar cache.
-
-MUDANÇAS PRINCIPAIS
-
-- Jornada do Casal completa.
-- Check-in diário do casal.
-- Revisão semanal.
-- Busca bíblica local.
-- Anotações por leitura.
-- Recuperação de atrasos.
-- Diagnóstico e reparo local.
-- PWA/cache atualizado para V19.
-
-A IA foi mantida. As chaves não foram alteradas, conforme solicitado.
+IA preservada. Chaves não alteradas.

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eterno-compromisso-v19-master-ultra';
+const CACHE_NAME = 'eterno-compromisso-v21-google-login-seguro';
 const APP_SHELL = [
   './',
   './index.html',
@@ -7,6 +7,11 @@ const APP_SHELL = [
   './404.html',
   './README.md',
   './INSTRUCOES-DE-ATUALIZACAO.txt',
+  './ANALISE_COMPLETA-V21.md',
+  './css/v20-master.css',
+  './js/v20-master.js',
+  './data/family-principles.json',
+  './data/study-templates.json',
   './icons/icon-192.png',
   './icons/icon-512.png'
 ];

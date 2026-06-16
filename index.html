@@ -651,6 +651,7 @@ body.ec-premium-ui .ti,body.ec-premium-ui textarea.ti{font-size:16px}
 }
 </style>
 
+  <link rel="stylesheet" href="./css/v20-master.css">
 </head>
 <body class="ec-premium-ui">
 <header>
@@ -1991,11 +1992,11 @@ window.addEventListener('DOMContentLoaded',()=>{
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics-compat.js"></script>
 <script>
 /* =========================================================
-   FIREBASE — SINCRONIZAÇÃO NA NUVEM
-   Eterno Compromisso · Marcus & Ingrid
+   FIREBASE — LOGIN GOOGLE + SINCRONIZAÇÃO NA NUVEM
+   Eterno Compromisso · Marcus & Ingrid · V21
+   - Login anônimo removido
+   - Acesso permitido somente aos e-mails autorizados
    - Mantém localStorage como backup offline
-   - Sincroniza progresso separado: Marcus e Ingrid
-   - Salva devocionais, orações, diário, configurações e cache da IA
    - Caminho no Firestore: casais/marcus_e_ingrid
 ========================================================= */
 (function(){
@@ -2009,20 +2010,126 @@ window.addEventListener('DOMContentLoaded',()=>{
     measurementId: "G-4GP9LFKZHS"
   };
 
+  const AUTHORIZED_EMAILS = [
+    'contato.marcusbuceles@gmail.com',
+    'contato.ingridbuceles@gmail.com'
+  ];
   const COUPLE_COLLECTION = 'casais';
   const COUPLE_DOC_ID = 'marcus_e_ingrid';
   const TOTAL_DIAS = 365;
 
   let firebaseReady = false;
+  let authReady = false;
   let cloudLoaded = false;
   let applyingCloud = false;
   let saveTimer = null;
   let coupleRef = null;
+  let unsubscribeSnapshot = null;
+  let currentGoogleUser = null;
   let lastCloudMs = 0;
   let lastSavedJson = '';
+  let lastAuthMessage = '';
+  let authFlowStarted = false;
 
   function safeToast(msg){
     try{ if(typeof showToast === 'function') showToast(msg); }catch(e){}
+  }
+
+  function escAuth(v){
+    return String(v == null ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  }
+
+  function emailOf(user){
+    return String((user && user.email) || '').trim().toLowerCase();
+  }
+
+  function isAuthorizedUser(user){
+    return !!user && AUTHORIZED_EMAILS.includes(emailOf(user));
+  }
+
+  function ensureAuthStyles(){
+    if(document.getElementById('ec-auth-styles')) return;
+    document.head.insertAdjacentHTML('beforeend', `<style id="ec-auth-styles">
+      .ec-auth-gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(145deg,rgba(44,24,16,.96),rgba(92,58,30,.96) 48%,rgba(20,18,9,.97));display:flex;align-items:center;justify-content:center;padding:22px;color:#fff;font-family:'DM Sans',sans-serif;backdrop-filter:blur(10px)}
+      .ec-auth-gate.hidden{display:none!important}
+      .ec-auth-card{width:min(100%,430px);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);box-shadow:0 24px 70px rgba(0,0,0,.28);border-radius:30px;padding:28px 24px;position:relative;overflow:hidden}
+      .ec-auth-card:before{content:'✦';position:absolute;right:18px;bottom:-12px;font-size:126px;line-height:1;opacity:.065;font-family:Georgia,serif}
+      .ec-auth-k{font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:10px}
+      .ec-auth-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1.05;margin-bottom:10px;color:#fff}
+      .ec-auth-text{font-size:13px;line-height:1.65;color:rgba(255,255,255,.76);margin-bottom:18px;max-width:94%}
+      .ec-auth-allowed{display:grid;gap:8px;margin:18px 0}.ec-auth-email{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:11px 12px;font-size:12px;font-weight:700;color:rgba(255,255,255,.88);word-break:break-word}
+      .ec-auth-btn{width:100%;border:none;border-radius:18px;background:#fff;color:#3d2817;font-family:'DM Sans',sans-serif;font-weight:900;font-size:14px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 12px 30px rgba(0,0,0,.18);transition:transform .16s,opacity .16s}.ec-auth-btn:active{transform:scale(.98)}.ec-auth-btn[disabled]{opacity:.65;cursor:wait}
+      .ec-auth-btn span.g{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#4285F4,#34A853 50%,#FBBC05 75%,#EA4335);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:12px;flex:0 0 auto}
+      .ec-auth-msg{margin-top:13px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:11px 12px;font-size:12px;line-height:1.55;color:rgba(255,255,255,.82)}
+      .ec-auth-small{margin-top:13px;font-size:11px;line-height:1.55;color:rgba(255,255,255,.55)}
+      .ec-user-chip{position:fixed;top:72px;left:12px;z-index:181;background:var(--nav);backdrop-filter:blur(16px);border:1px solid var(--bd);box-shadow:0 4px 16px var(--sh);border-radius:30px;padding:6px 9px;font-size:10px;font-weight:800;letter-spacing:.04em;color:var(--txs);display:none;align-items:center;gap:7px;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ec-user-chip.show{display:flex}.ec-user-chip button{border:none;background:transparent;color:var(--gold);font:inherit;font-size:10px;font-weight:900;cursor:pointer;padding:0}
+      @media(min-width:760px){.ec-user-chip{left:calc(50% - 520px)}}
+    </style>`);
+  }
+
+  function ensureAuthGate(){
+    ensureAuthStyles();
+    let gate = document.getElementById('ec-auth-gate');
+    if(!gate){
+      gate = document.createElement('div');
+      gate.id = 'ec-auth-gate';
+      gate.className = 'ec-auth-gate';
+      gate.innerHTML = `
+        <div class="ec-auth-card" role="dialog" aria-modal="true" aria-labelledby="ec-auth-title">
+          <div class="ec-auth-k">Eterno Compromisso · Login seguro</div>
+          <div class="ec-auth-title" id="ec-auth-title">Entre com a conta Google autorizada</div>
+          <div class="ec-auth-text">O acesso ao diário, progresso, orações e sincronização da nuvem agora é restrito somente a Marcus e Ingrid.</div>
+          <div class="ec-auth-allowed">
+            <div class="ec-auth-email">contato.marcusbuceles@gmail.com</div>
+            <div class="ec-auth-email">contato.ingridbuceles@gmail.com</div>
+          </div>
+          <button class="ec-auth-btn" type="button" id="ec-auth-login-btn" onclick="entrarComGoogle()"><span class="g">G</span> Entrar com Google</button>
+          <div class="ec-auth-msg" id="ec-auth-msg">Aguardando login. O login anônimo foi removido desta versão.</div>
+          <div class="ec-auth-small">Se aparecer conta não autorizada, saia e escolha uma das duas contas acima.</div>
+        </div>`;
+      document.body.appendChild(gate);
+    }
+    return gate;
+  }
+
+  function showAuthGate(message){
+    const gate = ensureAuthGate();
+    const msg = document.getElementById('ec-auth-msg');
+    if(message) lastAuthMessage = message;
+    if(msg) msg.textContent = lastAuthMessage || 'Aguardando login. O login anônimo foi removido desta versão.';
+    gate.classList.remove('hidden');
+  }
+
+  function hideAuthGate(){
+    const gate = ensureAuthGate();
+    gate.classList.add('hidden');
+  }
+
+  function setAuthButtonLoading(isLoading){
+    const btn = document.getElementById('ec-auth-login-btn');
+    if(!btn) return;
+    btn.disabled = !!isLoading;
+    btn.innerHTML = isLoading ? '<span class="g">G</span> Entrando...' : '<span class="g">G</span> Entrar com Google';
+  }
+
+  function ensureUserChip(){
+    ensureAuthStyles();
+    let chip = document.getElementById('ec-user-chip');
+    if(!chip){
+      chip = document.createElement('div');
+      chip.id = 'ec-user-chip';
+      chip.className = 'ec-user-chip';
+      document.body.appendChild(chip);
+    }
+    return chip;
+  }
+
+  function renderUserChip(user){
+    const chip = ensureUserChip();
+    if(!user){ chip.classList.remove('show'); chip.innerHTML = ''; return; }
+    const email = escAuth(user.email || 'Google');
+    chip.innerHTML = `<span title="${email}">🔐 ${email}</span><button type="button" onclick="sairDaConta()">Sair</button>`;
+    chip.classList.add('show');
   }
 
   function todayISO(){
@@ -2106,13 +2213,20 @@ window.addEventListener('DOMContentLoaded',()=>{
     const marcusDays = uniqueDays(st.profiles.marcus.completedDays);
     const ingridDays = uniqueDays(st.profiles.ingrid.completedDays);
     const tk = todayISO();
+    const user = currentGoogleUser || (firebase.auth && firebase.auth().currentUser) || null;
 
     return {
-      versao: 2,
+      versao: 21,
       casal: 'Marcus e Ingrid',
       atualizadoMs: st.syncUpdatedAt,
       atualizadoEm: firebase.firestore.FieldValue.serverTimestamp(),
-      usuarioAnonimo: firebase.auth().currentUser ? firebase.auth().currentUser.uid : null,
+      usuarioGoogle: user ? {
+        uid: user.uid || '',
+        email: user.email || '',
+        nome: user.displayName || '',
+        foto: user.photoURL || '',
+        ultimoAcessoMs: Date.now()
+      } : null,
       estado: st,
       progressoBiblico: {
         marcus: {
@@ -2223,11 +2337,13 @@ window.addEventListener('DOMContentLoaded',()=>{
       if(v === 'diario' && typeof rDiary === 'function') rDiary();
       if(v === 'perfil' && typeof rProfile === 'function') rProfile();
       if(v === 'promessas' && typeof rProm === 'function') rProm();
+      if(v === 'familia' && typeof rFamily === 'function') rFamily();
+      if(v === 'estudo' && typeof rStudy === 'function') rStudy();
     }catch(e){}
   }
 
   async function saveToCloudNow(){
-    if(!firebaseReady || !cloudLoaded || !coupleRef || applyingCloud) return;
+    if(!firebaseReady || !authReady || !cloudLoaded || !coupleRef || applyingCloud || !isAuthorizedUser(currentGoogleUser)) return;
     try{
       const payload = cloudPayload();
       const json = JSON.stringify(payload.estado || {});
@@ -2237,11 +2353,12 @@ window.addEventListener('DOMContentLoaded',()=>{
       await coupleRef.set(payload, {merge:true});
     }catch(e){
       console.warn('Firebase: falha ao sincronizar', e);
+      if(String(e && e.code || '').includes('permission-denied')) safeToast('Sem permissão no Firestore. Confira as regras.');
     }
   }
 
   function scheduleCloudSave(){
-    if(!firebaseReady || !cloudLoaded || applyingCloud) return;
+    if(!firebaseReady || !authReady || !cloudLoaded || applyingCloud || !isAuthorizedUser(currentGoogleUser)) return;
     clearTimeout(saveTimer);
     saveTimer = setTimeout(saveToCloudNow, 900);
   }
@@ -2268,12 +2385,102 @@ window.addEventListener('DOMContentLoaded',()=>{
     load.__firebaseWrapped = true;
   }
 
+  async function startCloudForAuthorizedUser(db, user){
+    currentGoogleUser = user;
+    authReady = true;
+    firebaseReady = false;
+    cloudLoaded = false;
+    if(unsubscribeSnapshot){ try{ unsubscribeSnapshot(); }catch(e){} unsubscribeSnapshot = null; }
+    coupleRef = db.collection(COUPLE_COLLECTION).doc(COUPLE_DOC_ID);
+    firebaseReady = true;
+    renderUserChip(user);
+    hideAuthGate();
+
+    const snap = await coupleRef.get();
+    if(snap.exists){
+      const data = snap.data() || {};
+      const remoteMs = Number(data.atualizadoMs || (data.estado && data.estado.syncUpdatedAt) || 0);
+      const localMs = Number((typeof S !== 'undefined' && S.syncUpdatedAt) || 0);
+      lastCloudMs = remoteMs;
+
+      if(remoteMs && remoteMs >= localMs){
+        applyCloudData(data, true);
+      }else if(remoteMs && localMs > remoteMs){
+        cloudLoaded = true;
+        await saveToCloudNow();
+      }else{
+        applyCloudData(data, false);
+      }
+    }else{
+      ensureState();
+    }
+
+    cloudLoaded = true;
+    await saveToCloudNow();
+    safeToast('Login Google ativo: dados sincronizados ✦');
+    try{ if(window.atualizarStatusSincronizacao) window.atualizarStatusSincronizacao(); }catch(e){}
+
+    unsubscribeSnapshot = coupleRef.onSnapshot(function(snapshot){
+      if(!snapshot.exists || applyingCloud || !isAuthorizedUser(currentGoogleUser)) return;
+      const data = snapshot.data() || {};
+      const remoteMs = Number(data.atualizadoMs || (data.estado && data.estado.syncUpdatedAt) || 0);
+      if(remoteMs && remoteMs <= lastCloudMs) return;
+      lastCloudMs = remoteMs;
+      applyCloudData(data, true);
+      try{ safeToast('Atualização recebida da nuvem ✦'); }catch(e){}
+      try{ if(window.atualizarStatusSincronizacao) window.atualizarStatusSincronizacao(); }catch(e){}
+    }, function(err){
+      console.warn('Firebase listener:', err);
+      if(String(err && err.code || '').includes('permission-denied')) safeToast('Acesso negado no Firestore. Confira e-mail e regras.');
+    });
+  }
+
+  async function handleAuthState(db, user){
+    setAuthButtonLoading(false);
+    if(!user){
+      currentGoogleUser = null;
+      authReady = false;
+      firebaseReady = false;
+      cloudLoaded = false;
+      coupleRef = null;
+      if(unsubscribeSnapshot){ try{ unsubscribeSnapshot(); }catch(e){} unsubscribeSnapshot = null; }
+      renderUserChip(null);
+      showAuthGate(lastAuthMessage || 'Entre com uma das contas Google autorizadas para liberar o app.');
+      try{ if(window.atualizarStatusSincronizacao) window.atualizarStatusSincronizacao(); }catch(e){}
+      return;
+    }
+
+    const userEmail = emailOf(user);
+    if(!isAuthorizedUser(user)){
+      currentGoogleUser = null;
+      authReady = false;
+      firebaseReady = false;
+      cloudLoaded = false;
+      renderUserChip(null);
+      lastAuthMessage = 'A conta '+(userEmail || 'selecionada')+' não está autorizada. Use contato.marcusbuceles@gmail.com ou contato.ingridbuceles@gmail.com.';
+      try{ await firebase.auth().signOut(); }catch(e){}
+      showAuthGate(lastAuthMessage);
+      return;
+    }
+
+    lastAuthMessage = '';
+    try{
+      await startCloudForAuthorizedUser(db, user);
+    }catch(e){
+      console.warn('Firebase: erro ao iniciar sincronização', e);
+      showAuthGate('Login feito, mas a nuvem não conectou. Verifique as regras do Firestore e tente novamente.');
+      safeToast('Firebase indisponível: usando backup local');
+    }
+  }
+
   async function initFirebaseSync(){
     installLoadWrapper();
     installSaveWrapper();
+    ensureAuthGate();
 
     if(!window.firebase){
       console.warn('Firebase SDK não carregou. O app continuará usando localStorage.');
+      showAuthGate('Firebase não carregou. Confira a conexão e recarregue o app.');
       return;
     }
 
@@ -2281,68 +2488,94 @@ window.addEventListener('DOMContentLoaded',()=>{
       if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
       try{ firebase.analytics(); }catch(e){}
 
+      try{ await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL); }catch(e){}
       const db = firebase.firestore();
       try{ await db.enablePersistence({synchronizeTabs:true}); }catch(e){}
 
-      await firebase.auth().signInAnonymously();
-      coupleRef = db.collection(COUPLE_COLLECTION).doc(COUPLE_DOC_ID);
-      firebaseReady = true;
-
-      const snap = await coupleRef.get();
-      if(snap.exists){
-        const data = snap.data() || {};
-        const remoteMs = Number(data.atualizadoMs || (data.estado && data.estado.syncUpdatedAt) || 0);
-        const localMs = Number((typeof S !== 'undefined' && S.syncUpdatedAt) || 0);
-        lastCloudMs = remoteMs;
-
-        if(remoteMs && remoteMs >= localMs){
-          applyCloudData(data, true);
-        }else if(remoteMs && localMs > remoteMs){
-          cloudLoaded = true;
-          await saveToCloudNow();
-        }else{
-          applyCloudData(data, false);
-        }
-      }else{
-        ensureState();
-      }
-
-      cloudLoaded = true;
-      await saveToCloudNow();
-      safeToast('Firebase conectado: dados sincronizados ✦');
-      try{ if(window.atualizarStatusSincronizacao) window.atualizarStatusSincronizacao(); }catch(e){}
-
-      coupleRef.onSnapshot(function(snapshot){
-        if(!snapshot.exists || applyingCloud) return;
-        const data = snapshot.data() || {};
-        const remoteMs = Number(data.atualizadoMs || (data.estado && data.estado.syncUpdatedAt) || 0);
-        if(remoteMs && remoteMs <= lastCloudMs) return;
-        lastCloudMs = remoteMs;
-        applyCloudData(data, true);
-        try{ safeToast('Atualização recebida da nuvem ✦'); }catch(e){}
-        try{ if(window.atualizarStatusSincronizacao) window.atualizarStatusSincronizacao(); }catch(e){}
-      }, function(err){
-        console.warn('Firebase listener:', err);
+      firebase.auth().onAuthStateChanged(function(user){
+        handleAuthState(db, user);
       });
 
     }catch(e){
-      console.warn('Firebase: erro ao iniciar sincronização', e);
+      console.warn('Firebase: erro ao iniciar autenticação', e);
+      showAuthGate('Não foi possível iniciar o login Google. Recarregue o app e confira o Firebase.');
       safeToast('Firebase indisponível: usando backup local');
     }
   }
 
+  async function entrarComGoogle(){
+    if(authFlowStarted) return;
+    authFlowStarted = true;
+    setAuthButtonLoading(true);
+    lastAuthMessage = '';
+    try{
+      if(!window.firebase || !firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.setCustomParameters({prompt:'select_account'});
+      await firebase.auth().signInWithPopup(provider);
+    }catch(e){
+      const code = String((e && e.code) || '');
+      console.warn('Login Google:', e);
+      if(code.includes('popup-blocked') || code.includes('popup-closed-by-user') || code.includes('operation-not-supported-in-this-environment') || code.includes('cancelled-popup-request')){
+        try{
+          const provider = new firebase.auth.GoogleAuthProvider();
+          provider.setCustomParameters({prompt:'select_account'});
+          await firebase.auth().signInWithRedirect(provider);
+          return;
+        }catch(e2){
+          console.warn('Login Google redirect:', e2);
+          lastAuthMessage = 'Não foi possível abrir o login Google. Confira se o provedor Google está ativado no Firebase.';
+        }
+      }else if(code.includes('operation-not-allowed')){
+        lastAuthMessage = 'O provedor Google ainda não está ativado no Firebase Authentication.';
+      }else if(code.includes('unauthorized-domain')){
+        lastAuthMessage = 'Domínio não autorizado no Firebase. Adicione docx7.github.io em Authorized domains.';
+      }else{
+        lastAuthMessage = 'Erro no login Google: '+(e && e.message ? e.message : 'tente novamente.');
+      }
+      showAuthGate(lastAuthMessage);
+      setAuthButtonLoading(false);
+    }finally{
+      authFlowStarted = false;
+    }
+  }
+
+  async function sairDaConta(){
+    try{
+      await firebase.auth().signOut();
+      safeToast('Você saiu da conta Google');
+    }catch(e){
+      console.warn('Erro ao sair:', e);
+      safeToast('Não foi possível sair agora');
+    }
+  }
+
+  window.entrarComGoogle = entrarComGoogle;
+  window.sairDaConta = sairDaConta;
   window.EternoFirebase = {
     init:initFirebaseSync,
     salvarAgora:saveToCloudNow,
-    status:function(){return {firebaseReady,cloudLoaded,lastCloudMs,path:COUPLE_COLLECTION+'/'+COUPLE_DOC_ID};}
+    status:function(){
+      return {
+        firebaseReady,
+        authReady,
+        cloudLoaded,
+        lastCloudMs,
+        path:COUPLE_COLLECTION+'/'+COUPLE_DOC_ID,
+        userEmail: currentGoogleUser ? currentGoogleUser.email : '',
+        allowedEmails: AUTHORIZED_EMAILS.slice()
+      };
+    }
   };
 
   installLoadWrapper();
   installSaveWrapper();
 
-  document.addEventListener('DOMContentLoaded', function(){
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(initFirebaseSync, 450); });
+  }else{
     setTimeout(initFirebaseSync, 450);
-  });
+  }
 })();
 </script>
 <!-- FIREBASE_SYNC_ETERNOCOMPROMISSO_END -->
@@ -2399,7 +2632,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   function atualizarStatusSincronizacao(){
     const el=ensureSyncStatusWidget();
     let txt='☁️ Local';let ok=false;
-    try{if(window.EternoFirebase&&EternoFirebase.status){const s=EternoFirebase.status();if(s.firebaseReady&&s.cloudLoaded){txt='☁️ Nuvem ativa';ok=true;}else if(s.firebaseReady){txt='☁️ Conectando';}}}catch(e){}
+    try{if(window.EternoFirebase&&EternoFirebase.status){const s=EternoFirebase.status();if(!s.authReady){txt='🔐 Login Google';ok=false;}else if(s.firebaseReady&&s.cloudLoaded){txt='☁️ Nuvem ativa';ok=true;}else if(s.firebaseReady){txt='☁️ Conectando';}}}catch(e){}
     el.textContent=txt;el.className='sync-pill '+(ok?'ok':'off');
   }
   window.atualizarStatusSincronizacao=atualizarStatusSincronizacao;
@@ -3103,100 +3336,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 </script>
 <!-- V18_MASTER_COMPLETO_END -->
 
-
-<!-- V19_MASTER_ULTRA_START -->
-<style>
-/* =========================================================
-   V19 MASTER ULTRA — jornada completa, busca, diagnóstico,
-   recuperação de atrasos, check-in e experiência premium
-========================================================= */
-:root{--v19-ok:#2E7D32;--v19-warn:#B86B00;--v19-danger:#9C2E2E;--v19-blue:#245D8F;--v19-card:linear-gradient(145deg,rgba(255,255,255,.92),rgba(251,248,243,.76));--v19-ring:conic-gradient(var(--gold) 0deg, rgba(184,148,90,.18) 0deg)}
-.dark{--v19-card:linear-gradient(145deg,rgba(30,27,20,.94),rgba(20,18,9,.82))}
-.v19-card{background:var(--v19-card);border:1px solid var(--bd);border-radius:24px;padding:18px;box-shadow:0 14px 40px rgba(54,38,16,.10);margin:0 0 16px;position:relative;overflow:hidden}
-.v19-card:before{content:'';position:absolute;inset:-1px;background:radial-gradient(circle at 15% 0,rgba(212,169,106,.16),transparent 36%),radial-gradient(circle at 100% 40%,rgba(184,148,90,.10),transparent 34%);pointer-events:none}.v19-card>*{position:relative}
-.v19-k{font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}.v19-title{font-family:'Cormorant Garamond',serif;font-size:25px;line-height:1.08;color:var(--tx);font-weight:700}.v19-sub{font-size:12px;color:var(--txs);line-height:1.55;margin-top:6px}.v19-row{display:flex;gap:10px;align-items:center}.v19-row-between{display:flex;gap:10px;align-items:center;justify-content:space-between}.v19-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.v19-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.v19-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.v19-pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid var(--bd);background:var(--ap);padding:7px 10px;font-size:11px;font-weight:800;color:var(--txm)}
-.v19-score{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:var(--v19-ring);box-shadow:inset 0 0 0 7px rgba(255,255,255,.58);flex:0 0 auto}.dark .v19-score{box-shadow:inset 0 0 0 7px rgba(20,18,9,.6)}.v19-score span{width:54px;height:54px;border-radius:50%;background:var(--sf);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:800;color:var(--gold)}
-.v19-task{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid var(--bd);background:rgba(255,255,255,.45);border-radius:17px;margin-bottom:9px;cursor:pointer;transition:transform .15s,background .15s}.dark .v19-task{background:rgba(255,255,255,.04)}.v19-task:active{transform:scale(.985)}.v19-task.done{background:rgba(46,125,50,.10);border-color:rgba(46,125,50,.30)}.v19-check{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--bd);background:var(--sf);font-size:13px;flex:0 0 auto}.v19-task.done .v19-check{background:var(--v19-ok);border-color:var(--v19-ok);color:white}.v19-task-title{font-size:13px;font-weight:800;color:var(--tx)}.v19-task-sub{font-size:11px;color:var(--txs);line-height:1.35;margin-top:2px}.v19-task-pts{font-size:10px;font-weight:900;color:var(--gold);margin-left:auto;white-space:nowrap}
-.v19-metric{border:1px solid var(--bd);border-radius:18px;padding:13px;background:rgba(255,255,255,.42);min-height:88px}.dark .v19-metric{background:rgba(255,255,255,.04)}.v19-mn{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:800;color:var(--gold);line-height:1}.v19-ml{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--txs);font-weight:800;margin-top:5px}.v19-md{font-size:11px;color:var(--txm);margin-top:4px;line-height:1.35}.v19-progress{height:9px;border-radius:999px;background:rgba(184,148,90,.14);overflow:hidden}.v19-progress>span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#8A652F,#D4A96A);width:0%}
-.v19-mini-nav{display:flex;gap:8px;overflow-x:auto;margin:0 0 15px;padding:2px 0 8px;-webkit-overflow-scrolling:touch}.v19-mini-nav button{border:1px solid var(--bd);background:var(--sf);color:var(--txm);border-radius:999px;padding:9px 12px;white-space:nowrap;font-size:12px;font-weight:800}.dark .v19-mini-nav button{background:rgba(255,255,255,.04)}.v19-mini-nav button.sel{background:linear-gradient(135deg,#9d7334,#d4a96a);color:white;border-color:transparent}
-.v19-input,.v19-select{width:100%;border:1px solid var(--bd);background:var(--sf);color:var(--tx);border-radius:15px;padding:12px 13px;font:inherit;font-size:14px;outline:none}.v19-input:focus,.v19-select:focus{box-shadow:0 0 0 3px rgba(184,148,90,.18);border-color:rgba(184,148,90,.55)}textarea.v19-input{min-height:92px;resize:vertical}.v19-label{display:block;font-size:11px;font-weight:900;color:var(--gold);letter-spacing:.11em;text-transform:uppercase;margin:11px 0 7px}
-.v19-checkin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.v19-range{accent-color:#B8945A;width:100%}.v19-result-list{display:flex;flex-direction:column;gap:10px}.v19-search-hit{border:1px solid var(--bd);background:var(--sf);border-radius:18px;padding:13px;cursor:pointer}.dark .v19-search-hit{background:rgba(255,255,255,.04)}.v19-hit-ref{font-size:12px;font-weight:900;color:var(--gold);margin-bottom:5px}.v19-hit-text{font-size:13px;line-height:1.65;color:var(--txm)}.v19-hit-text mark{background:rgba(212,169,106,.24);color:inherit;border-radius:4px;padding:0 2px}
-.v19-diagnostic{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.6;background:rgba(0,0,0,.04);border:1px solid var(--bd);border-radius:16px;padding:12px;color:var(--txm);overflow:auto}.dark .v19-diagnostic{background:rgba(255,255,255,.04)}.v19-alert{border:1px solid rgba(184,107,0,.32);background:rgba(184,107,0,.08);border-radius:16px;padding:12px;color:var(--txm);font-size:12px;line-height:1.5;margin:10px 0}.v19-good{border-color:rgba(46,125,50,.28);background:rgba(46,125,50,.08)}
-.v19-sticky{position:sticky;top:68px;z-index:40;display:flex;gap:8px;overflow-x:auto;padding:9px 0 10px;background:linear-gradient(180deg,var(--bg) 70%,rgba(0,0,0,0));backdrop-filter:blur(8px)}.v19-sticky .abtn{white-space:nowrap;min-height:38px}.v19-reading-note{margin:14px 0 0}.v19-print-only{display:none}
-.v19-update{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:210;width:min(410px,calc(100% - 28px));background:linear-gradient(135deg,#2C2416,#7A5C2E);color:white;border-radius:20px;padding:14px;box-shadow:0 18px 40px rgba(0,0,0,.28);display:none}.v19-update.show{display:block}.v19-update b{display:block;margin-bottom:4px}.v19-update span{font-size:12px;opacity:.78}.v19-update button{margin-top:10px;width:100%;border:0;border-radius:14px;padding:11px;font-weight:900;color:#5d3d10;background:#F5EDD8}
-@media (min-width:900px){body.ec-premium-ui{max-width:1180px}.v19-grid{grid-template-columns:repeat(4,1fr)}.v19-checkin-grid{grid-template-columns:repeat(4,1fr)}#view-jornada.active{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}#view-jornada .v19-full{grid-column:1/-1}#view-busca-biblia.active{max-width:960px;margin:0 auto}.v19-card{border-radius:28px}.v19-title{font-size:30px}}
-@media (max-width:430px){.v19-grid3{grid-template-columns:1fr}.v19-checkin-grid{grid-template-columns:1fr}.v19-score{width:66px;height:66px}.v19-score span{width:48px;height:48px;font-size:19px}.v19-title{font-size:23px}}
-@media print{header,nav,.v19-actions,.v19-sticky,#toast,.mov{display:none!important}body{max-width:none;background:white;color:#222}.view{display:block!important}.view:not(.active){display:none!important}.v19-card,.card{box-shadow:none;border-color:#d8c29a;break-inside:avoid}.v19-print-only{display:block}}
-</style>
-<script>
-(function(){
-  'use strict';
-  const VERSION='v19-master-ultra';
-  const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
-  function ready(fn){document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn):fn();}
-  function state(){ if(typeof S==='undefined') window.S={}; return S; }
-  function txt(v){return String(v==null?'':v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
-  function arr(v){return Array.isArray(v)?v:[];}
-  function uniqDays(v){return Array.from(new Set(arr(v).map(Number).filter(n=>Number.isFinite(n)&&n>=1&&n<=365))).sort((a,b)=>a-b);}
-  function dateKey(d=new Date()){return d.toISOString().slice(0,10);}
-  function longDate(){return new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
-  function currentDay(){try{return Math.max(1,Math.min(365,typeof doy==='function'?doy():Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000)));}catch(e){return 1;}}
-  function toast(msg){try{typeof showToast==='function'?showToast(msg):alert(msg);}catch(e){}}
-  function currentProfile(){try{return typeof prof==='function'?prof():(state().profiles||{}).marcus;}catch(e){return (state().profiles||{}).marcus||{completedDays:[]};}}
-  function activeName(){const s=state();return s.activeProf==='ingrid'?(s.nameHer||'Ingrid'):(s.nameHim||'Marcus');}
-  function planFor(day){try{return window.PLAN&&PLAN[day-1]?PLAN[day-1]:null;}catch(e){return null;}}
-  function readingLabel(day=currentDay()){const p=planFor(day);return p?(p.chList||p.title||('Dia '+day)):('Dia '+day);}
-  function ensure(){const s=state();s.v19=s.v19||{};Object.assign(s.v19,{version:VERSION},s.v19);s.v19.missions=s.v19.missions||{};s.v19.checkins=s.v19.checkins||{};s.v19.weeklyReview=s.v19.weeklyReview||{};s.v19.readingNotes=s.v19.readingNotes||{};s.v19.searchHistory=arr(s.v19.searchHistory);s.v19.preferences=s.v19.preferences||{homeMode:'roteiro',dailyReminderText:'',compact:false};s.v19.lastMaintenance=s.v19.lastMaintenance||0;return s.v19;}
-  function taskList(){const d=currentDay();return [
-    {id:'leitura',ic:'📜',t:'Ler a Palavra',s:'Concluir a leitura de hoje: '+readingLabel(d),pts:30,act:function(){if(typeof openDay==='function')openDay(d);}},
-    {id:'oracao',ic:'🙏',t:'Orar juntos',s:'Separar 5 minutos para apresentar a casa ao Senhor.',pts:20,act:function(){window.openPrayerMode?openPrayerMode():null;}},
-    {id:'gratidao',ic:'📝',t:'Registrar gratidão',s:'Escrever pelo menos uma bênção percebida hoje.',pts:15,act:function(){if(typeof openM==='function')openM('diary');}},
-    {id:'familia',ic:'🏠',t:'Família no Altar',s:'Interceder pela família, saúde, finanças e propósito.',pts:15,act:function(){if(typeof go==='function')go('oracao',null);setTimeout(()=>{const el=$('#v18-family-altar');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250);}},
-    {id:'amor',ic:'💍',t:'Ato de amor',s:'Fazer uma atitude prática de serviço e carinho.',pts:10,act:null},
-    {id:'conversa',ic:'💬',t:'Conversa espiritual',s:'Responder juntos: o que Deus nos ensinou hoje?',pts:10,act:null}
-  ];}
-  function doneTasks(k=dateKey()){const v=ensure();v.missions[k]=arr(v.missions[k]);return v.missions[k];}
-  function toggleTask(id){const k=dateKey(),d=doneTasks(k),i=d.indexOf(id);if(i>=0)d.splice(i,1);else d.push(id);try{if(typeof save==='function')save();}catch(e){}renderJourney();renderHomePanel();toast(i>=0?'Missão desmarcada':'Missão concluída ✦');}
-  function score(){const s=state(),today=currentDay(),p=currentProfile(),done=doneTasks();let points=0;const tasks=taskList();tasks.forEach(t=>{if(done.includes(t.id))points+=t.pts;});if(arr(p.completedDays).includes(today)&&!done.includes('leitura'))points+=15;if(arr(s.prayers).some(p=>p&&String(p.date||'').slice(0,10)===dateKey()))points+=8;if(arr(s.diary).some(e=>e&&new Date(e.date||0).toISOString().slice(0,10)===dateKey()))points+=8;return Math.max(0,Math.min(100,points));}
-  function missedDays(){const p=currentProfile(),today=currentDay(),set=new Set(uniqDays(p.completedDays));const res=[];for(let i=1;i<=today;i++){if(!set.has(i))res.push(i);}return res;}
-  function sharedDays(){const s=state(),m=new Set(uniqDays(s.profiles&&s.profiles.marcus?s.profiles.marcus.completedDays:[])),i=new Set(uniqDays(s.profiles&&s.profiles.ingrid?s.profiles.ingrid.completedDays:[]));return Array.from(m).filter(d=>i.has(d)).sort((a,b)=>a-b);}
-  function streakFor(days){const set=new Set(uniqDays(days));let n=0;for(let d=currentDay();d>=1;d--){if(set.has(d))n++;else break;}return n;}
-  function createViews(){if(!$('#view-jornada')){$('main').insertAdjacentHTML('beforeend',`<section id="view-jornada" class="view"><div id="v19-journey-root" class="v19-full"></div></section>`);}if(!$('#view-busca-biblia')){$('main').insertAdjacentHTML('beforeend',`<section id="view-busca-biblia" class="view"><div id="v19-bible-search-root"></div></section>`);}if(!$('#v19-update')){document.body.insertAdjacentHTML('beforeend',`<div id="v19-update" class="v19-update"><b>Nova versão disponível</b><span>Atualize para carregar os arquivos mais recentes do Eterno Compromisso.</span><button onclick="location.reload()">Atualizar agora</button></div>`);}}
-  function gotoView(id){createViews();$$('.view').forEach(v=>v.classList.remove('active'));const v=$('#view-'+id);if(v)v.classList.add('active');$$('.ni').forEach(n=>n.classList.remove('active'));const label=$('.hl h1');if(label){const names={jornada:'Jornada', 'busca-biblia':'Buscar Bíblia'};label.textContent=names[id]||'Eterno Compromisso';}window.scrollTo({top:0,behavior:'smooth'});if(id==='jornada')renderJourney();if(id==='busca-biblia')renderBibleSearch();}
-  function scoreHtml(){const sc=score();return `<div class="v19-score" style="--v19-ring:conic-gradient(var(--gold) ${sc*3.6}deg, rgba(184,148,90,.16) 0deg)"><span>${sc}%</span></div>`;}
-  function renderHomePanel(){ensure();const mountId='v19-home-panel';let mount=$('#'+mountId);const home=$('#view-inicio');if(!home)return;if(!mount){const after=home.querySelector('.vbann')||home.firstElementChild;after.insertAdjacentHTML('afterend',`<div id="${mountId}"></div>`);mount=$('#'+mountId);}const sc=score(),miss=missedDays(),tasks=taskList(),done=doneTasks();const firstMiss=miss[0];const next=firstMiss?`Dia ${firstMiss}: ${readingLabel(firstMiss)}`:'Vocês estão em dia no perfil ativo.';mount.innerHTML=`<div class="v19-card"><div class="v19-row-between"><div>${scoreHtml()}</div><div style="flex:1"><div class="v19-k">Roteiro espiritual de hoje</div><div class="v19-title">${txt(activeName())}, caminhe com propósito</div><div class="v19-sub">${txt(longDate())}. Pontuação do dia: <b>${sc}%</b>. ${miss.length?`Há ${miss.length} leitura(s) pendente(s).`: 'Plano bíblico em dia neste perfil.'}</div></div></div><div class="v19-actions"><button class="abtn" onclick="ECV19.openJourney()">💍 Abrir Jornada do Casal</button><button class="abtn ol" onclick="ECV19.openBibleSearch()">🔎 Buscar na Bíblia</button><button class="abtn ol" onclick="ECV19.openFirstMissed()">📌 ${miss.length?'Recuperar atraso':'Leitura de hoje'}</button></div></div><div class="v19-card"><div class="v19-row-between"><div><div class="v19-k">Missão principal</div><div class="v19-title" style="font-size:23px">${txt(tasks.find(t=>!done.includes(t.id))?.t||'Dia completo ✦')}</div><div class="v19-sub">${txt(tasks.find(t=>!done.includes(t.id))?.s||'Vocês concluíram o roteiro espiritual de hoje. Registrem uma gratidão para guardar memória.')}</div></div><span class="v19-pill">${done.length}/${tasks.length} feitas</span></div><div class="v19-progress" style="margin-top:13px"><span style="width:${Math.round(done.length/tasks.length*100)}%"></span></div><div class="v19-sub" style="margin-top:9px"><b>Próximo foco:</b> ${txt(next)}</div></div>`;}
-  function renderJourney(){ensure();createViews();const root=$('#v19-journey-root');if(!root)return;const done=doneTasks(),tasks=taskList(),s=state(),miss=missedDays(),sd=sharedDays();const m=uniqDays(s.profiles&&s.profiles.marcus?s.profiles.marcus.completedDays:[]),i=uniqDays(s.profiles&&s.profiles.ingrid?s.profiles.ingrid.completedDays:[]);const weekKey=new Date().getFullYear()+'-S'+Math.ceil(currentDay()/7);const review=s.v19.weeklyReview[weekKey]||{};const chk=s.v19.checkins[dateKey()]||{fe:5,uniao:5,paz:5,constancia:5,nota:''};root.innerHTML=`<div class="v19-card v19-full"><div class="v19-row-between"><div><div class="v19-k">Jornada do Casal</div><div class="v19-title">Um roteiro diário para fé, amor e constância</div><div class="v19-sub">A ideia é simples: todo dia o app conduz vocês a Palavra, oração, gratidão, família e uma atitude prática de amor.</div></div>${scoreHtml()}</div><div class="v19-actions"><button class="abtn" onclick="ECV19.markEssentials()">✦ Concluir essenciais</button><button class="abtn ol" onclick="ECV19.openFirstMissed()">📌 Recuperar atraso</button><button class="abtn ol" onclick="ECV19.printJourney()">🖨️ Imprimir</button></div></div><div class="v19-card"><div class="v19-k">Missões de hoje</div>${tasks.map(t=>`<div class="v19-task ${done.includes(t.id)?'done':''}" onclick="ECV19.toggleTask('${t.id}')"><div class="v19-check">${done.includes(t.id)?'✓':t.ic}</div><div style="min-width:0"><div class="v19-task-title">${txt(t.t)}</div><div class="v19-task-sub">${txt(t.s)}</div></div><div class="v19-task-pts">+${t.pts}</div></div>`).join('')}</div><div class="v19-card"><div class="v19-k">Termômetro espiritual</div><div class="v19-grid"><div class="v19-metric"><div class="v19-mn">${m.length}</div><div class="v19-ml">Marcus</div><div class="v19-md">${streakFor(m)} dias seguidos</div></div><div class="v19-metric"><div class="v19-mn">${i.length}</div><div class="v19-ml">Ingrid</div><div class="v19-md">${streakFor(i)} dias seguidos</div></div><div class="v19-metric"><div class="v19-mn">${sd.length}</div><div class="v19-ml">Juntos</div><div class="v19-md">dias lidos por ambos</div></div><div class="v19-metric"><div class="v19-mn">${miss.length}</div><div class="v19-ml">Pendências</div><div class="v19-md">perfil ativo: ${txt(activeName())}</div></div></div>${miss.length?`<div class="v19-alert"><b>Plano de recuperação:</b> faça o dia ${miss[0]} hoje e, se possível, leia mais 1 dia extra por semana até zerar.</div>`:`<div class="v19-alert v19-good"><b>Excelente:</b> o perfil ativo está em dia no plano cronológico.</div>`}</div><div class="v19-card"><div class="v19-k">Check-in do casal</div><div class="v19-checkin-grid"><label>Fé <input class="v19-range" id="v19-fe" type="range" min="1" max="10" value="${chk.fe}"></label><label>União <input class="v19-range" id="v19-uniao" type="range" min="1" max="10" value="${chk.uniao}"></label><label>Paz <input class="v19-range" id="v19-paz" type="range" min="1" max="10" value="${chk.paz}"></label><label>Constância <input class="v19-range" id="v19-constancia" type="range" min="1" max="10" value="${chk.constancia}"></label></div><label class="v19-label">Anotação do dia</label><textarea id="v19-check-note" class="v19-input" placeholder="Como está o coração do casal hoje?">${txt(chk.nota||'')}</textarea><div class="v19-actions"><button class="abtn" onclick="ECV19.saveCheckin()">💾 Salvar check-in</button><button class="abtn ol" onclick="ECV19.saveCheckinDiary()">📝 Salvar no diário</button></div></div><div class="v19-card"><div class="v19-k">Revisão semanal</div><label class="v19-label">Vitória da semana</label><input id="v19-win" class="v19-input" value="${txt(review.win||'')}" placeholder="Ex: oramos juntos 3 dias"><label class="v19-label">Ponto de atenção</label><input id="v19-att" class="v19-input" value="${txt(review.att||'')}" placeholder="Ex: melhorar constância"><label class="v19-label">Próximo passo</label><input id="v19-next" class="v19-input" value="${txt(review.next||'')}" placeholder="Ex: leitura às 20h"><div class="v19-actions"><button class="abtn" onclick="ECV19.saveWeeklyReview()">✦ Salvar revisão</button></div></div>`;}
-  function markEssentials(){['leitura','oracao','gratidao'].forEach(id=>{const d=doneTasks();if(!d.includes(id))d.push(id);});try{save();}catch(e){}renderJourney();renderHomePanel();toast('Essenciais do dia marcados ✦');}
-  function saveCheckin(){const v=ensure();v.checkins[dateKey()]={fe:+$('#v19-fe').value,uniao:+$('#v19-uniao').value,paz:+$('#v19-paz').value,constancia:+$('#v19-constancia').value,nota:($('#v19-check-note').value||'').trim(),ts:Date.now()};try{save();}catch(e){}toast('Check-in salvo ✦');}
-  function saveCheckinDiary(){saveCheckin();const c=ensure().checkins[dateKey()];state().diary=arr(state().diary);state().diary.push({id:'checkin-'+Date.now(),title:'Check-in do casal — '+new Date().toLocaleDateString('pt-BR'),body:`Fé: ${c.fe}/10\nUnião: ${c.uniao}/10\nPaz: ${c.paz}/10\nConstância: ${c.constancia}/10\n\n${c.nota||''}`,mood:'💍',category:'Jornada do casal',date:Date.now()});try{save();}catch(e){}toast('Check-in salvo no diário ✦');}
-  function saveWeeklyReview(){const v=ensure(),wk=new Date().getFullYear()+'-S'+Math.ceil(currentDay()/7);v.weeklyReview[wk]={win:($('#v19-win').value||'').trim(),att:($('#v19-att').value||'').trim(),next:($('#v19-next').value||'').trim(),ts:Date.now()};try{save();}catch(e){}toast('Revisão semanal salva ✦');}
-  function openFirstMissed(){const d=missedDays()[0]||currentDay();if(typeof openDay==='function')openDay(d);}
-  function installBibleTools(){const view=$('#view-biblia');if(!view||$('#v19-bible-tools'))return;const anchor=view.querySelector('.ps')||view.firstElementChild;const html=`<div id="v19-bible-tools" class="v19-sticky"><button class="abtn" onclick="ECV19.openTodayReading()">📅 Hoje</button><button class="abtn ol" onclick="ECV19.openFirstMissed()">📌 Atrasos</button><button class="abtn ol" onclick="ECV19.openBibleSearch()">🔎 Buscar Palavra</button><button class="abtn ol" onclick="ECV19.markWeekDone()">✓ Semana lida</button></div>`;anchor.insertAdjacentHTML('beforebegin',html);}
-  function openTodayReading(){if(typeof openDay==='function')openDay(currentDay());}
-  function markWeekDone(){const p=currentProfile(),today=currentDay(),s=Math.max(1,today-6);p.completedDays=uniqDays(arr(p.completedDays).concat(Array.from({length:today-s+1},(_,k)=>s+k)));try{save(); if(typeof rBible==='function')rBible();}catch(e){}toast('Últimos 7 dias marcados no perfil ativo');}
-  function renderBibleSearch(){ensure();createViews();const root=$('#v19-bible-search-root');if(!root)return;const hist=arr(ensure().searchHistory).slice(0,6);root.innerHTML=`<div class="v19-card"><div class="v19-k">Busca bíblica ACF</div><div class="v19-title">Encontre palavras na Bíblia</div><div class="v19-sub">Digite uma palavra ou expressão. A busca usa o arquivo local da Bíblia quando ele estiver carregado no app.</div><label class="v19-label">Buscar</label><div class="v19-row"><input id="v19-bible-q" class="v19-input" placeholder="Ex: amor, fé, não temas" onkeydown="if(event.key==='Enter')ECV19.doBibleSearch()"><button class="abtn" onclick="ECV19.doBibleSearch()">🔎</button></div>${hist.length?`<div class="v19-actions">${hist.map(h=>`<button class="abtn ol" onclick="ECV19.searchAgain('${txt(h).replace(/'/g,'&#39;')}')">${txt(h)}</button>`).join('')}</div>`:''}</div><div id="v19-bible-results" class="v19-result-list"></div>`;}
-  function searchAgain(q){gotoView('busca-biblia');setTimeout(()=>{const i=$('#v19-bible-q');if(i){i.value=q;doBibleSearch();}},50);}
-  async function doBibleSearch(){const q=($('#v19-bible-q')?.value||'').trim();const res=$('#v19-bible-results');if(!q){toast('Digite uma palavra para buscar');return;}ensure().searchHistory=[q].concat(arr(ensure().searchHistory).filter(x=>x!==q)).slice(0,8);try{save();}catch(e){}if(res)res.innerHTML='<div class="v19-card"><div class="csvl"><div class="csvsp"></div><div class="csvt">Buscando na Bíblia<span class="dots"></span></div></div></div>';try{const idx=await loadBible();const hits=[];const qn=q.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();const books=window.BOOKS||[];for(const ab in idx){const book=books.find(b=>b.a===ab)||{n:ab};for(const ch in idx[ab]){for(const v of idx[ab][ch]){const plain=String(v.t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(plain.includes(qn)){hits.push({book:book.n,abbr:ab,ch:+ch,v:v.v,t:v.t});if(hits.length>=80)break;}}if(hits.length>=80)break;}if(hits.length>=80)break;}renderSearchHits(q,hits);}catch(e){if(res)res.innerHTML='<div class="v19-card"><div class="v19-alert">Não consegui carregar o arquivo da Bíblia agora. Verifique o cache ou a conexão.</div></div>';}}
-  function renderSearchHits(q,hits){const res=$('#v19-bible-results');if(!res)return;if(!hits.length){res.innerHTML='<div class="v19-card"><div class="v19-alert">Nenhum versículo encontrado para essa busca.</div></div>';return;}const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');res.innerHTML=`<div class="v19-card"><div class="v19-k">Resultado</div><div class="v19-title">${hits.length} ocorrência(s)</div><div class="v19-sub">Mostrando até 80 resultados para manter o app leve.</div></div>`+hits.map(h=>`<div class="v19-search-hit" onclick="ECV19.copyVerse('${txt(h.book)} ${h.ch}:${h.v}','${txt(h.t).replace(/'/g,'&#39;')}')"><div class="v19-hit-ref">${txt(h.book)} ${h.ch}:${h.v}</div><div class="v19-hit-text">${txt(h.t).replace(re,'<mark>$1</mark>')}</div></div>`).join('');}
-  function copyVerse(ref,textv){const full=`${textv} — ${ref}`;if(navigator.clipboard)navigator.clipboard.writeText(full).then(()=>toast('Versículo copiado ✦'));else toast(ref);}
-  function enhanceReadingNotes(day){ensure();const root=$('#read-c');if(!root||$('#v19-reading-note'))return;const notes=ensure().readingNotes;const key=(state().activeProf||'marcus')+'-'+day;const current=notes[key]||'';root.insertAdjacentHTML('beforeend',`<div id="v19-reading-note" class="v19-card v19-reading-note"><div class="v19-k">Anotação da leitura</div><div class="v19-title" style="font-size:21px">O que Deus ensinou neste texto?</div><textarea id="v19-rnote" class="v19-input" placeholder="Escreva uma aplicação, pergunta ou oração...">${txt(current)}</textarea><div class="v19-actions"><button class="abtn" onclick="ECV19.saveReadingNote(${day})">💾 Salvar anotação</button><button class="abtn ol" onclick="ECV19.explainReadingAI(${day})">✨ Explicar com IA</button></div></div>`);}
-  function saveReadingNote(day){const v=ensure(),key=(state().activeProf||'marcus')+'-'+day;v.readingNotes[key]=($('#v19-rnote')?.value||'').trim();try{save();}catch(e){}toast('Anotação salva ✦');}
-  function explainReadingAI(day){if(window.openAITool){window.openAITool('explain',true);return;}toast('Abra Devocional > Assistente IA para explicar a leitura.');}
-  function installSettings(){const modal=$('#m-cfg .modal');if(!modal||$('#v19-settings'))return;const before=modal.querySelector('button[onclick="saveCfg()"]');const html=`<div id="v19-settings"><div class="cr" style="margin-top:10px"><div><div class="crl">Diagnóstico do app</div><div class="crs">Verifique armazenamento, cache, Firebase e integridade local.</div></div></div><div class="v19-backup-grid"><button class="abtn ol" type="button" onclick="ECV19.showDiagnostics()">🧪 Diagnóstico</button><button class="abtn ol" type="button" onclick="ECV19.repairData()">🛠️ Reparar dados</button><button class="abtn ol" type="button" onclick="ECV19.clearAppCache()">🧹 Limpar cache</button><button class="abtn ol" type="button" onclick="ECV19.openJourney()">💍 Jornada</button></div><div id="v19-diagnostics" style="margin-top:10px"></div></div>`;if(before)before.insertAdjacentHTML('beforebegin',html);else modal.insertAdjacentHTML('beforeend',html);}
-  function diagnosticsText(){let bytes=0;try{bytes=new Blob([JSON.stringify(state())]).size;}catch(e){}let sw=('serviceWorker' in navigator)?'suportado':'não suportado';let notif=('Notification' in window)?Notification.permission:'não suportado';let fb=(window.EternoFirebase&&EternoFirebase.status)?JSON.stringify(EternoFirebase.status()):'indisponível';return `Versão: ${VERSION}\nData: ${new Date().toLocaleString('pt-BR')}\nArmazenamento local: ${(bytes/1024).toFixed(1)} KB\nService Worker: ${sw}\nNotificações: ${notif}\nFirebase: ${fb}\nPerfil ativo: ${state().activeProf||'marcus'}\nDias Marcus: ${uniqDays(state().profiles?.marcus?.completedDays).length}\nDias Ingrid: ${uniqDays(state().profiles?.ingrid?.completedDays).length}\nDiário: ${arr(state().diary).length}\nOrações: ${arr(state().prayers).length}`;}
-  function showDiagnostics(){const box=$('#v19-diagnostics');if(box)box.innerHTML=`<div class="v19-diagnostic">${txt(diagnosticsText())}</div>`;}
-  function repairData(){const s=state();ensure();s.profiles=s.profiles||{marcus:{completedDays:[]},ingrid:{completedDays:[]}};s.profiles.marcus=s.profiles.marcus||{completedDays:[]};s.profiles.ingrid=s.profiles.ingrid||{completedDays:[]};s.profiles.marcus.completedDays=uniqDays(s.profiles.marcus.completedDays);s.profiles.ingrid.completedDays=uniqDays(s.profiles.ingrid.completedDays);s.prayers=arr(s.prayers).filter(Boolean);s.diary=arr(s.diary).filter(Boolean);compact();try{save();}catch(e){}toast('Dados reparados e compactados ✦');showDiagnostics();}
-  async function clearAppCache(){try{if('caches' in window){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)));}toast('Cache limpo. Recarregue o app.');}catch(e){toast('Não consegui limpar o cache');}}
-  function compact(){const s=state(),v=ensure();const now=Date.now();function pruneObj(o,n){const e=Object.entries(o||{}).sort((a,b)=>((b[1]&&b[1].ts)||Date.parse(b[0])||0)-((a[1]&&a[1].ts)||Date.parse(a[0])||0));return Object.fromEntries(e.slice(0,n));}if(now-(v.lastMaintenance||0)<3600000)return;v.lastMaintenance=now;s.aiToolCache=pruneObj(s.aiToolCache,35);s.aiDevo=pruneObj(s.aiDevo,90);v.searchHistory=arr(v.searchHistory).slice(0,8);const rn=Object.entries(v.readingNotes||{}).filter(([k,val])=>String(val||'').trim()).slice(-180);v.readingNotes=Object.fromEntries(rn);}
-  function installA11y(){document.addEventListener('keydown',function(e){const el=e.target;if((el&&el.classList&&(el.classList.contains('qbtn')||el.classList.contains('ni')||el.classList.contains('v19-task'))) && (e.key==='Enter'||e.key===' ')){e.preventDefault();el.click();}});$$('.qbtn,.ni,.ibtn').forEach(el=>{if(!el.hasAttribute('tabindex'))el.setAttribute('tabindex','0');if(!el.hasAttribute('role'))el.setAttribute('role','button');});}
-  function pwaUpdate(){if(!('serviceWorker' in navigator))return;navigator.serviceWorker.addEventListener('controllerchange',function(){const b=$('#v19-update');if(b)b.classList.add('show');});navigator.serviceWorker.getRegistration&&navigator.serviceWorker.getRegistration().then(reg=>{if(!reg)return;reg.addEventListener('updatefound',()=>{const b=$('#v19-update');if(b)b.classList.add('show');});});}
-  function printJourney(){window.print();}
-  function patch(){createViews();ensure();installBibleTools();installA11y();pwaUpdate();if(typeof rHome==='function'&&!rHome.__v19Ultra){const old=rHome;rHome=function(){old.apply(this,arguments);try{renderHomePanel();}catch(e){console.warn(e);}};rHome.__v19Ultra=true;}if(typeof rBible==='function'&&!rBible.__v19Ultra){const old=rBible;rBible=function(){old.apply(this,arguments);try{installBibleTools();}catch(e){}};rBible.__v19Ultra=true;}if(typeof openDay==='function'&&!openDay.__v19Ultra){const old=openDay;window.openDay=openDay=function(day){old.apply(this,arguments);setTimeout(()=>enhanceReadingNotes(day),900);};openDay.__v19Ultra=true;}if(typeof openM==='function'&&!openM.__v19Ultra){const old=openM;window.openM=openM=function(id){old.apply(this,arguments);setTimeout(()=>{try{installSettings();showDiagnostics();}catch(e){}},80);};openM.__v19Ultra=true;}if(typeof save==='function'&&!save.__v19Ultra){const old=save;window.save=save=function(){try{ensure();compact();}catch(e){}return old.apply(this,arguments);};save.__v19Ultra=true;}}
-  window.ECV19={openJourney:function(){gotoView('jornada')},openBibleSearch:function(){gotoView('busca-biblia')},toggleTask,markEssentials,saveCheckin,saveCheckinDiary,saveWeeklyReview,openFirstMissed,openTodayReading,markWeekDone,doBibleSearch,searchAgain,copyVerse,saveReadingNote,explainReadingAI,showDiagnostics,repairData,clearAppCache,printJourney,renderJourney,renderHomePanel};
-  ready(function(){patch();setTimeout(()=>{try{renderHomePanel();installBibleTools();installSettings();}catch(e){}},900);setTimeout(()=>{try{patch();renderHomePanel();}catch(e){}},1900);});
-})();
-</script>
-<!-- V19_MASTER_ULTRA_END -->
-
+<!-- V20_MASTER_FAMILY_DISCIPLESHIP -->
+<script src="./js/v20-master.js"></script>
 </body>
 </html>

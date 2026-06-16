@@ -1,17 +1,32 @@
-# Eterno Compromisso — V19 Master Ultra
+# Eterno Compromisso — V21 Google Login Seguro
 
-Aplicativo devocional de casal para Marcus e Ingrid, hospedado no GitHub Pages.
+Aplicativo devocional para casal e família, com plano bíblico cronológico, IA devocional, oração, diário, progresso de Marcus/Ingrid, rotina guiada, estudo bíblico, família no altar, relatórios e PWA offline.
 
-## O que esta versão entrega
+## Novidade principal V21
 
-- Home com roteiro espiritual do dia e pontuação diária.
-- Jornada do Casal com missões, check-in, revisão semanal e recuperação de atrasos.
-- Plano bíblico cronológico com ferramentas rápidas: Hoje, Atrasos, Busca e Semana lida.
-- Busca bíblica local usando `biblia-acf.csv`.
-- Anotações por leitura e opção de explicar a leitura com IA.
-- Diário espiritual, Família no Altar, Modo Oração, devocionais por fase da vida e IA guiada mantidos.
-- Diagnóstico do app em Configurações: armazenamento, Firebase, notificações, service worker e integridade.
-- Reparador de dados locais, limpeza de cache, backup e PDF.
-- PWA/offline atualizado com cache V19, `404.html` e `.nojekyll` para GitHub Pages.
+- Login anônimo removido do código.
+- Login Google obrigatório.
+- Acesso permitido somente para:
+  - contato.marcusbuceles@gmail.com
+  - contato.ingridbuceles@gmail.com
+- `firestore.rules` atualizado para bloquear qualquer outro usuário.
+- A tela inicial fica bloqueada até entrar com uma conta Google autorizada.
+- Botão de sair da conta Google adicionado no app.
 
-A IA e as chaves foram mantidas conforme solicitado.
+## Antes de publicar
+
+No Firebase Console:
+
+1. Vá em Authentication > Sign-in method.
+2. Ative Google.
+3. Desative Anonymous.
+4. Em Authentication > Settings > Authorized domains, confirme/adicone: `docx7.github.io`.
+5. Publique o arquivo `firestore.rules` atualizado no Firestore Rules.
+
+## Publicação
+
+Suba todos os arquivos para o GitHub Pages no repositório do app.
+
+## Observação
+
+A camada de IA foi preservada conforme solicitado. As chaves não foram alteradas.
