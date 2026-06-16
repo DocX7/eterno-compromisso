@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fbf5f0">
+  <meta name="description" content="Eterno Compromisso: rotina devocional essencial para Marcus, Ingrid e Arthur.">
+  <title>Eterno Compromisso</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://www.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?v=V29_FINAL_VISUAL_COMPLETA">
+</head>
+<body>
+  <div id="svgSprite" aria-hidden="true"></div>
+  <div id="splash" class="splash" aria-live="polite">
+    <div class="splashCard">
+      <div class="splashLogo">EC</div>
+      <p class="kicker">Eterno Compromisso</p>
+      <h1>Preparando o momento com Deus</h1>
+      <p class="splashVerse">“A tua palavra é lâmpada para os meus pés.”</p>
+      <div class="splashBar"><span></span></div>
+    </div>
+  </div>
+  <div id="login" class="login hidden" aria-live="polite">
+    <div class="loginBox">
+      <div class="logo" aria-hidden="true">EC</div>
+      <p class="kicker">Eterno Compromisso</p>
+      <h1>Entrar para começar o momento com Deus</h1>
+      <p>Um espaço simples e acolhedor para Palavra, oração, casamento e formação espiritual do Arthur.</p>
+      <p class="loginVerse">“Quanto a nós e à nossa casa, serviremos ao Senhor.”</p>
+      <button type="button" class="btn full googleBtn" onclick="loginGoogle()">Entrar com Google</button>
+      <p class="sub">Acesso liberado apenas para Marcus e Ingrid.</p>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="top">
+      <div class="topbar">
+        <button type="button" class="brand" onclick="switchTab('hoje')" aria-label="Ir para início">
+          <div class="logo" aria-hidden="true">EC</div>
+          <div class="brandText">
+            <h1>Eterno Compromisso</h1>
+            <p id="userLabel">Carregando...</p>
+          </div>
+        </button>
+        <span class="pill">V29 Final</span>
+      </div>
+    </header>
+
+    <main id="mainContent">
+      <section id="sec-hoje" class="section active" aria-label="Um Dia com Deus"></section>
+      <section id="sec-casal" class="section" aria-label="Devocional do casal"></section>
+      <section id="sec-crianca" class="section" aria-label="Devocional infantil"></section>
+      <section id="sec-leitura" class="section" aria-label="Plano de leitura"></section>
+      <section id="sec-ajustes" class="section" aria-label="Ajustes"></section>
+    </main>
+  </div>
+
+  <nav id="mainNav" class="nav hidden" aria-label="Navegação principal">
+    <button type="button" data-tab="hoje" onclick="switchTab('hoje')" aria-label="Abrir hoje"><b class="navIcon"><svg><use href="#i-spark"></use></svg></b><span>Hoje</span></button>
+    <button type="button" data-tab="casal" onclick="switchTab('casal')" aria-label="Abrir devocional do casal"><b class="navIcon"><svg><use href="#i-heart"></use></svg></b><span>Casal</span></button>
+    <button type="button" data-tab="crianca" onclick="switchTab('crianca')" aria-label="Abrir devocional do Arthur"><b class="navIcon"><svg><use href="#i-child"></use></svg></b><span>Arthur</span></button>
+    <button type="button" data-tab="leitura" onclick="switchTab('leitura')" aria-label="Abrir plano de leitura"><b class="navIcon"><svg><use href="#i-bible"></use></svg></b><span>Leitura</span></button>
+    <button type="button" data-tab="ajustes" onclick="switchTab('ajustes')" aria-label="Abrir ajustes"><b class="navIcon"><svg><use href="#i-settings"></use></svg></b><span>Ajustes</span></button>
+  </nav>
+
+  <div id="reader" class="reader hidden" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+    <div class="readerPanel">
+      <div class="readerTop">
+        <div>
+          <p class="kicker" id="readerKicker">Modo leitura</p>
+          <h2 id="readerTitle">Momento com Deus</h2>
+        </div>
+        <button type="button" class="btn secondary mini" onclick="closeReadMode()" aria-label="Fechar modo leitura">Fechar</button>
+      </div>
+      <article id="readerBody" class="readerBody"></article>
+      <button type="button" id="readerComplete" class="btn full">Concluir momento</button>
+    </div>
+  </div>
+
+  <button id="updateBanner" class="updateBanner hidden" type="button" onclick="applyAppUpdate()">Nova versão disponível. Atualizar agora.</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script src="js/app.js?v=V29_FINAL_VISUAL_COMPLETA"></script>
+</body>
+</html>

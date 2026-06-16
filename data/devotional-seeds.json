@@ -1,0 +1,2557 @@
+[
+  {
+    "day": 1,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Gênesis 1-4",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 2,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Gênesis 5-7",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 3,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Gênesis 8-10",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 4,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Gênesis 11-13",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 5,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Gênesis 14-17",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 6,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Gênesis 18-20",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 7,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Gênesis 21-23",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 8,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Gênesis 24-26",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 9,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Gênesis 27-30",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 10,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Gênesis 31-33",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 11,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Gênesis 34-36",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 12,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Gênesis 37-39",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 13,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Gênesis 40-43",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 14,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Gênesis 44-46",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 15,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Gênesis 47-49",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 16,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Gênesis 50; Jó 1-2",
+    "focus": "Origens, aliança e patriarcas"
+  },
+  {
+    "day": 17,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Jó 3-6",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 18,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Jó 7-9",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 19,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Jó 10-12",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 20,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Jó 13-15",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 21,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Jó 16-19",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 22,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Jó 20-22",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 23,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Jó 23-25",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 24,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Jó 26-29",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 25,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Jó 30-32",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 26,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Jó 33-35",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 27,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Jó 36-38",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 28,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Jó 39-42",
+    "focus": "Sofrimento, soberania de Deus e perseverança"
+  },
+  {
+    "day": 29,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Êxodo 1-3",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 30,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Êxodo 4-6",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 31,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Êxodo 7-9",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 32,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Êxodo 10-13",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 33,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Êxodo 14-16",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 34,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Êxodo 17-19",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 35,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Êxodo 20-22",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 36,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Êxodo 23-26",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 37,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Êxodo 27-29",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 38,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Êxodo 30-32",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 39,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Êxodo 33-35",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 40,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Êxodo 36-39",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 41,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Êxodo 40; Levítico 1-2",
+    "focus": "Redenção, libertação e presença de Deus"
+  },
+  {
+    "day": 42,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Levítico 3-5",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 43,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Levítico 6-8",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 44,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Levítico 9-12",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 45,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Levítico 13-15",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 46,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Levítico 16-18",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 47,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Levítico 19-21",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 48,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Levítico 22-25",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 49,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Levítico 26-27; Números 1",
+    "focus": "Santidade, culto e expiação"
+  },
+  {
+    "day": 50,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Números 2-4",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 51,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Números 5-7",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 52,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Números 8-11",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 53,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Números 12-14",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 54,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Números 15-17",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 55,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Números 18-20",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 56,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Números 21-24",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 57,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Números 25-27",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 58,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Números 28-30",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 59,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Números 31-33",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 60,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Números 34-36; Deuteronômio 1",
+    "focus": "Peregrinação, murmuração e fidelidade divina"
+  },
+  {
+    "day": 61,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Deuteronômio 2-4",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 62,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Deuteronômio 5-7",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 63,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Deuteronômio 8-10",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 64,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Deuteronômio 11-14",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 65,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Deuteronômio 15-17",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 66,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Deuteronômio 18-20",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 67,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Deuteronômio 21-23",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 68,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Deuteronômio 24-27",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 69,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Deuteronômio 28-30",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 70,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Deuteronômio 31-33",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 71,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Deuteronômio 34; Josué 1-3",
+    "focus": "Renovação da aliança e obediência amorosa"
+  },
+  {
+    "day": 72,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Josué 4-6",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 73,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Josué 7-9",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 74,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Josué 10-12",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 75,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Josué 13-16",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 76,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Josué 17-19",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 77,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Josué 20-22",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 78,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Josué 23-24; Juízes 1",
+    "focus": "Promessa, conquista e fidelidade"
+  },
+  {
+    "day": 79,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Juízes 2-5",
+    "focus": "Ciclos de queda e misericórdia"
+  },
+  {
+    "day": 80,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Juízes 6-8",
+    "focus": "Ciclos de queda e misericórdia"
+  },
+  {
+    "day": 81,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Juízes 9-11",
+    "focus": "Ciclos de queda e misericórdia"
+  },
+  {
+    "day": 82,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Juízes 12-14",
+    "focus": "Ciclos de queda e misericórdia"
+  },
+  {
+    "day": 83,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Juízes 15-18",
+    "focus": "Ciclos de queda e misericórdia"
+  },
+  {
+    "day": 84,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Juízes 19-21",
+    "focus": "Ciclos de queda e misericórdia"
+  },
+  {
+    "day": 85,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Rute 1-3",
+    "focus": "Providência, redenção e fidelidade familiar"
+  },
+  {
+    "day": 86,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Rute 4; 1 Samuel 1-2",
+    "focus": "Providência, redenção e fidelidade familiar"
+  },
+  {
+    "day": 87,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "1 Samuel 3-6",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 88,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "1 Samuel 7-9",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 89,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "1 Samuel 10-12",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 90,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "1 Samuel 13-15",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 91,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "1 Samuel 16-19",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 92,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "1 Samuel 20-22",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 93,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "1 Samuel 23-25",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 94,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "1 Samuel 26-28",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 95,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "1 Samuel 29-31; 2 Samuel 1",
+    "focus": "Reino, liderança e coração diante de Deus"
+  },
+  {
+    "day": 96,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "2 Samuel 2-4",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 97,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "2 Samuel 5-7",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 98,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "2 Samuel 8-10",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 99,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "2 Samuel 11-14",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 100,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "2 Samuel 15-17",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 101,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "2 Samuel 18-20",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 102,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "2 Samuel 21-23",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 103,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "2 Samuel 24; 1 Crônicas 1-3",
+    "focus": "Davi, queda, graça e promessa messiânica"
+  },
+  {
+    "day": 104,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "1 Crônicas 4-6",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 105,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "1 Crônicas 7-9",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 106,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "1 Crônicas 10-12",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 107,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "1 Crônicas 13-16",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 108,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "1 Crônicas 17-19",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 109,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "1 Crônicas 20-22",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 110,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "1 Crônicas 23-25",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 111,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "1 Crônicas 26-29",
+    "focus": "Memória, culto e aliança davídica"
+  },
+  {
+    "day": 112,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Salmos 1-3",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 113,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Salmos 4-6",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 114,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Salmos 7-9",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 115,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Salmos 10-13",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 116,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Salmos 14-16",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 117,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Salmos 17-19",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 118,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Salmos 20-23",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 119,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Salmos 24-26",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 120,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Salmos 27-29",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 121,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Salmos 30-32",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 122,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Salmos 33-36",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 123,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Salmos 37-39",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 124,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Salmos 40-42",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 125,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Salmos 43-45",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 126,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Salmos 46-49",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 127,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Salmos 50-52",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 128,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Salmos 53-55",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 129,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Salmos 56-58",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 130,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Salmos 59-62",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 131,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Salmos 63-65",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 132,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Salmos 66-68",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 133,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Salmos 69-71",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 134,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Salmos 72-75",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 135,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Salmos 76-78",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 136,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Salmos 79-81",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 137,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Salmos 82-84",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 138,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Salmos 85-88",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 139,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Salmos 89-91",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 140,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Salmos 92-94",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 141,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Salmos 95-97",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 142,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Salmos 98-101",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 143,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Salmos 102-104",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 144,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Salmos 105-107",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 145,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Salmos 108-110",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 146,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Salmos 111-114",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 147,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Salmos 115-117",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 148,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Salmos 118-120",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 149,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Salmos 121-123",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 150,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Salmos 124-127",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 151,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Salmos 128-130",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 152,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Salmos 131-133",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 153,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Salmos 134-136",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 154,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Salmos 137-140",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 155,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Salmos 141-143",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 156,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Salmos 144-146",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 157,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Salmos 147-149",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 158,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Salmos 150; 1 Reis 1-3",
+    "focus": "Oração, louvor, lamento e esperança messiânica"
+  },
+  {
+    "day": 159,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "1 Reis 4-6",
+    "focus": "Sabedoria, divisão do reino e idolatria"
+  },
+  {
+    "day": 160,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "1 Reis 7-9",
+    "focus": "Sabedoria, divisão do reino e idolatria"
+  },
+  {
+    "day": 161,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "1 Reis 10-13",
+    "focus": "Sabedoria, divisão do reino e idolatria"
+  },
+  {
+    "day": 162,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "1 Reis 14-16",
+    "focus": "Sabedoria, divisão do reino e idolatria"
+  },
+  {
+    "day": 163,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "1 Reis 17-19",
+    "focus": "Sabedoria, divisão do reino e idolatria"
+  },
+  {
+    "day": 164,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "1 Reis 20-22",
+    "focus": "Sabedoria, divisão do reino e idolatria"
+  },
+  {
+    "day": 165,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "2 Crônicas 1-4",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 166,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "2 Crônicas 5-7",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 167,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "2 Crônicas 8-10",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 168,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "2 Crônicas 11-13",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 169,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "2 Crônicas 14-17",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 170,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "2 Crônicas 18-20",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 171,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "2 Crônicas 21-23",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 172,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "2 Crônicas 24-26",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 173,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "2 Crônicas 27-30",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 174,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "2 Crônicas 31-33",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 175,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "2 Crônicas 34-36",
+    "focus": "Templo, reis e chamado ao arrependimento"
+  },
+  {
+    "day": 176,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Provérbios 1-3",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 177,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Provérbios 4-7",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 178,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Provérbios 8-10",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 179,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Provérbios 11-13",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 180,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Provérbios 14-16",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 181,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Provérbios 17-20",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 182,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Provérbios 21-23",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 183,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Provérbios 24-26",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 184,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Provérbios 27-29",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 185,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Provérbios 30-31; Eclesiastes 1-2",
+    "focus": "Sabedoria para a vida diante de Deus"
+  },
+  {
+    "day": 186,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Eclesiastes 3-5",
+    "focus": "Vaidade, eternidade e temor do Senhor"
+  },
+  {
+    "day": 187,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Eclesiastes 6-8",
+    "focus": "Vaidade, eternidade e temor do Senhor"
+  },
+  {
+    "day": 188,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Eclesiastes 9-11",
+    "focus": "Vaidade, eternidade e temor do Senhor"
+  },
+  {
+    "day": 189,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Eclesiastes 12; Cânticos 1-3",
+    "focus": "Vaidade, eternidade e temor do Senhor"
+  },
+  {
+    "day": 190,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Cânticos 4-6",
+    "focus": "Aliança, amor e pureza"
+  },
+  {
+    "day": 191,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Cânticos 7-8; 2 Reis 1",
+    "focus": "Aliança, amor e pureza"
+  },
+  {
+    "day": 192,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "2 Reis 2-4",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 193,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "2 Reis 5-8",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 194,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "2 Reis 9-11",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 195,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "2 Reis 12-14",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 196,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "2 Reis 15-17",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 197,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "2 Reis 18-21",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 198,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "2 Reis 22-24",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 199,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "2 Reis 25; Obadias 1; Joel 1",
+    "focus": "Declínio, juízo e exílio"
+  },
+  {
+    "day": 200,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Joel 2-3; Jonas 1",
+    "focus": "Arrependimento e derramamento do Espírito"
+  },
+  {
+    "day": 201,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Jonas 2-4; Amós 1",
+    "focus": "Misericórdia de Deus às nações"
+  },
+  {
+    "day": 202,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Amós 2-4",
+    "focus": "Justiça, culto verdadeiro e retidão"
+  },
+  {
+    "day": 203,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Amós 5-7",
+    "focus": "Justiça, culto verdadeiro e retidão"
+  },
+  {
+    "day": 204,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Amós 8-9; Oseias 1",
+    "focus": "Justiça, culto verdadeiro e retidão"
+  },
+  {
+    "day": 205,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Oseias 2-5",
+    "focus": "Amor pactual e restauração"
+  },
+  {
+    "day": 206,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Oseias 6-8",
+    "focus": "Amor pactual e restauração"
+  },
+  {
+    "day": 207,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Oseias 9-11",
+    "focus": "Amor pactual e restauração"
+  },
+  {
+    "day": 208,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Oseias 12-14; Isaías 1",
+    "focus": "Amor pactual e restauração"
+  },
+  {
+    "day": 209,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Isaías 2-4",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 210,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Isaías 5-7",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 211,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Isaías 8-10",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 212,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Isaías 11-14",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 213,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Isaías 15-17",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 214,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Isaías 18-20",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 215,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Isaías 21-23",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 216,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Isaías 24-27",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 217,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Isaías 28-30",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 218,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Isaías 31-33",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 219,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Isaías 34-36",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 220,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Isaías 37-40",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 221,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Isaías 41-43",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 222,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Isaías 44-46",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 223,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Isaías 47-49",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 224,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Isaías 50-53",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 225,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Isaías 54-56",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 226,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Isaías 57-59",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 227,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Isaías 60-62",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 228,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Isaías 63-66",
+    "focus": "Santidade, juízo, servo sofredor e esperança"
+  },
+  {
+    "day": 229,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Miqueias 1-3",
+    "focus": "Justiça, misericórdia e humildade"
+  },
+  {
+    "day": 230,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Miqueias 4-6",
+    "focus": "Justiça, misericórdia e humildade"
+  },
+  {
+    "day": 231,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Miqueias 7; Naum 1-2",
+    "focus": "Justiça, misericórdia e humildade"
+  },
+  {
+    "day": 232,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Naum 3; Sofonias 1-3",
+    "focus": "Juízo contra a violência e soberania divina"
+  },
+  {
+    "day": 233,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Habacuque 1-3",
+    "focus": "Fé em meio à crise"
+  },
+  {
+    "day": 234,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Jeremias 1-3",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 235,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Jeremias 4-6",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 236,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Jeremias 7-10",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 237,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Jeremias 11-13",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 238,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Jeremias 14-16",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 239,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Jeremias 17-19",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 240,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Jeremias 20-23",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 241,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Jeremias 24-26",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 242,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Jeremias 27-29",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 243,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Jeremias 30-32",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 244,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Jeremias 33-36",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 245,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Jeremias 37-39",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 246,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Jeremias 40-42",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 247,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Jeremias 43-45",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 248,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Jeremias 46-49",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 249,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Jeremias 50-52",
+    "focus": "Nova aliança e perseverança profética"
+  },
+  {
+    "day": 250,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Lamentações 1-3",
+    "focus": "Dor, disciplina e esperança"
+  },
+  {
+    "day": 251,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Lamentações 4-5; Ezequiel 1-2",
+    "focus": "Dor, disciplina e esperança"
+  },
+  {
+    "day": 252,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Ezequiel 3-5",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 253,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Ezequiel 6-8",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 254,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Ezequiel 9-11",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 255,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Ezequiel 12-15",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 256,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Ezequiel 16-18",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 257,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Ezequiel 19-21",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 258,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Ezequiel 22-24",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 259,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Ezequiel 25-28",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 260,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Ezequiel 29-31",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 261,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Ezequiel 32-34",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 262,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Ezequiel 35-37",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 263,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Ezequiel 38-41",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 264,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Ezequiel 42-44",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 265,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Ezequiel 45-47",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 266,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Ezequiel 48; Daniel 1-2",
+    "focus": "Glória de Deus, restauração e novo coração"
+  },
+  {
+    "day": 267,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Daniel 3-6",
+    "focus": "Fidelidade no exílio e Reino eterno"
+  },
+  {
+    "day": 268,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Daniel 7-9",
+    "focus": "Fidelidade no exílio e Reino eterno"
+  },
+  {
+    "day": 269,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Daniel 10-12",
+    "focus": "Fidelidade no exílio e Reino eterno"
+  },
+  {
+    "day": 270,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Esdras 1-3",
+    "focus": "Retorno, Palavra e reconstrução"
+  },
+  {
+    "day": 271,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Esdras 4-7",
+    "focus": "Retorno, Palavra e reconstrução"
+  },
+  {
+    "day": 272,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Esdras 8-10",
+    "focus": "Retorno, Palavra e reconstrução"
+  },
+  {
+    "day": 273,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Ageu 1-2; Zacarias 1",
+    "focus": "Prioridades espirituais e reconstrução"
+  },
+  {
+    "day": 274,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Zacarias 2-4",
+    "focus": "Esperança messiânica e restauração"
+  },
+  {
+    "day": 275,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Zacarias 5-8",
+    "focus": "Esperança messiânica e restauração"
+  },
+  {
+    "day": 276,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Zacarias 9-11",
+    "focus": "Esperança messiânica e restauração"
+  },
+  {
+    "day": 277,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Zacarias 12-14",
+    "focus": "Esperança messiânica e restauração"
+  },
+  {
+    "day": 278,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Ester 1-3",
+    "focus": "Providência invisível e coragem"
+  },
+  {
+    "day": 279,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Ester 4-7",
+    "focus": "Providência invisível e coragem"
+  },
+  {
+    "day": 280,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Ester 8-10",
+    "focus": "Providência invisível e coragem"
+  },
+  {
+    "day": 281,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Neemias 1-3",
+    "focus": "Reconstrução, reforma e perseverança"
+  },
+  {
+    "day": 282,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Neemias 4-6",
+    "focus": "Reconstrução, reforma e perseverança"
+  },
+  {
+    "day": 283,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Neemias 7-10",
+    "focus": "Reconstrução, reforma e perseverança"
+  },
+  {
+    "day": 284,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Neemias 11-13",
+    "focus": "Reconstrução, reforma e perseverança"
+  },
+  {
+    "day": 285,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Malaquias 1-3",
+    "focus": "Aliança, culto sincero e esperança do Messias"
+  },
+  {
+    "day": 286,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Malaquias 4; Lucas 1-2",
+    "focus": "Aliança, culto sincero e esperança do Messias"
+  },
+  {
+    "day": 287,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Lucas 3-6",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 288,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Lucas 7-9",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 289,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Lucas 10-12",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 290,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Lucas 13-15",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 291,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Lucas 16-19",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 292,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Lucas 20-22",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 293,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Lucas 23-24; João 1",
+    "focus": "Vida de Cristo: compaixão, Reino e salvação"
+  },
+  {
+    "day": 294,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "João 2-4",
+    "focus": "Cristo, Verbo eterno e vida abundante"
+  },
+  {
+    "day": 295,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "João 5-8",
+    "focus": "Cristo, Verbo eterno e vida abundante"
+  },
+  {
+    "day": 296,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "João 9-11",
+    "focus": "Cristo, Verbo eterno e vida abundante"
+  },
+  {
+    "day": 297,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "João 12-14",
+    "focus": "Cristo, Verbo eterno e vida abundante"
+  },
+  {
+    "day": 298,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "João 15-18",
+    "focus": "Cristo, Verbo eterno e vida abundante"
+  },
+  {
+    "day": 299,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "João 19-21",
+    "focus": "Cristo, Verbo eterno e vida abundante"
+  },
+  {
+    "day": 300,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Mateus 1-3",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 301,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Mateus 4-6",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 302,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Mateus 7-10",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 303,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Mateus 11-13",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 304,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Mateus 14-16",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 305,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Mateus 17-19",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 306,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Mateus 20-23",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 307,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Mateus 24-26",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 308,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Mateus 27-28; Marcos 1",
+    "focus": "Messias prometido e Reino dos céus"
+  },
+  {
+    "day": 309,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Marcos 2-4",
+    "focus": "Servo sofredor e discipulado"
+  },
+  {
+    "day": 310,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Marcos 5-8",
+    "focus": "Servo sofredor e discipulado"
+  },
+  {
+    "day": 311,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Marcos 9-11",
+    "focus": "Servo sofredor e discipulado"
+  },
+  {
+    "day": 312,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Marcos 12-14",
+    "focus": "Servo sofredor e discipulado"
+  },
+  {
+    "day": 313,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Marcos 15-16; Atos 1",
+    "focus": "Servo sofredor e discipulado"
+  },
+  {
+    "day": 314,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Atos 2-5",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 315,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Atos 6-8",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 316,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Atos 9-11",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 317,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Atos 12-14",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 318,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Atos 15-18",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 319,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Atos 19-21",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 320,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Atos 22-24",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 321,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Atos 25-27",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 322,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Atos 28; Tiago 1-3",
+    "focus": "Igreja, Espírito Santo e missão"
+  },
+  {
+    "day": 323,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "Tiago 4-5; Gálatas 1",
+    "focus": "Fé viva em obras"
+  },
+  {
+    "day": 324,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Gálatas 2-4",
+    "focus": "Graça, liberdade e fruto do Espírito"
+  },
+  {
+    "day": 325,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Gálatas 5-6; 1 Tessalonicenses 1",
+    "focus": "Graça, liberdade e fruto do Espírito"
+  },
+  {
+    "day": 326,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "1 Tessalonicenses 2-5",
+    "focus": "Santidade e esperança da volta de Cristo"
+  },
+  {
+    "day": 327,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "2 Tessalonicenses 1-3",
+    "focus": "Perseverança e fidelidade"
+  },
+  {
+    "day": 328,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "1 Coríntios 1-3",
+    "focus": "Igreja, amor, dons e ressurreição"
+  },
+  {
+    "day": 329,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "1 Coríntios 4-6",
+    "focus": "Igreja, amor, dons e ressurreição"
+  },
+  {
+    "day": 330,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "1 Coríntios 7-10",
+    "focus": "Igreja, amor, dons e ressurreição"
+  },
+  {
+    "day": 331,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "1 Coríntios 11-13",
+    "focus": "Igreja, amor, dons e ressurreição"
+  },
+  {
+    "day": 332,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "1 Coríntios 14-16",
+    "focus": "Igreja, amor, dons e ressurreição"
+  },
+  {
+    "day": 333,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "2 Coríntios 1-3",
+    "focus": "Fraqueza, consolo e ministério"
+  },
+  {
+    "day": 334,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "2 Coríntios 4-7",
+    "focus": "Fraqueza, consolo e ministério"
+  },
+  {
+    "day": 335,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "2 Coríntios 8-10",
+    "focus": "Fraqueza, consolo e ministério"
+  },
+  {
+    "day": 336,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "2 Coríntios 11-13",
+    "focus": "Fraqueza, consolo e ministério"
+  },
+  {
+    "day": 337,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Romanos 1-3",
+    "focus": "Evangelho, justificação e vida no Espírito"
+  },
+  {
+    "day": 338,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Romanos 4-7",
+    "focus": "Evangelho, justificação e vida no Espírito"
+  },
+  {
+    "day": 339,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Romanos 8-10",
+    "focus": "Evangelho, justificação e vida no Espírito"
+  },
+  {
+    "day": 340,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Romanos 11-13",
+    "focus": "Evangelho, justificação e vida no Espírito"
+  },
+  {
+    "day": 341,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Romanos 14-16",
+    "focus": "Evangelho, justificação e vida no Espírito"
+  },
+  {
+    "day": 342,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Efésios 1-4",
+    "focus": "Igreja, família e nova humanidade"
+  },
+  {
+    "day": 343,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "Efésios 5-6; Filipenses 1",
+    "focus": "Igreja, família e nova humanidade"
+  },
+  {
+    "day": 344,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "Filipenses 2-4",
+    "focus": "Alegria, humildade e contentamento em Cristo"
+  },
+  {
+    "day": 345,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Colossenses 1-4",
+    "focus": "Supremacia de Cristo"
+  },
+  {
+    "day": 346,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "Filemom 1; 1 Timóteo 1-2",
+    "focus": "Perdão e reconciliação"
+  },
+  {
+    "day": 347,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "1 Timóteo 3-5",
+    "focus": "Piedade, liderança e doutrina saudável"
+  },
+  {
+    "day": 348,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "1 Timóteo 6; Tito 1-2",
+    "focus": "Piedade, liderança e doutrina saudável"
+  },
+  {
+    "day": 349,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Tito 3; 1 Pedro 1-3",
+    "focus": "Boas obras e vida piedosa"
+  },
+  {
+    "day": 350,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "1 Pedro 4-5; Hebreus 1",
+    "focus": "Esperança no sofrimento"
+  },
+  {
+    "day": 351,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Hebreus 2-4",
+    "focus": "Cristo superior, sacrifício perfeito e perseverança"
+  },
+  {
+    "day": 352,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Hebreus 5-7",
+    "focus": "Cristo superior, sacrifício perfeito e perseverança"
+  },
+  {
+    "day": 353,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Hebreus 8-11",
+    "focus": "Cristo superior, sacrifício perfeito e perseverança"
+  },
+  {
+    "day": 354,
+    "theme": "Oração",
+    "thesis": "A oração alinha o coração da família à vontade de Deus.",
+    "reading": "Hebreus 12-13; 2 Timóteo 1",
+    "focus": "Cristo superior, sacrifício perfeito e perseverança"
+  },
+  {
+    "day": 355,
+    "theme": "Fidelidade",
+    "thesis": "A constância pequena e diária fortalece a aliança diante de Deus.",
+    "reading": "2 Timóteo 2-4",
+    "focus": "Fidelidade final e Escritura"
+  },
+  {
+    "day": 356,
+    "theme": "Serviço",
+    "thesis": "Cristo ensina que amar é servir com humildade e alegria.",
+    "reading": "2 Pedro 1-3",
+    "focus": "Crescimento, vigilância e esperança"
+  },
+  {
+    "day": 357,
+    "theme": "Esperança",
+    "thesis": "A promessa de Deus sustenta a família em dias difíceis.",
+    "reading": "Judas 1; 1 João 1-3",
+    "focus": "Guardar a fé"
+  },
+  {
+    "day": 358,
+    "theme": "Paternidade",
+    "thesis": "A fé é ensinada à criança por exemplo, repetição e ternura.",
+    "reading": "1 João 4-5; 2 João 1",
+    "focus": "Amor, verdade e comunhão"
+  },
+  {
+    "day": 359,
+    "theme": "Arrependimento",
+    "thesis": "Maturidade espiritual inclui confessar, corrigir rota e voltar para Deus.",
+    "reading": "3 João 1; Apocalipse 1-2",
+    "focus": "Hospitalidade e fidelidade"
+  },
+  {
+    "day": 360,
+    "theme": "Cristo no centro",
+    "thesis": "Toda leitura bíblica aponta para a obra, o caráter e o Reino de Cristo.",
+    "reading": "Apocalipse 3-5",
+    "focus": "Cristo vencedor, juízo e nova criação"
+  },
+  {
+    "day": 361,
+    "theme": "Aliança",
+    "thesis": "Deus se revela como Senhor fiel, e a família responde com fé obediente.",
+    "reading": "Apocalipse 6-9",
+    "focus": "Cristo vencedor, juízo e nova criação"
+  },
+  {
+    "day": 362,
+    "theme": "Graça",
+    "thesis": "A vida espiritual começa na graça de Deus, não no desempenho humano.",
+    "reading": "Apocalipse 10-12",
+    "focus": "Cristo vencedor, juízo e nova criação"
+  },
+  {
+    "day": 363,
+    "theme": "Santidade",
+    "thesis": "Deus chama seu povo para uma vida separada, íntegra e cheia de amor.",
+    "reading": "Apocalipse 13-15",
+    "focus": "Cristo vencedor, juízo e nova criação"
+  },
+  {
+    "day": 364,
+    "theme": "Perdão",
+    "thesis": "O evangelho cura ressentimentos e ensina o casal a recomeçar.",
+    "reading": "Apocalipse 16-18",
+    "focus": "Cristo vencedor, juízo e nova criação"
+  },
+  {
+    "day": 365,
+    "theme": "Sabedoria",
+    "thesis": "A sabedoria bíblica forma decisões, palavras e prioridades da casa.",
+    "reading": "Apocalipse 19-22",
+    "focus": "Cristo vencedor, juízo e nova criação"
+  }
+]

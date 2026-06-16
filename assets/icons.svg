@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-heart" viewBox="0 0 24 24">
+    <path d="M12 20.5s-7.4-4.8-9.5-9.1C.9 8.1 2.8 4.8 6.2 4.8c2 0 3.4 1.1 4.2 2.2.8-1.1 2.2-2.2 4.2-2.2 3.4 0 5.3 3.3 3.7 6.6C19.4 15.7 12 20.5 12 20.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-child" viewBox="0 0 24 24">
+    <path d="M12 13.2c2.3 0 4.1-1.8 4.1-4.1S14.3 5 12 5 7.9 6.8 7.9 9.1s1.8 4.1 4.1 4.1Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M5.4 20c.8-3.1 3.2-4.9 6.6-4.9s5.8 1.8 6.6 4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M18.6 5.4c.8.3 1.3.9 1.6 1.7.2.8 0 1.5-.6 2.1-.8.8-2.1 1.1-3.7 1.1" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-bible" viewBox="0 0 24 24">
+    <path d="M6.2 4.2h9.2c1.4 0 2.4 1 2.4 2.4v13.2H8.2a2 2 0 0 1-2-2V4.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M6.2 17.8c.2-.9.9-1.5 2-1.5h9.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M12 7.5v5M9.7 10h4.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24">
+    <path d="M12 3.5c.9 4.2 2.3 6.1 6.5 7-.1.2-.1.4 0 .6-4.2.9-5.6 2.8-6.5 7-.9-4.2-2.3-6.1-6.5-7 .1-.2.1-.4 0-.6 4.2-.9 5.6-2.8 6.5-7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24">
+    <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    <path d="M19.3 13.6v-3.2l-2.1-.5a6.5 6.5 0 0 0-.8-1.8l1.1-1.8-2.2-2.2-1.8 1.1c-.6-.3-1.2-.6-1.9-.7L11.1 2H7.9l-.5 2.1c-.7.2-1.3.4-1.9.7L3.7 3.7 1.5 5.9l1.1 1.8c-.3.6-.6 1.2-.8 1.8l-2.1.5v3.2l2.1.5c.2.7.4 1.3.8 1.9l-1.1 1.8 2.2 2.2 1.8-1.1c.6.3 1.2.6 1.9.8l.5 2.1h3.2l.5-2.1c.7-.2 1.3-.4 1.9-.8l1.8 1.1 2.2-2.2-1.1-1.8c.3-.6.6-1.2.8-1.9l2.1-.5Z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+  </symbol>
+</svg>

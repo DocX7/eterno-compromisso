@@ -1,0 +1,11 @@
+INSTRUÇÕES DE ATUALIZAÇÃO — V29 FINAL VISUAL COMPLETA
+
+1. Extraia o ZIP.
+2. Abra a pasta extraída.
+3. Envie todos os arquivos e pastas de dentro da pasta V29 para a raiz do repositório GitHub.
+4. Não envie a pasta externa inteira.
+5. Faça commit.
+6. Aguarde o GitHub Pages atualizar.
+7. Se o app antigo aparecer, limpe cache, use Ctrl+F5, aba anônima ou remova/reinstale o PWA no celular.
+
+A V29 preserva o mesmo documento Firestore das versões recentes para não apagar progresso já salvo.

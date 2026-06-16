@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="illu-sunrise" viewBox="0 0 220 120">
+    <path d="M18 94c36-26 66-29 95-13 33 18 58 20 92-5" fill="none" stroke="#D9B7C1" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <path d="M72 76a38 38 0 0 1 76 0" fill="none" stroke="#E7C6A3" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+    <path d="M110 24v16M75 40l11 11M145 40l-11 11M62 76h96" fill="none" stroke="#D7B17F" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+    <path d="M38 88c14-21 25-35 33-60" fill="none" stroke="#A7B994" stroke-width="3" stroke-linecap="round" opacity=".48"/>
+    <path d="M68 42c-15-8-27-6-37 7 15 10 28 8 37-7Z" fill="#BFD1AE" opacity=".58"/>
+  </symbol>
+  <symbol id="illu-couple" viewBox="0 0 220 120">
+    <path d="M110 88s-50-31-61-60c-7-18 5-31 22-31 13 0 22 7 28 16 6-9 15-16 28-16 17 0 29 13 22 31-11 29-61 60-61 60Z" fill="none" stroke="#D9A4AF" stroke-width="4" stroke-linejoin="round" opacity=".56"/>
+    <path d="M56 97c29-11 71-10 107 0" stroke="#D7B17F" stroke-width="3" stroke-linecap="round" opacity=".42"/>
+    <path d="M166 22c9 1 17 6 22 14M178 68c9-3 17-9 22-18" stroke="#A7B994" stroke-width="3" stroke-linecap="round" opacity=".4"/>
+  </symbol>
+  <symbol id="illu-child" viewBox="0 0 220 120">
+    <path d="M110 58c12 0 22-10 22-22s-10-22-22-22-22 10-22 22 10 22 22 22Z" fill="none" stroke="#C9B8D7" stroke-width="4" opacity=".58"/>
+    <path d="M72 104c7-24 21-36 38-36s31 12 38 36" fill="none" stroke="#D9A4AF" stroke-width="4" stroke-linecap="round" opacity=".52"/>
+    <path d="M42 84c20-30 36-50 47-82" fill="none" stroke="#A7B994" stroke-width="3" stroke-linecap="round" opacity=".43"/>
+    <path d="M85 27c-20-10-35-7-46 9 20 13 35 10 46-9Z" fill="#BFD1AE" opacity=".58"/>
+    <path d="M162 43c9-25 27-34 44-24-9 25-27 34-44 24Z" fill="#F4DDCF" opacity=".72"/>
+  </symbol>
+  <symbol id="illu-bible" viewBox="0 0 220 120">
+    <path d="M42 32c25-10 47-8 68 7 21-15 43-17 68-7v60c-25-10-47-8-68 7-21-15-43-17-68-7V32Z" fill="none" stroke="#A7B994" stroke-width="4" stroke-linejoin="round" opacity=".55"/>
+    <path d="M110 39v60M70 50h24M70 66h24M126 50h24M126 66h24" stroke="#D7B17F" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+    <path d="M110 16v14M96 23h28" stroke="#D9A4AF" stroke-width="3" stroke-linecap="round" opacity=".52"/>
+  </symbol>
+  <symbol id="illu-settings" viewBox="0 0 220 120">
+    <path d="M110 76a26 26 0 1 0 0-52 26 26 0 0 0 0 52Z" fill="none" stroke="#C9B8D7" stroke-width="4" opacity=".54"/>
+    <path d="M110 14v-8M110 94v-8M74 30l-7-7M153 109l-7-7M58 50h-9M171 50h-9M74 70l-7 7M153  -9l-7 7" fill="none" stroke="#D7B17F" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+    <path d="M52 94c35-22 76-20 116 0" stroke="#D9B7C1" stroke-width="3" stroke-linecap="round" opacity=".44"/>
+  </symbol>
+</svg>
