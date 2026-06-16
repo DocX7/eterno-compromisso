@@ -1,12 +1,12 @@
 {
   "name": "Eterno Compromisso",
   "short_name": "Eterno",
-  "description": "Rotina devocional final, simples e acolhedora para Marcus, Ingrid e Arthur.",
+  "description": "Rotina devocional com visual mais vivo, aconchegante e jovial para Marcus, Ingrid e Arthur.",
   "start_url": "./#hoje",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fbf5f0",
-  "theme_color": "#fbf5f0",
+  "background_color": "#fff3ea",
+  "theme_color": "#fff3ea",
   "orientation": "portrait-primary",
   "icons": [
     {

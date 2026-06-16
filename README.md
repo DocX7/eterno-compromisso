@@ -1,3 +1,7 @@
+## V30 — Vivo, Acolhedor e Jovial
+
+Versão com cores mais vivas, fortes e jovens, preservando o aconchego e a fluidez do app.
+
 ## V29 — Final Visual Completa
 
 Versão final visual do Eterno Compromisso, com acabamento premium, visual devocional, pastel, acolhedor e fluido.

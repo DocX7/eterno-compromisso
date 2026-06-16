@@ -440,3 +440,94 @@ body::after{background:linear-gradient(90deg,rgba(232,223,240,.48),rgba(220,232,
 @media (prefers-reduced-motion:reduce){
   .splashLogo{animation:none}
 }
+
+
+/* V30 Vivo Acolhedor Jovial — cores fortes, jovens e aconchegantes */
+:root{
+  --bg:#fff3ea;--bg2:#ffe5d3;--surface:rgba(255,255,255,.88);--surface2:rgba(255,249,244,.96);
+  --line:rgba(190,84,85,.14);--txt:#4f2331;--muted:#805664;--soft:#9f6d7b;
+  --gold:#f2a93b;--gold2:#ffd27c;--rose:#ff6f7d;--rose2:#ffc0c8;
+  --green:#48b98a;--mint:#c8f0dd;--lilac:#b792ff;--peach:#ffb26b;--danger:#ea6d70;
+  --shadow:0 22px 48px rgba(163,72,96,.14);
+  --cream:#fff3ea;--cream2:#ffe8db;--ink:#4f2331;--ink2:#6b3145;
+  --blush:#ffc0c8;--blush2:#ff7989;--sage:#48b98a;--sage2:#d4f4e4;--lav:#e4d6ff;--peachSoft:#ffc98b;
+}
+body{
+  background:
+    radial-gradient(circle at 10% -3%,rgba(255,121,137,.24),transparent 24%),
+    radial-gradient(circle at 100% 0%,rgba(183,146,255,.24),transparent 28%),
+    radial-gradient(circle at 84% 104%,rgba(72,185,138,.18),transparent 28%),
+    linear-gradient(180deg,#fff5ee 0%,#ffe9dd 56%,#ffe2cf 100%);
+}
+body::before{background:linear-gradient(90deg,rgba(255,111,125,.38),rgba(255,178,107,.28))}
+body::after{background:linear-gradient(90deg,rgba(183,146,255,.28),rgba(72,185,138,.22))}
+.top{background:linear-gradient(to bottom,rgba(255,245,238,.98),rgba(255,245,238,.9),transparent)}
+.topbar:before{background:linear-gradient(90deg,transparent,rgba(255,111,125,.18),transparent)}
+.logo{background:linear-gradient(145deg,#ff7c8a,#ffb56f);color:#fffaf8;box-shadow:0 16px 36px rgba(255,111,125,.26)}
+.brand h1,.hero h2,.card h3,.readerTop h2,.loginBox h1{color:#5a2435}
+.pill{color:#8a3249;background:linear-gradient(180deg,rgba(255,192,200,.82),rgba(255,226,203,.88));border-color:rgba(255,111,125,.18)}
+.hero{background:linear-gradient(180deg,rgba(255,253,251,.94),rgba(255,243,236,.88));border-color:rgba(255,111,125,.16);box-shadow:0 24px 50px rgba(170,79,104,.14)}
+.heroMark{background:linear-gradient(145deg,rgba(255,121,137,.16),rgba(255,201,139,.38));color:#c2415b;border-color:rgba(255,111,125,.18)}
+.heroIllu{opacity:.86;filter:drop-shadow(0 18px 22px rgba(163,72,96,.12)) saturate(1.15)}
+.kicker{color:#cf5f50}
+.verseCallout,.loginVerse,.splashVerse{color:#864e5f;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,243,236,.78));border-color:rgba(255,111,125,.16)}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,246,240,.76));border-color:rgba(255,111,125,.13);box-shadow:0 16px 34px rgba(170,79,104,.11)}
+.primaryCard{background:linear-gradient(180deg,rgba(255,235,239,.96),rgba(255,249,242,.85));border-color:rgba(255,111,125,.24);box-shadow:0 22px 46px rgba(194,65,91,.15)}
+.focusCard{background:linear-gradient(180deg,rgba(234,255,245,.96),rgba(255,249,242,.82));border-color:rgba(72,185,138,.18)}
+.prayerCard{background:linear-gradient(180deg,rgba(255,244,222,.96),rgba(255,249,242,.82));border-color:rgba(242,169,59,.2)}
+.action{background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,245,238,.68));border-color:rgba(255,111,125,.12)}
+.action:nth-child(1){background:linear-gradient(180deg,rgba(255,233,237,.96),rgba(255,246,239,.76))}
+.action:nth-child(2){background:linear-gradient(180deg,rgba(241,233,255,.94),rgba(255,246,239,.76))}
+.action:nth-child(3){background:linear-gradient(180deg,rgba(229,252,242,.95),rgba(255,246,239,.76))}
+.action:nth-child(1) .ico{background:linear-gradient(145deg,#ffb6c0,#ff7b8a);color:#fff}
+.action:nth-child(2) .ico{background:linear-gradient(145deg,#d5c2ff,#a77dff);color:#fff}
+.action:nth-child(3) .ico{background:linear-gradient(145deg,#b5efd4,#48b98a);color:#fff}
+.btn{color:#fff8f7;background:linear-gradient(145deg,#ff7a88,#ffb164);border-color:rgba(255,111,125,.18);box-shadow:0 14px 30px rgba(255,111,125,.25)}
+.btn.secondary{background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,244,236,.72));color:#6e3146;border-color:rgba(255,111,125,.14)}
+.btn.ghost{background:linear-gradient(180deg,rgba(236,228,255,.72),rgba(255,246,239,.68));color:#7a4daa;border-color:rgba(167,125,255,.15)}
+.btn.danger{background:linear-gradient(180deg,rgba(255,230,230,.82),rgba(255,243,236,.74));color:#cc5259;border-color:rgba(234,109,112,.2)}
+.googleBtn{background:linear-gradient(145deg,#ff7a88,#b387ff)}
+.progress{background:rgba(255,225,214,.78);border-color:rgba(255,111,125,.08)}
+.progress>span{background:linear-gradient(90deg,#ff6f7d,#ffb26b,#48b98a,#b792ff)}
+.check{border-color:rgba(255,111,125,.1);background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,246,240,.68))}
+.check:nth-child(1){background:linear-gradient(180deg,rgba(255,236,240,.98),rgba(255,247,242,.82))}
+.check:nth-child(2){background:linear-gradient(180deg,rgba(242,234,255,.98),rgba(255,247,242,.82))}
+.check:nth-child(3){background:linear-gradient(180deg,rgba(255,246,223,.98),rgba(255,247,242,.82))}
+.check:nth-child(4){background:linear-gradient(180deg,rgba(228,251,240,.98),rgba(255,247,242,.82))}
+.check:nth-child(5){background:linear-gradient(180deg,rgba(255,236,224,.98),rgba(255,247,242,.82))}
+.check.checked{background:linear-gradient(180deg,rgba(220,252,235,.98),rgba(242,255,248,.94));border-color:rgba(72,185,138,.28)}
+.dayBadge{background:linear-gradient(145deg,#ffb7c2,#ffcd8e);color:#8a3850}
+.dayItem{background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,246,240,.72));border-color:rgba(255,111,125,.12)}
+.dayItem.done{background:linear-gradient(180deg,rgba(224,250,238,.96),rgba(239,255,248,.88));border-color:rgba(72,185,138,.28)}
+.dayItem.current{outline-color:rgba(242,169,59,.5)}
+.empty{background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,245,238,.62));border-color:rgba(255,111,125,.2)}
+.empty strong{color:#6c2f45}
+.nav{background:rgba(255,249,246,.9);border-color:rgba(255,111,125,.12);box-shadow:0 18px 44px rgba(170,79,104,.16)}
+.nav::before{background:linear-gradient(180deg,rgba(255,178,107,.72),rgba(255,111,125,.66))}
+.nav button{color:#9a6675}.nav button.active{color:#fffdfc}
+.nav button.active .navIcon svg{filter:drop-shadow(0 2px 8px rgba(194,65,91,.22))}
+.reader{background:radial-gradient(circle at 20% 0%,rgba(255,121,137,.18),transparent 34%),rgba(112,90,100,.10)}
+.readerPanel{background:linear-gradient(180deg,rgba(255,251,247,.98),rgba(255,245,239,.96)),url("../assets/floral-bg.svg") bottom center/100% auto no-repeat}
+.readerBody{background:linear-gradient(180deg,rgba(255,255,255,.52),rgba(255,247,242,.62));border-color:rgba(255,111,125,.1)}
+.loginBox{background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,247,241,.74)),url("../assets/floral-bg.svg") bottom center/120% auto no-repeat}
+.splash{background:radial-gradient(circle at 14% 0%,rgba(255,121,137,.26),transparent 30%),radial-gradient(circle at 94% 5%,rgba(183,146,255,.28),transparent 30%),linear-gradient(180deg,#fff5ee,#ffe8db)}
+.splashLogo{background:linear-gradient(145deg,#ff7a88,#ffb365);color:#fff;box-shadow:0 16px 38px rgba(255,111,125,.26)}
+.splashBar{background:rgba(255,227,215,.76)}
+.splashBar span{background:linear-gradient(90deg,#ff6f7d,#ffb164,#48b98a,#b792ff)}
+.toast,.updateBanner{background:linear-gradient(180deg,rgba(255,250,246,.96),rgba(255,242,233,.94));color:#6f3147;border-color:rgba(255,111,125,.16)}
+.syncLine{color:#93596b}.dot.ok{background:#48b98a}.dot.warn{background:#f2a93b}.dot{background:#ea6d70}
+.stat{background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,246,240,.68));border-color:rgba(255,111,125,.12)}
+.stat b{color:#6c2f45}
+.themePill{background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,245,238,.68));border-color:rgba(255,111,125,.12)}
+.historyItem{background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,246,240,.64));border-color:rgba(255,111,125,.12)}
+.input{background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,247,242,.8));border-color:rgba(255,111,125,.14)}
+.input:focus{border-color:rgba(255,111,125,.42);box-shadow:0 0 0 3px rgba(255,111,125,.10)}
+@media (hover:hover){
+  .btn:hover{box-shadow:0 16px 34px rgba(255,111,125,.3)}
+  .card:hover,.action:hover{box-shadow:0 18px 38px rgba(170,79,104,.14)}
+}
+@media (max-width:520px){
+  .heroIllu{opacity:.5}
+  .homeHero .heroIllu{opacity:.56}
+  .btn,.nav button span{font-weight:800}
+}
