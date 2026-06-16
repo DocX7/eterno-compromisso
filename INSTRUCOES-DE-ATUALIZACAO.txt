@@ -1,18 +1,15 @@
-ETERNO COMPROMISSO — V21 GOOGLE LOGIN SEGURO
+ETERNO COMPROMISSO — V24 ESSENCIAL FINAL
 
 1. Extraia este ZIP.
-2. Substitua TODOS os arquivos antigos no repositório GitHub.
-3. Faça commit e push.
-4. No Firebase Console:
-   - Authentication > Sign-in method > Google > Enable
-   - Authentication > Sign-in method > Anonymous > Disable
-   - Authentication > Settings > Authorized domains > adicionar docx7.github.io
-5. Publique o arquivo firestore.rules em Firestore Database > Rules.
-6. Abra https://docx7.github.io/eterno-compromisso/
-7. Entre com:
-   - contato.marcusbuceles@gmail.com
-   - ou contato.ingridbuceles@gmail.com
+2. Abra a pasta extraída.
+3. Envie para o GitHub todos os arquivos e pastas de dentro dela.
+4. Não envie a pasta fechada inteira; envie o conteúdo interno.
+5. Publique o arquivo firestore.rules no Firebase.
+6. Confirme no Firebase Authentication:
+   - Google ativado.
+   - Anonymous desativado.
+   - domínio autorizado: docx7.github.io
+7. Abra o site no navegador.
+8. Se aparecer versão antiga, toque em "Nova versão disponível" se aparecer, ou limpe o cache/remova o app da tela inicial e instale novamente.
 
-Se aparecer versão antiga, limpe cache ou remova/reinstale o PWA da tela inicial.
-
-IA preservada. Chaves não alteradas.
+A V24 mantém o mesmo documento Firestore da V23 para preservar marcações e progresso já existentes.

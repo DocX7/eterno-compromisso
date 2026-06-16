@@ -1,46 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function usuarioPermitido() {
+    function permitido() {
       return request.auth != null
-        && request.auth.token.email_verified == true
         && request.auth.token.email in [
           "contato.marcusbuceles@gmail.com",
           "contato.ingridbuceles@gmail.com"
         ];
     }
 
-    function payloadDoCasalValido() {
-      return request.resource.data.keys().hasOnly([
-        'versao',
-        'casal',
-        'atualizadoMs',
-        'atualizadoEm',
-        'usuarioGoogle',
-        'usuarioAnonimo', // legado: permitido só para não quebrar migração de docs antigos
-        'estado',
-        'progressoBiblico',
-        'devocionalDiario',
-        'devocionais',
-        'ferramentasIA',
-        'oracoes',
-        'diario',
-        'configuracoes',
-        'progresso'
-      ])
-      && request.resource.data.casal == 'Marcus e Ingrid'
-      && request.resource.data.versao is int
-      && request.resource.data.progressoBiblico is map
-      && request.resource.data.configuracoes is map;
-    }
-
     match /casais/{casalId} {
-      allow get: if usuarioPermitido() && casalId == 'marcus_e_ingrid';
-      allow list: if false;
-      allow create, update: if usuarioPermitido()
-        && casalId == 'marcus_e_ingrid'
-        && payloadDoCasalValido();
-      allow delete: if false;
+      allow read, write: if permitido()
+        && casalId == "marcus_e_ingrid_essencial_v23";
     }
 
     match /{document=**} {

@@ -1,32 +1,35 @@
-# Eterno Compromisso — V21 Google Login Seguro
+# Eterno Compromisso — V24 Essencial Final
 
-Aplicativo devocional para casal e família, com plano bíblico cronológico, IA devocional, oração, diário, progresso de Marcus/Ingrid, rotina guiada, estudo bíblico, família no altar, relatórios e PWA offline.
+Aplicativo devocional essencial para Marcus, Ingrid e Arthur.
 
-## Novidade principal V21
+## Núcleo do app
 
-- Login anônimo removido do código.
-- Login Google obrigatório.
-- Acesso permitido somente para:
-  - contato.marcusbuceles@gmail.com
-  - contato.ingridbuceles@gmail.com
-- `firestore.rules` atualizado para bloquear qualquer outro usuário.
-- A tela inicial fica bloqueada até entrar com uma conta Google autorizada.
-- Botão de sair da conta Google adicionado no app.
+- Um Dia com Deus
+- Devocional diário do casal
+- Devocional diário do Arthur, criança de 3 anos
+- Plano cronológico de leitura bíblica em 365 dias
+- Ajustes, backup, login Google e sincronização
 
-## Antes de publicar
+## Melhorias da V24
 
-No Firebase Console:
+- Data diária calculada pelo horário local do Brasil/Fortaleza.
+- Plano 365 mais leve no celular: mostra o essencial e só carrega os 365 dias quando solicitado.
+- Modo leitura sem distrações para devocionais.
+- Prompt do casal mais teológico, cristocêntrico, pastoral e menos genérico.
+- Devocional infantil por temas simples: gratidão, obediência, perdão, oração, medo, compartilhar e outros.
+- Revisão semanal simples aos domingos.
+- Sincronização mais clara: mostra se está salvo na nuvem ou apenas local.
+- Backup automático local com versões recentes.
+- Service Worker V24 com limpeza de cache antigo e botão de atualização.
 
-1. Vá em Authentication > Sign-in method.
-2. Ative Google.
-3. Desative Anonymous.
-4. Em Authentication > Settings > Authorized domains, confirme/adicone: `docx7.github.io`.
-5. Publique o arquivo `firestore.rules` atualizado no Firestore Rules.
+## Login
+
+Acesso liberado somente para:
+
+- contato.marcusbuceles@gmail.com
+- contato.ingridbuceles@gmail.com
 
 ## Publicação
 
-Suba todos os arquivos para o GitHub Pages no repositório do app.
-
-## Observação
-
-A camada de IA foi preservada conforme solicitado. As chaves não foram alteradas.
+Suba todo o conteúdo desta pasta no repositório do GitHub Pages.
+Depois publique o arquivo `firestore.rules` no Firebase.
