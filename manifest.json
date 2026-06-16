@@ -1,13 +1,24 @@
 {
   "name": "Eterno Compromisso",
   "short_name": "Eterno",
-  "description": "Jornada espiritual do casal, devocional, oração e leitura bíblica cronológica em 365 dias.",
+  "description": "Jornada espiritual completa para casal: plano bíblico cronológico, IA devocional, oração, diário, família no altar, check-in, busca bíblica e PWA offline.",
   "start_url": "./index.html",
   "scope": "./",
+  "id": "/eterno-compromisso/",
   "display": "standalone",
-  "background_color": "#FFF8ED",
-  "theme_color": "#9D7334",
-  "orientation": "portrait",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#FBF8F3",
+  "theme_color": "#8A652F",
+  "orientation": "portrait-primary",
+  "categories": [
+    "lifestyle",
+    "books",
+    "productivity"
+  ],
+  "lang": "pt-BR",
   "icons": [
     {
       "src": "./icons/icon-192.png",
@@ -20,6 +31,44 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Leitura de Hoje",
+      "short_name": "Leitura",
+      "description": "Abrir a leitura bíblica de hoje",
+      "url": "./index.html#biblia",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Oração",
+      "short_name": "Oração",
+      "description": "Abrir lista de oração",
+      "url": "./index.html#oracao",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Devocional",
+      "short_name": "Devocional",
+      "description": "Abrir devocional do dia",
+      "url": "./index.html#devocional",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
