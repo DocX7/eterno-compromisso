@@ -1,3 +1,15 @@
+## V39 — Visual Palavra
+
+Versão focada em redesign visual: mais conexão com a Palavra de Deus, atmosfera cinematográfica e área do Arthur com estética própria.
+
+## V38 — Premium Total
+
+Versão premium com melhorias no casal, no Arthur e na leitura cronológica com linha do tempo bíblica.
+
+## V37 — Arthur Ilustrado Infantil
+
+Versão com ilustrações na historinha do Arthur e página infantil mais visual e lúdica.
+
 ## V36 — Plano Cronológico Revisado
 
 Versão com revisão específica do plano bíblico anual em ordem cronológica. O visual e as funcionalidades principais da V35 foram preservados.

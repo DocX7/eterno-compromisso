@@ -1,13 +1,8 @@
-INSTRUÇÕES DE ATUALIZAÇÃO — V36 PLANO CRONOLÓGICO REVISADO
+INSTRUÇÕES DE ATUALIZAÇÃO — V39 VISUAL PALAVRA
 
 1. Extraia o ZIP.
-2. Envie todos os arquivos e pastas de dentro da pasta V36 para a raiz do repositório GitHub.
-3. Não envie a pasta externa inteira.
-4. Faça commit e aguarde o GitHub Pages atualizar.
-5. Se o plano antigo continuar aparecendo, use Ctrl+F5, limpe cache ou reinstale o PWA no celular.
+2. Envie todo o conteúdo interno da pasta para a raiz do repositório GitHub Pages.
+3. Faça commit e aguarde a publicação.
+4. Se a versão antiga persistir, limpe o cache do navegador ou reinstale o PWA no iPhone.
 
-Alteração principal:
-- data/reading-plan-365.json foi revisado em ordem cronológica mais refinada.
-
-Observação:
-Se vocês já começaram o plano antigo, o progresso por número de dia será preservado, mas as leituras daquele dia podem mudar por causa da nova ordem cronológica.
+Esta versão altera o design geral e destaca mais a conexão com a Palavra de Deus.

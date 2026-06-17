@@ -1137,3 +1137,391 @@ body.darkPremium .pageNumber{background:rgba(35,43,53,.72);color:#d7c7ad;border-
 @media(max-width:520px){
   .pageControls{grid-template-columns:1fr}
 }
+
+
+/* V37 — Arthur ilustrado e página mais infantil */
+.childPlayHero{
+  background:linear-gradient(180deg,rgba(255,250,245,.95),rgba(246,241,255,.90));
+}
+.childStickerRow{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.childStickerRow span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  background:rgba(255,255,255,.68);
+  box-shadow:0 10px 18px rgba(24,30,37,.06);
+  font-size:18px;
+}
+.childPlayLayout{align-items:start}
+.childPlayCover{
+  background:linear-gradient(180deg,#fff8f1,#f8f1ff);
+}
+.coverIllustration{
+  margin:-4px 0 12px;
+}
+.childSceneSvg{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:24px;
+  box-shadow:0 12px 24px rgba(24,30,37,.07);
+}
+.childStoryBook{
+  background:linear-gradient(180deg,#fffefb,#fff6f2);
+}
+.childStoryPage{
+  background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,247,240,.82));
+  border-radius:24px;
+  padding:12px;
+}
+.storyPictureFrame{
+  margin:2px 0 12px;
+  padding:8px;
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(254,245,236,.92));
+  border:1px solid rgba(239,207,216,.6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 10px 22px rgba(24,30,37,.05);
+}
+.childStoryText{
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,250,245,.92))!important;
+  border:1px solid rgba(240,215,189,.72)!important;
+}
+.childCueCard{
+  background:linear-gradient(180deg,#fff9f4,#f8fbff);
+}
+.childPrayerCard{
+  background:linear-gradient(180deg,#fff7f9,#f9f6ff);
+}
+.childCueCard h3,
+.childPrayerCard h3,
+.childPlayCover h3,
+.childStoryBook h3{
+  color:#775d67;
+}
+.childStoryBook .pill,
+.childPlayHero .themePill,
+.childPrayerCard .themePill,
+.childCueCard .themePill{
+  background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,245,237,.90));
+  border-color:rgba(239,207,216,.6);
+}
+body.darkPremium .childPlayHero,
+body.darkPremium .childPlayCover,
+body.darkPremium .childStoryBook,
+body.darkPremium .childCueCard,
+body.darkPremium .childPrayerCard{
+  background:linear-gradient(180deg,rgba(37,34,44,.92),rgba(25,30,38,.88));
+}
+body.darkPremium .childStickerRow span{
+  background:rgba(43,49,59,.78);
+  box-shadow:0 10px 18px rgba(0,0,0,.18);
+}
+body.darkPremium .storyPictureFrame,
+body.darkPremium .childStoryPage,
+body.darkPremium .childStoryText{
+  background:linear-gradient(180deg,rgba(31,37,46,.92),rgba(23,28,35,.90))!important;
+  border-color:rgba(222,210,190,.14)!important;
+}
+@media (max-width:860px){
+  .coverIllustration{margin-bottom:10px}
+}
+
+
+/* V38 — Premium Total */
+.coupleResponseGrid,.childSupportGrid{gap:16px}
+.guideCard,.journalCard,.timelineCard,.readingContextCard{position:relative;overflow:hidden}
+.guideCard::before,.journalCard::before,.timelineCard::before,.readingContextCard::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,rgba(184,146,93,.9),rgba(109,122,137,.9));opacity:.72}
+.guideItem{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;padding:12px 0;border-bottom:1px dashed rgba(77,88,102,.12)}
+.guideItem:last-child{border-bottom:0;padding-bottom:0}
+.guideItem span{width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(243,237,230,.82));color:#6b5e52;font-weight:900;box-shadow:0 8px 16px rgba(24,30,37,.05)}
+.guideItem p{margin:4px 0 0}
+.journalMini{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.6}
+.timelineRail{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px;margin:14px 0 10px}
+.timelineStep{position:relative;padding:12px 8px 10px;border-radius:18px;background:rgba(255,255,255,.52);border:1px solid rgba(77,88,102,.08);text-align:center}
+.timelineStep strong{display:block;font-size:11px;line-height:1.25}
+.timelineDot{display:inline-flex;width:10px;height:10px;border-radius:999px;background:#cdb8a0;margin-bottom:8px;box-shadow:0 0 0 6px rgba(205,184,160,.14)}
+.timelineStep.done .timelineDot{background:#7f927f;box-shadow:0 0 0 6px rgba(127,146,127,.14)}
+.timelineStep.current{background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(244,239,233,.96));border-color:rgba(184,146,93,.26);transform:translateY(-2px)}
+.timelineStep.current .timelineDot{background:#b8925d;box-shadow:0 0 0 7px rgba(184,146,93,.18)}
+.timelineSummary{padding:10px 0 2px}
+.timelineSummary p{margin:6px 0 0}
+.childQuestionCard,.childActivityCard{background:linear-gradient(180deg,#fffaf6,#f7fbff)}
+.childQuestionCard h3,.childActivityCard h3{color:#7a5f67}
+body.darkPremium .guideItem{border-color:rgba(222,210,190,.10)}
+body.darkPremium .guideItem span,body.darkPremium .timelineStep,body.darkPremium .childQuestionCard,body.darkPremium .childActivityCard{background:linear-gradient(180deg,rgba(35,43,53,.84),rgba(25,31,39,.80));border-color:rgba(222,210,190,.10);color:#eee7dc}
+body.darkPremium .timelineStep.current{background:linear-gradient(180deg,rgba(48,57,69,.96),rgba(34,41,50,.96))}
+@media (max-width:860px){.timelineRail{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.guideItem{grid-template-columns:34px 1fr;gap:10px}.guideItem span{width:34px;height:34px;border-radius:12px;font-size:12px}.timelineRail{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.timelineStep{padding:10px 6px}.timelineStep strong{font-size:10.5px}}
+
+
+/* V39 — Visual Palavra */
+:root{
+  --bg:#120d0a;
+  --bg2:#090708;
+  --surface:rgba(27,21,18,.82);
+  --surface2:rgba(18,13,11,.88);
+  --line:rgba(211,164,84,.16);
+  --txt:#f3e9dd;
+  --muted:#d5c5b3;
+  --soft:#bca992;
+  --gold:#d3a454;
+  --gold2:#f0d09a;
+  --rose:#8f6948;
+  --rose2:#f0ddbf;
+  --green:#8ca182;
+  --mint:#dfe8d6;
+  --lilac:#a8b3cb;
+  --peach:#c98c4d;
+  --danger:#d48376;
+  --shadow:0 24px 60px rgba(0,0,0,.30);
+}
+html,body{color:var(--txt)}
+body{
+  background:
+    radial-gradient(circle at 50% -6%, rgba(211,164,84,.28), transparent 30%),
+    radial-gradient(circle at 12% 16%, rgba(109,72,35,.16), transparent 24%),
+    linear-gradient(180deg,#21160f 0%,#120d0a 48%,#090708 100%);
+}
+body::before{
+  left:-10vw;bottom:-6vh;width:48vw;height:24vh;border-radius:50% 50% 0 0;
+  background:radial-gradient(circle at center, rgba(211,164,84,.14), rgba(211,164,84,0) 70%);
+  filter:blur(8px);
+}
+body::after{
+  right:-6vw;bottom:-8vh;width:32vw;height:22vh;border-radius:50% 50% 0 0;
+  background:radial-gradient(circle at center, rgba(98,66,38,.22), rgba(98,66,38,0) 68%);
+  filter:blur(12px);
+}
+.ambientTech::before{
+  inset:-30%;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.00) 0%, rgba(211,164,84,.05) 100%),
+    linear-gradient(rgba(211,164,84,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(211,164,84,.012) 1px, transparent 1px);
+  background-size:auto,54px 54px,54px 54px;
+  transform:perspective(1200px) rotateX(67deg) translateY(-8%);
+  opacity:.4;
+}
+.ambientTech span:nth-child(1){background:#9e6930;opacity:.18}
+.ambientTech span:nth-child(2){background:#f0c576;opacity:.15}
+.ambientTech span:nth-child(3){background:#6f4a2a;opacity:.16}
+.top{background:linear-gradient(to bottom,rgba(12,9,8,.95),rgba(12,9,8,.76),transparent)}
+.topbar{
+  background:linear-gradient(180deg,rgba(27,21,18,.88),rgba(17,13,11,.72));
+  border:1px solid rgba(211,164,84,.14);
+  box-shadow:0 14px 34px rgba(0,0,0,.18);
+}
+.topbar:before{background:linear-gradient(90deg,transparent,rgba(211,164,84,.16),transparent)}
+.brand h1,.hero h2,.card h3,.readerTop h2,.loginBox h1,.splash h1{color:#f6ecdf}
+.brandText p,.hero p,.card p,.sub,.syncLine,.login p,.empty span,.themePill,.action span span,.historyItem span{color:rgba(243,233,221,.76)}
+.logo,.splashLogo{
+  background:linear-gradient(145deg,#e4bb72,#a86d2b);
+  color:#241a12;
+  border:1px solid rgba(240,208,154,.40);
+  box-shadow:0 16px 36px rgba(0,0,0,.22);
+}
+.pill,.themePill,.heroMeta span,.storybookRibbon,.pageNumber{
+  color:#f0d7a6;
+  background:linear-gradient(180deg,rgba(255,248,237,.07),rgba(255,248,237,.04));
+  border-color:rgba(211,164,84,.18);
+  box-shadow:none;
+}
+.themePill{backdrop-filter:blur(10px)}
+.hero,.card,.loginBox,.readerPanel,.nav,.updateBanner,.toast,.splashCard{
+  background:linear-gradient(180deg,rgba(27,21,18,.86),rgba(14,11,9,.88));
+  border:1px solid rgba(211,164,84,.14);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);
+}
+.hero::after{box-shadow:none}
+.hero::before{background:rgba(211,164,84,.10)}
+.heroMark{
+  background:linear-gradient(145deg,rgba(240,208,154,.20),rgba(168,109,43,.20));
+  color:#f3d39e;
+  border-color:rgba(240,208,154,.18);
+}
+.kicker{color:#f0c987}
+.homeHero,.login,.splash{
+  background:
+    linear-gradient(180deg,rgba(10,8,7,.14),rgba(10,8,7,.14));
+}
+.homeHero,
+#sec-casal .hero,
+#sec-leitura .hero{
+  background:
+    linear-gradient(90deg,rgba(15,11,9,.90),rgba(19,14,11,.58) 46%,rgba(19,14,11,.78) 100%),
+    linear-gradient(180deg,rgba(211,164,84,.14),rgba(0,0,0,0) 35%),
+    url("../assets/biblical-ambient.svg") center center/cover no-repeat;
+  min-height:320px;
+}
+.login{background:
+  linear-gradient(180deg,rgba(10,8,7,.60),rgba(10,8,7,.78)),
+  url("../assets/biblical-ambient.svg") center center/cover no-repeat;
+}
+.splash{background:
+  linear-gradient(180deg,rgba(10,8,7,.52),rgba(10,8,7,.72)),
+  url("../assets/biblical-ambient.svg") center center/cover no-repeat;
+}
+.loginBox,.splashCard{
+  background:linear-gradient(180deg,rgba(23,18,16,.88),rgba(13,11,10,.82));
+}
+.heroIllu{opacity:.14;filter:grayscale(1) sepia(.5) saturate(.7) brightness(1.2)}
+.verseCallout,.loginVerse,.splashVerse,
+.storyReminder{
+  color:#f6dfb0;
+  background:linear-gradient(180deg,rgba(255,247,235,.08),rgba(255,247,235,.04));
+  border-color:rgba(211,164,84,.16);
+}
+.storyReminder{border-style:solid}
+.action,.dayItem,.check,.journeyRail button,.storySteps button,
+.input,.historyItem,.stat,.empty{
+  background:linear-gradient(180deg,rgba(255,248,237,.05),rgba(255,248,237,.03));
+  border-color:rgba(211,164,84,.12);
+  color:var(--txt);
+}
+.action strong,.empty strong,.check strong,.readingHeader p strong,.dayItem strong,.storybookCover h3,.insightToggle span{color:#f7ecdf}
+.progress{background:rgba(255,255,255,.08);border-color:rgba(211,164,84,.10)}
+.progress>span{background:linear-gradient(90deg,#8d5d22,#d3a454,#f1d8a6)}
+.check.checked,.dayItem.done{
+  background:linear-gradient(180deg,rgba(34,49,37,.82),rgba(18,28,20,.86));
+  border-color:rgba(140,170,122,.18);
+}
+.dayItem.current{outline:2px solid rgba(211,164,84,.24);background:linear-gradient(180deg,rgba(37,28,22,.90),rgba(21,17,14,.90))}
+.dayBadge,.action .ico{
+  background:linear-gradient(145deg,#e4bb72,#a86d2b);
+  color:#241a12;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.btn{
+  background:linear-gradient(180deg,#e2b465,#c48737);
+  color:#23190f;
+  border-color:rgba(231,197,134,.48);
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+}
+.btn.secondary,.btn.ghost,.btn.danger{
+  background:linear-gradient(180deg,rgba(255,248,237,.06),rgba(255,248,237,.03));
+  color:#f6ecdf;
+  border-color:rgba(211,164,84,.14);
+  box-shadow:none;
+}
+.googleBtn{background:linear-gradient(180deg,#f0c882,#c98b3c);color:#21170e}
+.btn:hover,.journeyRail button:hover,.storySteps button:hover{filter:brightness(1.04)}
+.nav{
+  background:linear-gradient(180deg,rgba(19,14,12,.92),rgba(11,9,8,.94));
+  border-color:rgba(211,164,84,.16);
+}
+.nav::before{background:linear-gradient(180deg,#f0c576,#b7772c);opacity:.96}
+.nav button{color:rgba(243,233,221,.58)}
+.nav button.active{color:#1c140e}
+.nav button.active .navIcon svg{filter:none}
+.navIcon svg{stroke-width:1.85}
+.reader{background:linear-gradient(180deg,rgba(0,0,0,.52),rgba(0,0,0,.62))}
+.readerPanel{background:linear-gradient(180deg,rgba(27,21,18,.94),rgba(14,11,9,.96))}
+.readerTop{background:transparent}
+.readerBody{
+  background:linear-gradient(180deg,rgba(248,239,227,.98),rgba(240,226,205,.96));
+  color:#37281b;
+  border-color:rgba(211,164,84,.16);
+}
+.readerBody::first-line{color:#5a3c19}
+.toast,.updateBanner{color:#f6ecdf}
+.syncLine .dot{box-shadow:0 0 0 5px rgba(255,255,255,.03)}
+.dot.ok{background:#88a87b}.dot.warn{background:#d3a454}.dot{background:#b69060}
+.insightToggle b{color:#f0d7a6;border-color:rgba(211,164,84,.16);background:rgba(255,248,237,.05)}
+.historyItem strong{color:#f6ecdf}
+.input{color:#f7efe3}
+.input::placeholder{color:rgba(243,233,221,.46)}
+.input:focus{border-color:rgba(240,208,154,.24);box-shadow:0 0 0 3px rgba(211,164,84,.10)}
+
+/* Arthur com visual próprio */
+#sec-crianca .hero{
+  background:
+    linear-gradient(180deg,rgba(23,33,53,.78),rgba(13,22,39,.82)),
+    url("../assets/arthur-sky.svg") center center/cover no-repeat;
+  min-height:300px;
+}
+#sec-crianca .hero h2,
+#sec-crianca .hero p,
+#sec-crianca .hero .themePill,
+#sec-crianca .hero .kicker{position:relative;z-index:1}
+#sec-crianca .heroMark{
+  background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(162,196,255,.14));
+  color:#f7f1d5;
+}
+#sec-crianca .childStickerRow span{
+  background:linear-gradient(180deg,#fff7e9,#f0d9a8);
+  color:#7b5832;
+  box-shadow:0 10px 20px rgba(0,0,0,.18);
+}
+#sec-crianca .card,
+.readerPanel.childBookMode{
+  background:linear-gradient(180deg,rgba(255,249,239,.96),rgba(246,238,224,.95));
+  color:#3f2b1b;
+  border-color:rgba(214,173,104,.22);
+  box-shadow:0 24px 52px rgba(0,0,0,.18);
+}
+#sec-crianca .card h3,
+#sec-crianca .storybookCover h3,
+.readerPanel.childBookMode .readerTop h2{color:#4f351f}
+#sec-crianca .card p,
+#sec-crianca .sub,
+#sec-crianca .themePill,
+#sec-crianca .storyPrayerCard p,
+#sec-crianca .storyCueList,
+#sec-crianca .childStoryText,
+.readerPanel.childBookMode .readerBody{color:#6a513b}
+#sec-crianca .themePill,
+#sec-crianca .storybookRibbon,
+#sec-crianca .pageNumber{
+  background:linear-gradient(180deg,#fff9ed,#f4e6c8);
+  color:#8f6237;
+  border-color:rgba(214,173,104,.24);
+}
+#sec-crianca .storybookCover,
+#sec-crianca .childStoryBook,
+#sec-crianca .storyCueCard,
+#sec-crianca .storyPrayerCard,
+#sec-crianca .childQuestionCard,
+#sec-crianca .childActivityCard{
+  background:linear-gradient(180deg,rgba(255,250,242,.98),rgba(249,243,232,.96));
+}
+#sec-crianca .storyPictureFrame,
+#sec-crianca .childStoryPage{
+  background:
+    linear-gradient(180deg,rgba(255,249,236,.96),rgba(237,244,255,.96)),
+    url("../assets/arthur-sky.svg") center bottom/cover no-repeat;
+  border-color:rgba(214,173,104,.16);
+}
+#sec-crianca .storyReminder{
+  background:linear-gradient(180deg,#fff8ef,#f7eedc);
+  color:#7a5632;
+  border-color:rgba(214,173,104,.26);
+}
+#sec-crianca .btn{
+  background:linear-gradient(180deg,#f0c576,#de9b44);
+  color:#352312;
+  border-color:rgba(214,173,104,.34);
+}
+#sec-crianca .btn.secondary{background:linear-gradient(180deg,#fff8ed,#f6ead4);color:#694932}
+.readerPanel.childBookMode .readerBody{
+  background:linear-gradient(180deg,#fffaf1,#f5ebd8);
+  color:#5b4128;
+}
+
+@media (max-width:760px){
+  .homeHero,#sec-casal .hero,#sec-leitura .hero,#sec-crianca .hero{min-height:280px}
+}
+@media (max-width:520px){
+  .topbar{padding:6px 8px}
+  .homeHero,#sec-casal .hero,#sec-leitura .hero,#sec-crianca .hero{min-height:250px}
+  .journeyRail button{min-height:72px}
+  .card,.hero{box-shadow:0 18px 42px rgba(0,0,0,.24)}
+}

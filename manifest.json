@@ -1,12 +1,12 @@
 {
   "name": "Eterno Compromisso",
   "short_name": "Eterno",
-  "description": "Rotina devocional com plano bíblico de 365 dias em ordem cronológica revisada.",
+  "description": "Visual bíblico cinematográfico e acolhedor, com área infantil diferenciada para Arthur.",
   "start_url": "./#hoje",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f3efe8",
-  "theme_color": "#f3efe8",
+  "background_color": "#120d0a",
+  "theme_color": "#1a130f",
   "orientation": "portrait-primary",
   "icons": [
     {

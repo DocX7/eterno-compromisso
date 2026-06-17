@@ -1,4 +1,4 @@
-const CACHE='ec-v24-essencial-final';
+const CACHE='ec-v39-visual-palavra';
 const ASSETS=[
   './',
   'index.html',
@@ -11,6 +11,8 @@ const ASSETS=[
   'assets/icons.svg',
   'assets/floral-bg.svg',
   'assets/illustrations.svg',
+  'assets/biblical-ambient.svg',
+  'assets/arthur-sky.svg',
   '404.html',
   'icons/icon-192.png',
   'icons/icon-512.png'

@@ -1,4 +1,4 @@
-const APP_VERSION = 'V36_PLANO_CRONOLOGICO_REVISADO';
+const APP_VERSION = 'V39_VISUAL_PALAVRA';
 const ALLOWED_EMAILS = ['contato.marcusbuceles@gmail.com','contato.ingridbuceles@gmail.com'];
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyCr-zPc9UqDSuQRBwXHYguCot9zeChOJI8",
@@ -15,8 +15,8 @@ const COUPLE_DOC = 'marcus_e_ingrid_essencial_v23';
 const OPENAI_API_KEY_FIXA = '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';
 const OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
 const DEFAULT_MODEL = 'gpt-5-mini';
-const STORAGE_KEY = 'ec_v36_cronologico_state';
-const LEGACY_STORAGE_KEYS = ['ec_v35_final_state','ec_v34_refinamento_state','ec_v33_cinematic_state','ec_v32_imersivo_state','ec_v31_formal_state','ec_v29_final_visual_state','ec_v28_fluidez_state','ec_v27_premium_state','ec_v26_floral_state','ec_v25_pastel_state','ec_v24_essencial_state','ec_v23_essencial_state','ec_v22_essencial_state'];
+const STORAGE_KEY = 'ec_v39_visual_palavra_state';
+const LEGACY_STORAGE_KEYS = ['ec_v38_premium_total_state','ec_v37_arthur_ilustrado_state','ec_v36_cronologico_state','ec_v35_final_state','ec_v34_refinamento_state','ec_v33_cinematic_state','ec_v32_imersivo_state','ec_v31_formal_state','ec_v29_final_visual_state','ec_v28_fluidez_state','ec_v27_premium_state','ec_v26_floral_state','ec_v25_pastel_state','ec_v24_essencial_state','ec_v23_essencial_state','ec_v22_essencial_state'];
 const BR_TZ = 'America/Fortaleza';
 
 let db=null, auth=null, user=null, ref=null, unsub=null, applyingRemote=false, cloudReady=false;
@@ -143,7 +143,7 @@ function localLoad(){
 }
 function autoBackup(){
   try{
-    const k='ec_v36_auto_backups'; const today=todayKey();
+    const k='ec_v39_auto_backups'; const today=todayKey();
     const backups=JSON.parse(localStorage.getItem(k)||'[]');
     if(backups[0]?.date===today) return;
     backups.unshift({date:today, ts:Date.now(), state:S});
@@ -241,6 +241,103 @@ function toggleDarkMode(){
   S.settings.darkMode=!S.settings.darkMode;
   save();
   toast(S.settings.darkMode?'Modo escuro premium ativado.':'Modo claro premium ativado.');
+}
+
+function childSceneIllustration(theme,page=0){
+  const t=String(theme||'').toLowerCase();
+  const scenes={
+    amor:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ffe6ef"/><stop offset="1" stop-color="#fff7dc"/></linearGradient></defs><rect width="320" height="200" rx="28" fill="url(#g1)"/><circle cx="64" cy="48" r="26" fill="#ffd3df"/><circle cx="260" cy="38" r="18" fill="#fff4a8"/><path d="M0 148 C70 118 140 182 212 150 C252 132 285 138 320 126 V200 H0 Z" fill="#d6f1d9"/><rect x="126" y="88" width="68" height="64" rx="20" fill="#fffaf4" stroke="#efcfd8"/><circle cx="146" cy="86" r="18" fill="#ffd1db"/><circle cx="174" cy="86" r="18" fill="#ffd1db"/><path d="M160 116 C146 99 120 107 120 126 C120 146 145 155 160 166 C175 155 200 146 200 126 C200 107 174 99 160 116 Z" fill="#ff96b3"/><text x="160" y="187" text-anchor="middle" font-size="18" font-weight="800" fill="#7e6470">Jesus ama Arthur</text></svg>`,
+    cuida:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#eef7ff"/><circle cx="260" cy="42" r="18" fill="#ffef92"/><path d="M0 150 C55 132 109 154 160 144 C215 132 255 158 320 132 V200 H0 Z" fill="#d5f0d6"/><rect x="96" y="98" width="128" height="62" rx="16" fill="#fffaf2" stroke="#d9dfe8"/><path d="M88 109 L160 56 L232 109" fill="#ffcf9f"/><path d="M88 109 L160 56 L232 109" stroke="#e7a86e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="148" y="124" width="26" height="36" rx="9" fill="#bfe3ff"/><circle cx="68" cy="62" r="18" fill="#fff"/><circle cx="84" cy="58" r="14" fill="#fff"/><circle cx="99" cy="63" r="16" fill="#fff"/><circle cx="218" cy="72" r="14" fill="#fff"/><circle cx="234" cy="68" r="12" fill="#fff"/><circle cx="247" cy="72" r="13" fill="#fff"/><text x="160" y="187" text-anchor="middle" font-size="18" font-weight="800" fill="#617183">Deus cuida de Arthur</text></svg>`,
+    obedecer:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#fff7ee"/><path d="M0 150 C63 130 110 162 166 147 C229 129 270 147 320 138 V200 H0 Z" fill="#dff4da"/><rect x="114" y="68" width="92" height="86" rx="20" fill="#fff" stroke="#f0d7bd"/><circle cx="132" cy="70" r="18" fill="#ffd4c2"/><circle cx="188" cy="70" r="18" fill="#ffd9cb"/><circle cx="160" cy="110" r="17" fill="#ffe1d1"/><rect x="126" y="114" width="18" height="28" rx="9" fill="#9ad0ff"/><rect x="176" y="114" width="18" height="28" rx="9" fill="#ffd588"/><rect x="151" y="132" width="18" height="22" rx="9" fill="#cdb8ff"/><path d="M72 94 l12 12 l26 -26" stroke="#79b78b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="160" y="186" text-anchor="middle" font-size="18" font-weight="800" fill="#7b6a60">Obedecer alegra a Deus</text></svg>`,
+    gratidao:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#fff8d9"/><circle cx="262" cy="44" r="24" fill="#ffe66d"/><path d="M0 148 C64 120 130 168 188 144 C234 126 284 148 320 132 V200 H0 Z" fill="#d4f0cb"/><path d="M58 154 C76 116 104 116 122 154" fill="none" stroke="#77b583" stroke-width="8" stroke-linecap="round"/><circle cx="90" cy="120" r="18" fill="#ffb8cf"/><circle cx="110" cy="134" r="18" fill="#ffd18f"/><circle cx="70" cy="136" r="18" fill="#b7ddff"/><path d="M168 122 C168 94 194 76 222 76 C250 76 272 98 272 122 C272 147 249 166 222 166 C194 166 168 148 168 122 Z" fill="#fff" stroke="#f5dc7b"/><path d="M209 123 l10 10 l20 -24" stroke="#7db687" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="160" y="187" text-anchor="middle" font-size="18" font-weight="800" fill="#7c6e54">Obrigado, Deus!</text></svg>`,
+    compartilhar:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#eef6ff"/><path d="M0 154 C57 130 115 160 170 145 C227 130 271 150 320 139 V200 H0 Z" fill="#dff0da"/><circle cx="118" cy="92" r="18" fill="#ffd8ca"/><circle cx="202" cy="92" r="18" fill="#ffd8ca"/><rect x="102" y="110" width="32" height="40" rx="13" fill="#a7d6ff"/><rect x="186" y="110" width="32" height="40" rx="13" fill="#ffc789"/><rect x="148" y="112" width="24" height="24" rx="7" fill="#c4b6ff" stroke="#b09df6"/><path d="M140 124 H100" stroke="#8da7bf" stroke-width="6" stroke-linecap="round"/><path d="M180 124 H220" stroke="#8da7bf" stroke-width="6" stroke-linecap="round"/><text x="160" y="186" text-anchor="middle" font-size="18" font-weight="800" fill="#66778a">Compartilhar com amor</text></svg>`,
+    criou:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#eaf7ff"/><circle cx="266" cy="42" r="23" fill="#ffef7e"/><path d="M0 152 C70 132 124 162 182 146 C236 132 281 148 320 138 V200 H0 Z" fill="#cfeec7"/><path d="M0 132 C58 118 105 138 160 124 C224 109 269 128 320 114" fill="none" stroke="#9bd7ff" stroke-width="16" stroke-linecap="round"/><path d="M69 110 C84 90 106 90 120 110" fill="none" stroke="#77b87b" stroke-width="8" stroke-linecap="round"/><circle cx="92" cy="98" r="14" fill="#ffca89"/><circle cx="109" cy="109" r="14" fill="#ff9cc0"/><circle cx="75" cy="109" r="14" fill="#9cd5ff"/><path d="M206 96 C226 72 263 76 280 98" fill="none" stroke="#d6b8ff" stroke-width="7" stroke-linecap="round"/><path d="M194 96 Q232 134 289 96" fill="none" stroke="#ffaec0" stroke-width="7" stroke-linecap="round"/><text x="160" y="186" text-anchor="middle" font-size="18" font-weight="800" fill="#617383">Deus criou tudo</text></svg>`,
+    oracao:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#f6f1ff"/><circle cx="252" cy="40" r="20" fill="#ffe68a"/><circle cx="68" cy="42" r="4" fill="#fff"/><circle cx="92" cy="56" r="4" fill="#fff"/><circle cx="110" cy="36" r="4" fill="#fff"/><path d="M0 154 C61 130 116 160 172 146 C229 131 272 152 320 138 V200 H0 Z" fill="#dff0da"/><circle cx="160" cy="88" r="22" fill="#ffd8c8"/><rect x="138" y="110" width="44" height="42" rx="18" fill="#a4c7ff"/><path d="M147 110 Q160 128 173 110" stroke="#8b6d66" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M144 126 Q160 142 176 126" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><text x="160" y="186" text-anchor="middle" font-size="18" font-weight="800" fill="#75678a">Deus ouve quando Arthur ora</text></svg>`,
+    medo:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#1e2942"/><circle cx="258" cy="42" r="18" fill="#ffe792"/><circle cx="74" cy="42" r="3" fill="#fffbe7"/><circle cx="95" cy="58" r="3" fill="#fffbe7"/><circle cx="108" cy="34" r="3" fill="#fffbe7"/><path d="M0 154 C61 130 116 160 172 146 C229 131 272 152 320 138 V200 H0 Z" fill="#2d4f3d"/><rect x="118" y="114" width="84" height="42" rx="18" fill="#fff5e8"/><circle cx="160" cy="100" r="18" fill="#ffd9c4"/><path d="M150 108 l10 -10 l10 10" stroke="#7eb08a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="160" y="186" text-anchor="middle" font-size="18" font-weight="800" fill="#f3eadf">Deus está comigo</text></svg>`,
+    familia:`<svg class="childSceneSvg" viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" rx="28" fill="#fff4ec"/><path d="M0 154 C61 132 120 160 176 145 C229 131 271 150 320 139 V200 H0 Z" fill="#dff0da"/><circle cx="108" cy="86" r="18" fill="#ffd8c8"/><circle cx="160" cy="80" r="22" fill="#ffd6c6"/><circle cx="214" cy="86" r="18" fill="#ffd8c8"/><rect x="94" y="108" width="28" height="40" rx="12" fill="#9ecfff"/><rect x="142" y="108" width="36" height="46" rx="14" fill="#ffd18b"/><rect x="200" y="108" width="28" height="40" rx="12" fill="#c9b6ff"/><path d="M136 136 C146 126 174 126 184 136" stroke="#ee90a9" stroke-width="7" fill="none" stroke-linecap="round"/><text x="160" y="186" text-anchor="middle" font-size="18" font-weight="800" fill="#7b665c">Arthur ama sua família</text></svg>`
+  };
+  if(t.includes('ama')) return scenes.amor;
+  if(t.includes('cuida')) return scenes.cuida;
+  if(t.includes('obed')) return scenes.obedecer;
+  if(t.includes('gratid')) return scenes.gratidao;
+  if(t.includes('compart')) return scenes.compartilhar;
+  if(t.includes('criou')) return scenes.criou;
+  if(t.includes('ora')) return scenes.oracao;
+  if(t.includes('medo')) return scenes.medo;
+  if(t.includes('fam')) return scenes.familia;
+  return [scenes.amor,scenes.cuida,scenes.criou,scenes.familia][page%4];
+}
+function childStickerRow(){
+  return `<div class="childStickerRow" aria-hidden="true"><span>⭐</span><span>☁️</span><span>🧸</span><span>🌈</span><span>🐑</span></div>`;
+}
+
+function childSupportByTheme(){
+  const t=String(childThemeForToday().name||'').toLowerCase();
+  if(t.includes('ama')) return {question:'Quem ama Arthur todos os dias?', activity:'Façam um abraço apertado e repitam 3 vezes: “Jesus me ama”.', prayer:'Jesus, obrigado porque o Senhor ama Arthur.'};
+  if(t.includes('cuida')) return {question:'Quem cuida da nossa casa e da nossa família?', activity:'Peçam para Arthur apontar algo que Deus cuida: casa, cama, comida ou família.', prayer:'Deus, obrigado porque o Senhor cuida de nós.'};
+  if(t.includes('obed')) return {question:'Como Arthur pode obedecer hoje?', activity:'Façam uma encenação rápida: guardar um brinquedo, sentar ou dar a mão.', prayer:'Senhor, ajuda Arthur a obedecer com alegria.'};
+  if(t.includes('gratid')) return {question:'Pelo que Arthur quer agradecer hoje?', activity:'Cada um fala um “obrigado, Deus” por algo simples do dia.', prayer:'Obrigado, Deus, por tudo o que o Senhor nos dá.'};
+  if(t.includes('perd')) return {question:'O que fazemos quando erramos?', activity:'Repitam juntos: “Jesus me ensina a pedir perdão e perdoar”.', prayer:'Jesus, ensina nosso coração a perdoar.'};
+  if(t.includes('compart')) return {question:'O que Arthur pode compartilhar hoje?', activity:'Separem um brinquedo ou alimento para dividir simbolicamente.', prayer:'Deus, ensina Arthur a repartir com amor.'};
+  if(t.includes('criou')) return {question:'Quem fez o céu, a terra e as pessoas?', activity:'Peçam para Arthur apontar algo criado por Deus: céu, árvore, passarinho ou água.', prayer:'Deus, obrigado porque o Senhor fez tudo com sabedoria.'};
+  if(t.includes('ora')) return {question:'Quando Arthur fala com Deus, Deus faz o quê?', activity:'Façam uma oração curtinha com Arthur repetindo uma frase de cada vez.', prayer:'Deus, obrigado porque o Senhor ouve nossa oração.'};
+  if(t.includes('medo')) return {question:'Quando Arthur fica com medo, quem está com ele?', activity:'Apaguem a luz por 3 segundos, acendam e digam juntos: “Deus está comigo”.', prayer:'Pai, dá paz ao coração do Arthur.'};
+  if(t.includes('fam')) return {question:'Como Arthur mostra amor pela família?', activity:'Façam um gesto de carinho: abraço na mamãe e no papai.', prayer:'Senhor, enche nossa casa de amor.'};
+  return {question:'O que Arthur aprendeu hoje?', activity:'Repitam a frase principal e façam um gesto para guardar a lição.', prayer:'Senhor, grava a tua verdade no coração do Arthur.'};
+}
+function coupleGuides(){
+  const seed=seedForToday();
+  return {
+    question:`À luz de “${seed.theme}”, onde nosso casamento precisa se alinhar mais ao evangelho hoje?`,
+    practice:`Escolham uma atitude prática para viver hoje a partir desta verdade: ${seed.thesis}`,
+    prayer:`Transformem a leitura em oração: confessem, agradeçam e peçam ajuda a Deus para aplicar ${seed.focus.toLowerCase()}.`
+  };
+}
+function saveCoupleJournal(){
+  const k=todayKey();
+  const reflect=$('#coupleReflect')?.value||'';
+  const apply=$('#coupleApply')?.value||'';
+  const prayer=$('#couplePrayer')?.value||'';
+  S.reading.notes['couple-'+k]=reflect;
+  S.reading.notes['couple-reflect-'+k]=reflect;
+  S.reading.notes['couple-apply-'+k]=apply;
+  S.reading.notes['couple-prayer-'+k]=prayer;
+  save();
+  toast('Registro espiritual do casal salvo.');
+}
+function coupleJournalHistory(){
+  const notes=S.reading?.notes||{};
+  const items=Object.keys(notes)
+    .filter(k=>k.startsWith('couple-reflect-') && String(notes[k]||'').trim())
+    .sort().reverse().slice(0,4)
+    .map(k=>{
+      const date=k.replace('couple-reflect-','');
+      const reflect=String(notes[k]||'').trim();
+      const apply=String(notes['couple-apply-'+date]||'').trim();
+      const prayer=String(notes['couple-prayer-'+date]||'').trim();
+      return `<div class="historyItem"><strong>${date}</strong><br><span>${safeHTML(reflect.slice(0,140))}${reflect.length>140?'…':''}</span>${apply?`<div class="journalMini"><b>Aplicação:</b> ${safeHTML(apply.slice(0,110))}${apply.length>110?'…':''}</div>`:''}${prayer?`<div class="journalMini"><b>Oração:</b> ${safeHTML(prayer.slice(0,110))}${prayer.length>110?'…':''}</div>`:''}</div>`;
+    });
+  return items.join('') || '<div class="empty"><strong>Sem registros ainda.</strong><span>Salvem hoje a primeira resposta espiritual do casal.</span></div>';
+}
+function readingTimelineMeta(day=currentDay()){
+  const reading=String((PLAN[day-1]||currentPlan()).reading||'');
+  const stages=[
+    {id:'origens', label:'Origens e Patriarcas', short:'Origens', books:['Gênesis','Jó'], summary:'Criação, queda, dilúvio, Babel e a formação da família da promessa.'},
+    {id:'exodo', label:'Êxodo e Lei', short:'Êxodo', books:['Êxodo','Levítico','Números','Deuteronômio'], summary:'Libertação do Egito, aliança, lei, santidade e peregrinação do povo de Deus.'},
+    {id:'conquista', label:'Conquista e Juízes', short:'Conquista', books:['Josué','Juízes','Rute'], summary:'Entrada na terra, ciclos de infidelidade, livramentos e preservação da linhagem messiânica.'},
+    {id:'reino', label:'Reino, Sabedoria e Salmos', short:'Reino', books:['1 Samuel','2 Samuel','1 Crônicas','1 Reis','2 Crônicas','Salmos','Provérbios','Eclesiastes','Cânticos'], summary:'Monarquia, Davi, Salomão, culto, sabedoria e esperança do Messias.'},
+    {id:'profetas', label:'Reis, Profetas e Exílio', short:'Profetas', books:['2 Reis','Isaías','Jeremias','Lamentações','Ezequiel','Daniel','Oséias','Joel','Amós','Obadias','Jonas','Miquéias','Naum','Habacuque','Sofonias'], summary:'Chamado ao arrependimento, queda dos reinos, exílio e promessa de restauração.'},
+    {id:'retorno', label:'Retorno e Reconstrução', short:'Retorno', books:['Esdras','Neemias','Ester','Ageu','Zacarias','Malaquias'], summary:'Retorno do remanescente, reconstrução de Jerusalém e expectativa do Messias.'},
+    {id:'cristo', label:'Vida de Cristo', short:'Cristo', books:['Mateus','Marcos','Lucas','João'], summary:'Nascimento, ministério, cruz, ressurreição e anúncio do Reino de Deus.'},
+    {id:'igreja', label:'Igreja e Cartas', short:'Igreja', books:['Atos','Romanos','1 Coríntios','2 Coríntios','Gálatas','Efésios','Filipenses','Colossenses','1 Tessalonicenses','2 Tessalonicenses','1 Timóteo','2 Timóteo','Tito','Filemom','Hebreus','Tiago','1 Pedro','2 Pedro','1 João','2 João','3 João','Judas'], summary:'Expansão da igreja, missões, vida comunitária e doutrina apostólica.'},
+    {id:'consumacao', label:'Consumação', short:'Fim', books:['Apocalipse'], summary:'Vitória final de Cristo, perseverança da igreja e nova criação.'}
+  ];
+  let index=stages.findIndex(s=>s.books.some(b=>reading.includes(b)));
+  if(index<0) index=0;
+  return {index,current:stages[index],stages,progress:Math.round(((index+1)/stages.length)*100)};
+}
+function timelineHTML(meta){
+  return `<div class="timelineRail">${meta.stages.map((s,i)=>`<div class="timelineStep ${i<meta.index?'done':''} ${i===meta.index?'current':''}"><span class="timelineDot"></span><strong>${safeHTML(s.short)}</strong></div>`).join('')}</div>`;
 }
 
 function markCheck(id,val){ const c=todayChecklist(); c[id]=!!val; save(); }
@@ -504,6 +601,10 @@ function completeDevotion(type){
 function renderCouple(){
   const el=$('#sec-casal'); if(!el)return;
   const k=todayKey(); const saved=S.devotions.couple?.[k]; const text=saved?.text || fallbackCoupleDevotion();
+  const g=coupleGuides();
+  const reflect=S.reading.notes['couple-reflect-'+k] || S.reading.notes['couple-'+k] || '';
+  const apply=S.reading.notes['couple-apply-'+k] || '';
+  const prayer=S.reading.notes['couple-prayer-'+k] || '';
   el.innerHTML=`
     <div class="hero floralHero rose"><div class="heroMark" aria-hidden="true">${appIcon('heart')}</div>${appIllu('couple')}<p class="kicker">Devocional diário do casal</p><h2>Teologia para dentro da aliança.</h2><p>Uma reflexão para ler com reverência, conversar com honestidade e praticar o evangelho dentro de casa.</p></div>
     <div class="card">
@@ -516,10 +617,27 @@ function renderCouple(){
       </div>
       <p class="sub" style="margin-top:8px">O devocional gerado fica salvo durante o dia local do Brasil. Ele só muda se vocês escolherem gerar novamente.</p>
     </div>
+    <div class="grid two coupleResponseGrid">
+      <div class="card guideCard">
+        <h3>Conversa guiada</h3>
+        <div class="guideItem"><span>01</span><div><strong>Pergunta reflexiva</strong><p>${safeHTML(g.question)}</p></div></div>
+        <div class="guideItem"><span>02</span><div><strong>Aplicação prática</strong><p>${safeHTML(g.practice)}</p></div></div>
+        <div class="guideItem"><span>03</span><div><strong>Oração do casal</strong><p>${safeHTML(g.prayer)}</p></div></div>
+      </div>
+      <div class="card journalCard">
+        <h3>Registro espiritual do casal</h3>
+        <label class="sub" for="coupleReflect">O que Deus mostrou para nós hoje?</label>
+        <textarea id="coupleReflect" class="input" placeholder="Escrevam a principal verdade recebida hoje.">${safeHTML(reflect)}</textarea>
+        <label class="sub" for="coupleApply" style="margin-top:10px">Qual atitude prática vamos viver hoje?</label>
+        <textarea id="coupleApply" class="input" placeholder="Ex.: ouvir com paciência, orar juntos, pedir perdão, servir um ao outro.">${safeHTML(apply)}</textarea>
+        <label class="sub" for="couplePrayer" style="margin-top:10px">Oração do casal</label>
+        <textarea id="couplePrayer" class="input" placeholder="Transformem a leitura em oração simples e sincera.">${safeHTML(prayer)}</textarea>
+        <button type="button" class="btn full" style="margin-top:10px" onclick="saveCoupleJournal()">Salvar registro do casal</button>
+      </div>
+    </div>
     <div class="card">
-      <h3>Resposta do casal</h3>
-      <textarea id="coupleNote" class="input" placeholder="O que Deus mostrou para nós hoje? Que atitude precisa mudar?">${safeHTML(S.reading.notes['couple-'+k]||'')}</textarea>
-      <button type="button" class="btn full" style="margin-top:10px" onclick="saveNote('couple-${k}', document.getElementById('coupleNote').value)">Salvar reflexão</button>
+      <h3>Histórico espiritual recente</h3>
+      <div class="history">${coupleJournalHistory()}</div>
     </div>`;
 }
 function renderChild(){
@@ -527,10 +645,11 @@ function renderChild(){
   const k=todayKey(); const saved=S.devotions.child?.[k]; const text=saved?.text || fallbackChildDevotion(); const t=childThemeForToday();
   const pages=storyPages(text); const pg=childPageIndex(pages.length); const pageText=pages[pg];
   el.innerHTML=`
-    <div class="hero floralHero lilac storyHero"><div class="heroMark" aria-hidden="true">${appIcon('child')}</div>${appIllu('child')}<p class="kicker">Devocional infantil</p><h2>O livrinho de hoje para Arthur.</h2><p>Uma experiência mais visual e afetiva, com narrativa curta para ele imaginar, repetir e guardar no coração.</p><div class="storyMetaPills"><span class="themePill">Tema: ${safeHTML(t.name)}</span><span class="themePill">Frase: ${safeHTML(t.phrase)}</span><span class="themePill">Página ${pg+1} de ${pages.length}</span></div></div>
+    <div class="hero floralHero lilac storyHero childPlayHero"><div class="heroMark" aria-hidden="true">${appIcon('child')}</div>${appIllu('child')}<p class="kicker">Devocional infantil</p><h2>O livrinho ilustrado de hoje para Arthur.</h2><p>Uma página mais infantil, suave e visual para ajudar Arthur a imaginar, ouvir e guardar a verdade bíblica.</p><div class="storyMetaPills"><span class="themePill">Tema: ${safeHTML(t.name)}</span><span class="themePill">Frase: ${safeHTML(t.phrase)}</span><span class="themePill">Página ${pg+1} de ${pages.length}</span></div>${childStickerRow()}</div>
 
-    <div class="storybookLayout">
-      <div class="card storybookCover">
+    <div class="storybookLayout childPlayLayout">
+      <div class="card storybookCover childPlayCover">
+        <div class="coverIllustration">${childSceneIllustration(t.name,pg)}</div>
         <p class="kicker">Livrinho do dia</p>
         <h3>${safeHTML(t.name)}</h3>
         <p>Conduzam como uma pequena leitura em família: voz calma, contato visual e repetição carinhosa.</p>
@@ -542,12 +661,13 @@ function renderChild(){
         </div>
       </div>
 
-      <div class="card storybookBook" id="storybook-text">
+      <div class="card storybookBook childStoryBook" id="storybook-text">
         <div class="row between"><h3>Historinha de hoje</h3><span class="pill">${saved?'Salvo':'Base local'}</span></div>
         <div class="storybookRibbon">Arthur • Palavra • Família</div>
-        <div class="storybookPage" aria-live="polite">
+        <div class="storybookPage childStoryPage" aria-live="polite">
           <div class="pageNumber">Página ${pg+1} / ${pages.length}</div>
-          <div id="childText" class="devotional storyText">${safeHTML(pageText)}</div>
+          <div class="storyPictureFrame">${childSceneIllustration(t.name,pg+1)}</div>
+          <div id="childText" class="devotional storyText childStoryText">${safeHTML(pageText)}</div>
         </div>
         <div class="pageControls">
           <button type="button" class="btn secondary" onclick="turnChildPage(-1)" ${pg<=0?'disabled':''}>Página anterior</button>
@@ -561,25 +681,38 @@ function renderChild(){
       </div>
     </div>
 
-    <div class="grid two storyHelperGrid">
-      <div class="card storyCueCard">
+    <div class="grid two storyHelperGrid childHelperGrid">
+      <div class="card storyCueCard childCueCard">
         <h3>Como conduzir</h3>
         <ul class="storyCueList">
           <li>Leiam uma página por vez, sem pressa.</li>
+          <li>Mostrem a ilustração e perguntem o que Arthur está vendo.</li>
           <li>Virem a página junto com Arthur.</li>
           <li>Peçam para ele repetir a frase principal.</li>
           <li>Façam a atividade de 2 minutos e terminem em oração.</li>
         </ul>
       </div>
-      <div class="card storyPrayerCard">
+      <div class="card storyPrayerCard childPrayerCard">
         <h3>Clima do momento</h3>
-        <p>Transformem esse tempo em um pequeno ritual familiar: sentem perto, chamem Arthur pelo nome, apontem a verdade bíblica e celebrem cada resposta dele com alegria.</p>
+        <p>Transformem esse tempo em um pequeno ritual familiar: sentem perto, apontem a ilustração, contem a história com expressão e celebrem cada resposta dele com alegria.</p>
         <div class="storyMiniActions">
           <span class="themePill">Imaginar</span>
-          <span class="themePill">Repetir</span>
+          <span class="themePill">Olhar</span>
           <span class="themePill">Virar página</span>
           <span class="themePill">Orar</span>
         </div>
+      </div>
+    </div>
+    <div class="grid two childSupportGrid">
+      <div class="card childQuestionCard">
+        <h3>Perguntinha para Arthur</h3>
+        <p>${safeHTML(childSupportByTheme().question)}</p>
+        <div class="themePill">Façam a pergunta com calma e deixem Arthur responder do jeitinho dele.</div>
+      </div>
+      <div class="card childActivityCard">
+        <h3>Atividade de 2 minutos</h3>
+        <p>${safeHTML(childSupportByTheme().activity)}</p>
+        <div class="storyReminder">Oração final: ${safeHTML(childSupportByTheme().prayer)}</div>
       </div>
     </div>`;
 }
@@ -633,11 +766,17 @@ function dayItem(x){
 function renderReading(){
   const el=$('#sec-leitura'); if(!el)return;
   const d=currentDay(); const e=expectedDay(); const p=currentPlan(); const done=doneCount(); const atraso=Math.max(0,e-d);
+  const meta=readingTimelineMeta(d);
   const next=PLAN.slice(d-1, Math.min(365,d+7)).map(dayItem).join('');
   const previous=PLAN.slice(Math.max(0,d-4), d-1).map(dayItem).join('');
   const allList=S.reading.showAll ? PLAN.map(dayItem).join('') : '';
   el.innerHTML=`
     <div class="hero floralHero sage"><div class="heroMark" aria-hidden="true">${appIcon('bible')}</div>${appIllu('bible')}<p class="kicker">Plano cronológico 365 dias</p><h2>Leitura bíblica anual em ordem cronológica.</h2><p>A jornada acompanha a linha histórica da redenção: origens, patriarcas, reino, profetas, Cristo e igreja primitiva.</p></div>
+    <div class="card timelineCard">
+      <div class="row between"><h3>Linha do tempo bíblica</h3><span class="pill">${meta.progress}% da jornada temática</span></div>
+      ${timelineHTML(meta)}
+      <div class="timelineSummary"><strong>Fase atual: ${safeHTML(meta.current.label)}</strong><p>${safeHTML(meta.current.summary)}</p></div>
+    </div>
     <div class="grid two">
       <div class="card">
         <h3>Progresso</h3>
@@ -652,6 +791,13 @@ function renderReading(){
           <button type="button" class="btn ghost" onclick="jumpExpected()">Pular para hoje</button>
         </div>
       </div>
+      <div class="card readingContextCard">
+        <h3>Contexto da leitura de hoje</h3>
+        <p><strong>Leitura:</strong> ${safeHTML(p.reading)}</p>
+        <p><strong>Foco:</strong> ${safeHTML(p.focus)}</p>
+        <p class="sub">Vocês não estão apenas lendo capítulos soltos. Hoje vocês estão dentro da fase <strong>${safeHTML(meta.current.label)}</strong> da história da redenção.</p>
+        <div class="themePill">Leiam perguntando: o que Deus está revelando sobre si, sobre seu povo e sobre Cristo?</div>
+      </div>
       <div class="card">
         <h3>Ajustar continuação</h3>
         <label class="sub" for="currentDayInput">Escolha o dia em que vocês querem continuar</label>
@@ -662,19 +808,22 @@ function renderReading(){
         </div>
         <div class="row" style="margin-top:10px"><button type="button" class="btn secondary" onclick="setStartToday()">Dia 1 = hoje</button><button type="button" class="btn danger" onclick="resetReading()">Resetar plano</button></div>
       </div>
+      <div class="card">
+        <h3>Leitura atual</h3>
+        ${dayItem(p)}
+      </div>
     </div>
-    <div class="card"><h3>Leitura atual</h3>${dayItem(p)}</div>
     <div class="card"><h3>Próximos 7 dias</h3><div class="compactList">${next||'<div class="empty"><strong>Plano concluído.</strong><span>Permaneçam na Palavra com gratidão.</span></div>'}</div></div>
     <div class="card"><h3>Dias anteriores próximos</h3><div class="compactList">${previous||'<div class="empty"><strong>Começo da jornada.</strong><span>Um passo por dia, com constância.</span></div>'}</div></div>
     <div class="card"><div class="row between"><h3>Todos os 365 dias</h3><button type="button" class="btn mini secondary" onclick="toggleAllReading()">${S.reading.showAll?'Ocultar lista':'Ver todos'}</button></div><p class="sub">Para deixar o celular rápido, a lista completa só é montada quando necessário.</p>${S.reading.showAll?`<div class="list compact">${allList}</div>`:''}</div>`;
 }
 function saveNote(id,val){ S.reading.notes[id]=val; save(); toast('Reflexão salva com carinho.'); }
 
-function exportBackup(){ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup-eterno-compromisso-v36-'+todayKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
+function exportBackup(){ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup-eterno-compromisso-v39-'+todayKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
 function importBackup(file){ if(!file)return; const r=new FileReader(); r.onload=()=>{ try{ const imported=JSON.parse(r.result); S={...emptyState(),...imported,version:APP_VERSION}; normalizeState(); save(); toast('Backup restaurado com sucesso.'); }catch(e){ toast('Arquivo inválido.'); } }; r.readAsText(file); }
 function restoreAutoBackup(index=0){
   try{
-    const backups=JSON.parse(localStorage.getItem('ec_v32_auto_backups')||'[]');
+    const backups=JSON.parse(localStorage.getItem('ec_v39_auto_backups')||'[]');
     if(!backups[index]) return toast('Backup automático não encontrado.');
     if(confirm(`Restaurar backup automático de ${backups[index].date}?`)){ S={...emptyState(),...backups[index].state,version:APP_VERSION}; normalizeState(); save(); toast('Backup automático restaurado.'); }
   }catch(e){ toast('Não foi possível restaurar.'); }
@@ -682,7 +831,7 @@ function restoreAutoBackup(index=0){
 function renderSettings(){
   const el=$('#sec-ajustes'); if(!el)return;
   const hist=(S.history.completedDevotions||[]).slice(0,6).map(x=>`<div class="historyItem">${x.date} — ${x.type==='couple'?'Devocional do casal':'Devocional do Arthur'}<br><span>${safeHTML(x.reading||'')}</span></div>`).join('') || '<div class="empty"><strong>Ainda não há registros.</strong><span>Comecem hoje com uma oração simples.</span></div>';
-  let backups=[]; try{ backups=JSON.parse(localStorage.getItem('ec_v32_auto_backups')||'[]'); }catch(e){}
+  let backups=[]; try{ backups=JSON.parse(localStorage.getItem('ec_v39_auto_backups')||'[]'); }catch(e){}
   const backupList=backups.slice(0,4).map((b,i)=>`<div class="historyItem"><strong>${b.date}</strong><br><span>Backup automático local</span><br><button type="button" class="btn mini secondary" onclick="restoreAutoBackup(${i})">Restaurar</button></div>`).join('') || '<div class="empty"><strong>Sem backup automático ainda.</strong><span>Ele será criado quando vocês salvarem algo hoje.</span></div>';
   el.innerHTML=`
     <div class="hero floralHero peach"><div class="heroMark" aria-hidden="true">${appIcon('settings')}</div>${appIllu('settings')}<p class="kicker">Ajustes</p><h2>Essencial, leve e confiável.</h2><p>Conta, backup, sincronização, histórico simples e manutenção do aplicativo.</p><div class="syncLine"><span class="dot ${syncDotClass()}"></span><span>${safeHTML(syncLabel())}</span></div></div>
@@ -691,7 +840,7 @@ function renderSettings(){
       <div class="card"><h3>Sincronização</h3><p class="sub">${safeHTML(syncLabel())}</p><button type="button" class="btn full" onclick="forceSync()">Sincronizar agora</button></div>
       <div class="card"><h3>Backup manual</h3><div class="row"><button type="button" class="btn" onclick="exportBackup()">Exportar</button><label class="btn secondary">Importar<input type="file" accept="application/json" class="hidden" onchange="importBackup(this.files[0])"></label></div></div>
       <div class="card"><h3>Backups automáticos</h3><div class="history">${backupList}</div></div>
-      <div class="card"><h3>Diagnóstico</h3><div class="stats"><div class="stat"><b>36</b><span>Versão</span></div><div class="stat"><b>${doneCount()}</b><span>Dias lidos</span></div><div class="stat"><b>${cloudReady?'Nuvem':'Local'}</b><span>Status</span></div></div><button type="button" class="btn secondary full" style="margin-top:10px" onclick="clearCaches()">Limpar cache</button></div>
+      <div class="card"><h3>Diagnóstico</h3><div class="stats"><div class="stat"><b>39</b><span>Versão</span></div><div class="stat"><b>${doneCount()}</b><span>Dias lidos</span></div><div class="stat"><b>${cloudReady?'Nuvem':'Local'}</b><span>Status</span></div></div><button type="button" class="btn secondary full" style="margin-top:10px" onclick="clearCaches()">Limpar cache</button></div>
       <div class="card"><h3>Histórico simples</h3><div class="history">${hist}</div></div>
     </div>`;
 }

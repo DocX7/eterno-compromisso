@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#24170f"/>
+      <stop offset="52%" stop-color="#120d0a"/>
+      <stop offset="100%" stop-color="#090708"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="8%" r="60%">
+      <stop offset="0%" stop-color="#f8d38e" stop-opacity="0.95"/>
+      <stop offset="18%" stop-color="#c58a36" stop-opacity="0.55"/>
+      <stop offset="42%" stop-color="#6b4218" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#f3c471" stop-opacity="0.60"/>
+      <stop offset="100%" stop-color="#f3c471" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#684119" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#d3a454" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#684119" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blurSmall"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <path d="M800 40 L1110 760 L490 760 Z" fill="url(#beam)" opacity="0.62"/>
+  <g opacity="0.35">
+    <path d="M0 690 C260 620 510 670 790 652 C1080 634 1340 580 1600 650" fill="none" stroke="url(#goldLine)" stroke-width="2"/>
+    <path d="M0 744 C250 700 520 726 806 708 C1104 690 1355 665 1600 705" fill="none" stroke="url(#goldLine)" stroke-width="2"/>
+  </g>
+  <g opacity="0.20" fill="#e8d5ae">
+    <circle cx="170" cy="132" r="2"/><circle cx="240" cy="190" r="1.6"/><circle cx="320" cy="146" r="2.2"/>
+    <circle cx="1320" cy="112" r="2.1"/><circle cx="1390" cy="176" r="1.6"/><circle cx="1260" cy="214" r="1.8"/>
+  </g>
+  <g transform="translate(800 650)">
+    <path d="M-370 92 C-248 40 -125 16 0 16 C125 16 248 40 370 92 L370 140 L-370 140 Z" fill="#1a1310" opacity="0.76"/>
+    <path d="M-350 48 C-245 -6 -110 -34 0 -34 C110 -34 245 -6 350 48 L335 98 C226 56 112 34 0 34 C-112 34 -226 56 -335 98 Z" fill="#f3e2c3" opacity="0.94"/>
+    <path d="M-335 98 C-226 56 -112 34 0 34 C112 34 226 56 335 98" fill="none" stroke="#c89a4a" stroke-width="4" opacity="0.78"/>
+    <path d="M0 -34 L0 140" stroke="#cfaa67" stroke-width="5" opacity="0.55"/>
+    <path d="M-15 -36 C-11 38 -10 88 -4 140" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/>
+    <path d="M15 -36 C11 38 10 88 4 140" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/>
+  </g>
+  <g transform="translate(190 505) scale(1.05)" opacity="0.55" fill="#f1ddbc">
+    <path d="M74 186 C66 170 61 158 57 147 C52 132 51 122 54 112 C58 99 72 92 84 99 C92 103 96 113 98 121 C100 110 107 95 119 93 C131 91 141 98 144 110 C147 121 144 132 139 145 C134 158 126 173 117 186 Z"/>
+    <path d="M95 80 C100 63 113 51 125 54 C136 57 142 68 140 83 C138 93 131 107 124 117 C118 108 114 100 108 92 C103 85 98 83 95 80 Z"/>
+    <rect x="95" y="117" width="30" height="95" rx="15" fill="#e9d2ab"/>
+  </g>
+  <g opacity="0.10" filter="url(#blurSmall)">
+    <ellipse cx="280" cy="720" rx="190" ry="80" fill="#d59d49"/>
+    <ellipse cx="1330" cy="690" rx="190" ry="80" fill="#7c5226"/>
+  </g>
+</svg>
