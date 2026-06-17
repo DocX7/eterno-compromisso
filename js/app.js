@@ -1,4 +1,4 @@
-const APP_VERSION = 'V31_TECH_ACOLHEDOR_FORMAL';
+const APP_VERSION = 'V36_PLANO_CRONOLOGICO_REVISADO';
 const ALLOWED_EMAILS = ['contato.marcusbuceles@gmail.com','contato.ingridbuceles@gmail.com'];
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyCr-zPc9UqDSuQRBwXHYguCot9zeChOJI8",
@@ -15,8 +15,8 @@ const COUPLE_DOC = 'marcus_e_ingrid_essencial_v23';
 const OPENAI_API_KEY_FIXA = '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';
 const OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
 const DEFAULT_MODEL = 'gpt-5-mini';
-const STORAGE_KEY = 'ec_v31_formal_state';
-const LEGACY_STORAGE_KEYS = ['ec_v29_final_visual_state','ec_v28_fluidez_state','ec_v27_premium_state','ec_v26_floral_state','ec_v25_pastel_state','ec_v24_essencial_state','ec_v23_essencial_state','ec_v22_essencial_state'];
+const STORAGE_KEY = 'ec_v36_cronologico_state';
+const LEGACY_STORAGE_KEYS = ['ec_v35_final_state','ec_v34_refinamento_state','ec_v33_cinematic_state','ec_v32_imersivo_state','ec_v31_formal_state','ec_v29_final_visual_state','ec_v28_fluidez_state','ec_v27_premium_state','ec_v26_floral_state','ec_v25_pastel_state','ec_v24_essencial_state','ec_v23_essencial_state','ec_v22_essencial_state'];
 const BR_TZ = 'America/Fortaleza';
 
 let db=null, auth=null, user=null, ref=null, unsub=null, applyingRemote=false, cloudReady=false;
@@ -81,7 +81,7 @@ function emptyState(){
     devotions: { couple:{}, child:{} },
     history: { completedDevotions: [] },
     reviews: {},
-    settings: { model: DEFAULT_MODEL }
+    settings: { model: DEFAULT_MODEL, darkMode:false, childStoryPages:{} }
   };
 }
 let S = emptyState();
@@ -128,7 +128,7 @@ function normalizeState(){
   S.devotions={couple:{},child:{},...(S.devotions||{})};
   S.history={completedDevotions:[],...(S.history||{})};
   S.reviews={...(S.reviews||{})};
-  S.settings={...base.settings,...(S.settings||{})};
+  S.settings={...base.settings,...(S.settings||{})}; S.settings.childStoryPages=S.settings.childStoryPages||{};
   if(!['hoje','casal','crianca','leitura','ajustes'].includes(S.activeTab)) S.activeTab='hoje';
 }
 function localLoad(){
@@ -143,7 +143,7 @@ function localLoad(){
 }
 function autoBackup(){
   try{
-    const k='ec_v31_auto_backups'; const today=todayKey();
+    const k='ec_v36_auto_backups'; const today=todayKey();
     const backups=JSON.parse(localStorage.getItem(k)||'[]');
     if(backups[0]?.date===today) return;
     backups.unshift({date:today, ts:Date.now(), state:S});
@@ -170,14 +170,22 @@ function fallbackPlan(){ return Array.from({length:365},(_,i)=>({day:i+1,reading
 
 function switchTab(tab){
   if(!['hoje','casal','crianca','leitura','ajustes'].includes(tab)) tab='hoje';
-  S.activeTab=tab; localSave(); history.replaceState(null,'','#'+tab); render(); window.scrollTo({top:0,behavior:'smooth'});
+  const app=document.querySelector('.app');
+  app?.classList.add('tab-switching');
+  S.activeTab=tab;
+  localSave();
+  history.replaceState(null,'','#'+tab);
+  render();
+  requestAnimationFrame(()=>window.scrollTo({top:0,behavior:'smooth'}));
+  clearTimeout(window.__ecTabFx);
+  window.__ecTabFx=setTimeout(()=>app?.classList.remove('tab-switching'),520);
 }
 window.addEventListener('hashchange',()=>{ const tab=location.hash.replace('#',''); if(tab && tab!==S.activeTab) switchTab(tab); });
 
 function render(){ renderShell(); renderHoje(); renderCouple(); renderChild(); renderReading(); renderSettings(); applyMotionEnhancements(document); }
 function renderShell(){
   const activeTab=S.activeTab||'hoje';
-  document.body.setAttribute('data-tab',activeTab);
+  document.body.setAttribute('data-tab',activeTab); document.body.classList.toggle('darkPremium', !!S.settings?.darkMode);
   $$('.section').forEach(x=>x.classList.toggle('active',x.id==='sec-'+activeTab));
   $$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===activeTab));
   const u=$('#userLabel'); if(u)u.textContent=user?.displayName || user?.email || syncLabel();
@@ -190,6 +198,51 @@ function applyMotionEnhancements(root=document){
   });
 }
 
+function toggleInsight(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle('open');
+}
+function scrollToCard(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function storyPages(text){
+  const blocks=String(text||'').split(/\n\s*\n/g).map(x=>x.trim()).filter(Boolean);
+  const pages=[];
+  let current=[];
+  for(const block of blocks){
+    current.push(block);
+    const words=current.join(' ').split(/\s+/).filter(Boolean).length;
+    if(words>=95 || current.length>=3){ pages.push(current.join('\n\n')); current=[]; }
+  }
+  if(current.length) pages.push(current.join('\n\n'));
+  return pages.length?pages:[String(text||'')];
+}
+function childPageIndex(total){
+  const k=todayKey();
+  S.settings.childStoryPages=S.settings.childStoryPages||{};
+  const current=Number(S.settings.childStoryPages[k]||0);
+  return clamp(current,0,Math.max(0,total-1));
+}
+function turnChildPage(delta){
+  const k=todayKey();
+  const saved=S.devotions.child?.[k];
+  const text=saved?.text || fallbackChildDevotion();
+  const pages=storyPages(text);
+  const current=childPageIndex(pages.length);
+  S.settings.childStoryPages[k]=clamp(current+delta,0,Math.max(0,pages.length-1));
+  localSave();
+  renderChild();
+  requestAnimationFrame(()=>document.querySelector('.storybookPage')?.classList.add('pageTurning'));
+}
+function toggleDarkMode(){
+  S.settings.darkMode=!S.settings.darkMode;
+  save();
+  toast(S.settings.darkMode?'Modo escuro premium ativado.':'Modo claro premium ativado.');
+}
+
 function markCheck(id,val){ const c=todayChecklist(); c[id]=!!val; save(); }
 function checkHTML(id,title,desc,checked){ return `<label class="check"><input type="checkbox" data-id="${id}" ${checked?'checked':''}><span><strong>${title}</strong><span>${desc}</span></span></label>`; }
 function renderHoje(){
@@ -197,46 +250,54 @@ function renderHoje(){
   const p=currentPlan(); const ep=expectedPlan(); const sc=todayScore(); const c=todayChecklist(); const atraso=Math.max(0, expectedDay()-currentDay());
   const review=renderWeeklyReviewCard();
   el.innerHTML=`
-    <div class="hero floralHero sunrise homeHero"><div class="heroMark" aria-hidden="true">${appIcon('spark')}</div>${appIllu('sunrise')}
+    <div class="hero formalCommand homeHero immersiveHero"><div class="heroMark" aria-hidden="true">${appIcon('spark')}</div>${appIllu('sunrise')}
+      <div class="heroMeta"><span>Rotina devocional</span><span>${todayKey()}</span></div>
       <p class="kicker">Um dia com Deus</p>
-      <h2>O que vamos viver hoje diante do Senhor?</h2>
-      <p>Um caminho simples para conduzir o lar: Palavra, conversa sincera, ensino para Arthur e oração em família.</p>
-      <div class="verseCallout">“A tua palavra é lâmpada para os meus pés e luz para o meu caminho.”</div>
+      <h2>Ambiente de presença para conduzir o lar.</h2>
+      <p>Uma jornada interativa para leitura, conversa do casal, narrativa bíblica para Arthur e oração em família.</p>
+      <div class="verseCallout">“Aquietai-vos e sabei que eu sou Deus.”</div>
       <div class="syncLine"><span class="dot ${syncDotClass()}"></span><span>${safeHTML(syncLabel())}</span></div>
     </div>
 
-    <div class="actionGrid">
-      <button type="button" class="action" onclick="switchTab('casal')"><span class="ico">${appIcon('heart')}</span><span><strong>Devocional do casal</strong><span>Reflexão teológica, exame do coração e prática de hoje.</span></span></button>
-      <button type="button" class="action" onclick="switchTab('crianca')"><span class="ico">${appIcon('child')}</span><span><strong>Devocional do Arthur</strong><span>Tema de hoje: ${safeHTML(childThemeForToday().name)}.</span></span></button>
-      <button type="button" class="action" onclick="switchTab('leitura')"><span class="ico">${appIcon('bible')}</span><span><strong>Leitura bíblica</strong><span>Dia ${p.day}: ${safeHTML(p.reading)}</span></span></button>
+    <div class="journeyRail" aria-label="Atalhos da jornada devocional">
+      <button type="button" onclick="scrollToCard('card-silencio')"><span>01</span><strong>Aquietar</strong></button>
+      <button type="button" onclick="switchTab('casal')"><span>02</span><strong>Casal</strong></button>
+      <button type="button" onclick="switchTab('crianca')"><span>03</span><strong>Arthur</strong></button>
+      <button type="button" onclick="switchTab('leitura')"><span>04</span><strong>Palavra</strong></button>
+      <button type="button" onclick="scrollToCard('card-oracao')"><span>05</span><strong>Oração</strong></button>
     </div>
 
-    <div class="grid two homeGrid">
-      <div class="card primaryCard devotionalMoment">
-        <div class="row between"><h3>Momento devocional</h3><span class="pill soft">${sc}%</span></div>
-        <div class="progress"><span style="width:${sc}%"></span></div>
-        <div class="checks">
-          ${checkHTML('silencio','Silenciar o coração','Um minuto de quietude antes da Palavra.',c.silencio)}
-          ${checkHTML('casal','Ler o devocional do casal','Conversem com sinceridade, sem pressa.',c.casal)}
-          ${checkHTML('crianca','Fazer o devocional do Arthur','Uma frase bíblica para ele repetir.',c.crianca)}
-          ${checkHTML('leitura','Concluir a leitura bíblica',safeHTML(p.reading),c.leitura)}
-          ${checkHTML('oracao','Orar em família','Fé, casamento, Arthur, santidade e trabalho.',c.oracao)}
+    <div class="grid dashboardGrid">
+      <div class="card primaryCard devotionalMoment" id="card-silencio">
+        <div class="row between"><h3>Central do momento</h3><span class="pill soft">${sc}% concluído</span></div>
+        <div class="progress cinematic"><span style="width:${sc}%"></span></div>
+        <div class="checks upgradedChecks">
+          ${checkHTML('silencio','Silenciar o coração','Respirem, desliguem distrações e entreguem o ambiente ao Senhor.',c.silencio)}
+          ${checkHTML('casal','Devocional do casal','Leitura teológica, conversa honesta e prática de obediência.',c.casal)}
+          ${checkHTML('crianca','Narrativa do Arthur','Uma historinha curta para ele imaginar, repetir e aplicar.',c.crianca)}
+          ${checkHTML('leitura','Leitura bíblica',safeHTML(p.reading),c.leitura)}
+          ${checkHTML('oracao','Oração em família','Fé, casamento, Arthur, santidade e trabalho.',c.oracao)}
         </div>
       </div>
-      <div class="card focusCard">
-        <h3>Leitura em foco</h3>
-        <div class="readingHeader"><div class="dayBadge">${p.day}</div><div><p><strong>${safeHTML(p.reading)}</strong></p><p class="sub">${safeHTML(p.focus)}</p></div></div>
-        <div class="row" style="margin-top:10px"><button type="button" class="btn" onclick="markRead(${p.day},true); markCheck('leitura',true)">Marcar como lido</button><button type="button" class="btn secondary" onclick="switchTab('leitura')">Abrir plano</button></div>
-        ${atraso>0 ? `<p class="sub" style="margin-top:10px;color:#ffd7d4">Pelo calendário local do Brasil, a leitura esperada hoje seria o dia ${ep.day}. Ajuste manualmente se vocês já estavam em outro ponto.</p>` : ''}
+
+      <div class="sideStack">
+        <div class="card focusCard interactiveFocus">
+          <p class="kicker">Leitura em foco</p>
+          <div class="readingHeader"><div class="dayBadge">${p.day}</div><div><p><strong>${safeHTML(p.reading)}</strong></p><p class="sub">${safeHTML(p.focus)}</p></div></div>
+          <div class="row" style="margin-top:12px"><button type="button" class="btn" onclick="markRead(${p.day},true); markCheck('leitura',true)">Marcar como lido</button><button type="button" class="btn secondary" onclick="switchTab('leitura')">Abrir plano</button></div>
+          ${atraso>0 ? `<p class="sub" style="margin-top:10px;color:#8d6464">Pelo calendário local do Brasil, a leitura esperada hoje seria o dia ${ep.day}. Ajustem manualmente se necessário.</p>` : ''}
+        </div>
+
+        <div class="card insightPanel" id="card-oracao">
+          <button type="button" class="insightToggle" onclick="toggleInsight('insight-oracao')"><span>Oração guiada</span><b>abrir</b></button>
+          <div id="insight-oracao" class="insightBody">
+            <p class="quote">Senhor, dá-nos fome pela tua Palavra, humildade para obedecer, amor para servir dentro de casa e constância para viver diante de ti hoje. Amém.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    ${review}
-
-    <div class="card prayerCard">
-      <h3>Oração breve</h3>
-      <p class="quote">Senhor, dá-nos fome pela tua Palavra, humildade para obedecer, amor para servir dentro de casa e constância para viver diante de ti hoje. Amém.</p>
-    </div>`;
+    ${review}`;
   $$('.check input').forEach(i=>i.onchange=()=>{ i.closest('.check')?.classList.toggle('checked',i.checked); markCheck(i.dataset.id,i.checked); if(i.checked) toast('Etapa concluída com carinho.'); });
 }
 
@@ -298,28 +359,48 @@ Senhor, coloca Cristo no centro da nossa aliança. Purifica nossas motivações,
 }
 function fallbackChildDevotion(){
   const t=childThemeForToday();
-  return `Título: ${t.name}
+  return `Título da historinha: O pequeno Arthur e a verdade de Deus
 
-Verdade bíblica em uma frase:
+Verdade bíblica de hoje:
 ${t.truth}
 
-Explicação para Arthur:
-Arthur, Deus é bom. Ele ama você e cuida da nossa família. Hoje nós vamos lembrar uma coisa bem simples: ${t.phrase}
+Historinha para contar:
+Era uma vez um menino chamado Arthur. Arthur acordou, abriu os olhinhos e viu que mais um dia tinha começado. Ele queria brincar, correr e fazer muitas coisas.
 
-Exemplo da rotina:
-Quando você acorda, brinca, come, toma banho e vai dormir, Deus continua vendo você e cuidando de você.
+Então papai e mamãe chamaram Arthur para sentar bem pertinho. Papai disse:
+“Arthur, hoje vamos lembrar uma verdade muito importante: ${t.phrase}.”
 
-Perguntinha:
-O que vamos repetir hoje? Resposta: ${t.phrase}
+Arthur colocou a mão no coração e perguntou:
+“Deus cuida de mim?”
 
-Atividade de 2 minutos:
-Peça para Arthur colocar a mão no coração e repetir três vezes: “${t.phrase}”. Depois, dê um abraço nele e agradeçam a Deus juntos.
+Mamãe respondeu:
+“Sim, meu filho. Deus vê você quando acorda, quando brinca, quando come, quando toma banho e quando vai dormir. Deus ama Arthur e ensina Arthur a obedecer.”
 
-Frase para repetir:
+Então Arthur pegou um brinquedo e lembrou que podia dividir. Ele sorriu e disse:
+“Eu quero obedecer a Deus.”
+
+Papai falou:
+“Isso alegra o coração do Senhor. Quando Arthur obedece, compartilha e ama, Arthur está aprendendo a andar no caminho de Deus.”
+
+E naquele dia, Arthur repetiu bem devagar:
+“${t.phrase}.”
+
+Moral da historinha:
+Deus ama Arthur, cuida da família e ensina o coração da criança a obedecer com alegria.
+
+Perguntinhas para Arthur:
+1. Quem cuida de Arthur?
+2. O que Arthur pode fazer para obedecer hoje?
+3. Vamos repetir a frase de hoje?
+
+Frase para repetir 3 vezes:
 ${t.phrase}
 
+Atividade de 2 minutos:
+Peça para Arthur escolher um brinquedo e entregar para alguém por alguns segundos. Depois diga: “Arthur compartilhou com amor.” Finalizem com um abraço.
+
 Oração curtinha:
-Papai do céu, obrigado por me amar. Ajuda-me a obedecer, compartilhar e amar minha família. Amém.`;
+Papai do céu, obrigado por amar Arthur. Ajuda Arthur a obedecer, compartilhar e amar a família. Amém.`;
 }
 
 async function callAI(prompt,max=2600){
@@ -366,7 +447,7 @@ Estrutura obrigatória:
 }
 function promptChild(){
   const p=currentPlan(); const t=childThemeForToday();
-  return `Crie um devocional bíblico para uma criança de 3 anos chamada Arthur.
+  return `Crie um devocional infantil em formato de historinha narrativa para Arthur, 3 anos, em português, curto, concreto, fácil de imaginar e com clima de livrinho infantil.
 
 Tema infantil de hoje: ${t.name}
 Verdade desejada: ${t.truth}
@@ -374,24 +455,26 @@ Frase para repetir: ${t.phrase}
 Base bíblica do plano da família: ${p.reading}
 Foco: ${p.focus}
 
-Requisitos:
-- português do Brasil;
-- curto, carinhoso, concreto e bíblico;
-- linguagem de criança de 3 anos;
-- sem temas assustadores;
-- sem explicações abstratas longas;
-- use repetição, imagem mental simples e rotina da criança;
-- ajude Marcus e Ingrid a conduzir em 2 a 4 minutos.
-
 Estrutura obrigatória:
-1. Título
-2. Verdade bíblica em uma frase
-3. História ou explicação curta para criança
-4. Exemplo da rotina da criança
-5. Pergunta simples para os pais fazerem
-6. Atividade de 2 minutos
-7. Frase para repetir
-8. Oração curtinha.`;
+1. Título da historinha
+2. Verdade bíblica de hoje
+3. Historinha para contar, com começo, meio e fim, Arthur como personagem principal, cenas simples da rotina dele, diálogo curto entre papai, mamãe e Arthur, e uma ação prática de obediência
+4. Moral da historinha
+5. Perguntinhas para Arthur
+6. Frase para repetir 3 vezes
+7. Atividade de 2 minutos
+8. Oração curtinha
+
+Regras:
+- português do Brasil;
+- linguagem de criança de 3 anos;
+- frases curtas;
+- imagem mental simples;
+- sem abstração pesada;
+- sem temas assustadores;
+- tom carinhoso, cristão e familiar;
+- sensação de livrinho narrado pelos pais;
+- ajude Marcus e Ingrid a conduzir em 2 a 4 minutos.`;
 }
 async function generateDevotion(type, force=false){
   const k=todayKey();
@@ -442,28 +525,74 @@ function renderCouple(){
 function renderChild(){
   const el=$('#sec-crianca'); if(!el)return;
   const k=todayKey(); const saved=S.devotions.child?.[k]; const text=saved?.text || fallbackChildDevotion(); const t=childThemeForToday();
+  const pages=storyPages(text); const pg=childPageIndex(pages.length); const pageText=pages[pg];
   el.innerHTML=`
-    <div class="hero floralHero lilac"><div class="heroMark" aria-hidden="true">${appIcon('child')}</div>${appIllu('child')}<p class="kicker">Devocional infantil</p><h2>Para Arthur, 3 anos.</h2><p>Curto, repetível, carinhoso e adequado para ensinar uma verdade bíblica simples.</p><span class="themePill">Tema: ${safeHTML(t.name)}</span><span class="themePill">Frase: ${safeHTML(t.phrase)}</span></div>
-    <div class="card">
-      <div class="row between"><h3>Devocional de hoje</h3><span class="pill">${saved?'Salvo':'Base local'}</span></div>
-      <div id="childText" class="devotional">${safeHTML(text)}</div>
-      <div class="row" style="margin-top:12px">
-        <button type="button" class="btn" onclick="generateDevotion('child', ${saved?'true':'false'})">${saved?'Gerar novamente':'Gerar com IA'}</button>
-        <button type="button" class="btn secondary" onclick="openReadMode('child')">Modo leitura</button>
-        <button type="button" class="btn secondary" onclick="completeDevotion('child')">Concluir</button>
+    <div class="hero floralHero lilac storyHero"><div class="heroMark" aria-hidden="true">${appIcon('child')}</div>${appIllu('child')}<p class="kicker">Devocional infantil</p><h2>O livrinho de hoje para Arthur.</h2><p>Uma experiência mais visual e afetiva, com narrativa curta para ele imaginar, repetir e guardar no coração.</p><div class="storyMetaPills"><span class="themePill">Tema: ${safeHTML(t.name)}</span><span class="themePill">Frase: ${safeHTML(t.phrase)}</span><span class="themePill">Página ${pg+1} de ${pages.length}</span></div></div>
+
+    <div class="storybookLayout">
+      <div class="card storybookCover">
+        <p class="kicker">Livrinho do dia</p>
+        <h3>${safeHTML(t.name)}</h3>
+        <p>Conduzam como uma pequena leitura em família: voz calma, contato visual e repetição carinhosa.</p>
+        <div class="storyReminder">Repitam juntos: “${safeHTML(t.phrase)}”</div>
+        <div class="storySteps">
+          <button type="button" onclick="scrollToCard('storybook-text')"><span>01</span><strong>Ouvir a história</strong></button>
+          <button type="button" onclick="openReadMode('child')"><span>02</span><strong>Livro completo</strong></button>
+          <button type="button" onclick="completeDevotion('child')"><span>03</span><strong>Concluir momento</strong></button>
+        </div>
+      </div>
+
+      <div class="card storybookBook" id="storybook-text">
+        <div class="row between"><h3>Historinha de hoje</h3><span class="pill">${saved?'Salvo':'Base local'}</span></div>
+        <div class="storybookRibbon">Arthur • Palavra • Família</div>
+        <div class="storybookPage" aria-live="polite">
+          <div class="pageNumber">Página ${pg+1} / ${pages.length}</div>
+          <div id="childText" class="devotional storyText">${safeHTML(pageText)}</div>
+        </div>
+        <div class="pageControls">
+          <button type="button" class="btn secondary" onclick="turnChildPage(-1)" ${pg<=0?'disabled':''}>Página anterior</button>
+          <button type="button" class="btn" onclick="turnChildPage(1)" ${pg>=pages.length-1?'disabled':''}>Virar página</button>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <button type="button" class="btn" onclick="generateDevotion('child', ${saved?'true':'false'})">${saved?'Gerar novamente':'Gerar historinha com IA'}</button>
+          <button type="button" class="btn secondary" onclick="openReadMode('child')">Abrir livro completo</button>
+          <button type="button" class="btn secondary" onclick="completeDevotion('child')">Concluir</button>
+        </div>
       </div>
     </div>
-    <div class="card"><h3>Como conduzir</h3><p>Leia devagar, peça para Arthur repetir a frase principal, faça a atividade de 2 minutos e termine com uma oração bem curta. Para essa idade, constância vale mais que quantidade.</p></div>`;
+
+    <div class="grid two storyHelperGrid">
+      <div class="card storyCueCard">
+        <h3>Como conduzir</h3>
+        <ul class="storyCueList">
+          <li>Leiam uma página por vez, sem pressa.</li>
+          <li>Virem a página junto com Arthur.</li>
+          <li>Peçam para ele repetir a frase principal.</li>
+          <li>Façam a atividade de 2 minutos e terminem em oração.</li>
+        </ul>
+      </div>
+      <div class="card storyPrayerCard">
+        <h3>Clima do momento</h3>
+        <p>Transformem esse tempo em um pequeno ritual familiar: sentem perto, chamem Arthur pelo nome, apontem a verdade bíblica e celebrem cada resposta dele com alegria.</p>
+        <div class="storyMiniActions">
+          <span class="themePill">Imaginar</span>
+          <span class="themePill">Repetir</span>
+          <span class="themePill">Virar página</span>
+          <span class="themePill">Orar</span>
+        </div>
+      </div>
+    </div>`;
 }
 function openReadMode(type){
   const k=todayKey(); const saved=S.devotions[type]?.[k]; const text=saved?.text || (type==='couple'?fallbackCoupleDevotion():fallbackChildDevotion());
   $('#readerKicker').textContent = type==='couple' ? 'Devocional do casal' : 'Devocional do Arthur';
-  $('#readerTitle').textContent = type==='couple' ? 'Leitura devocional serena' : 'Momento devocional com Arthur';
+  $('#readerTitle').textContent = type==='couple' ? 'Leitura devocional serena' : 'Historinha devocional do Arthur';
   $('#readerBody').textContent = text;
-  const btn=$('#readerComplete'); btn.textContent = type==='couple' ? 'Concluir leitura do casal' : 'Concluir momento com Arthur'; btn.onclick=()=>{ completeDevotion(type); closeReadMode(); };
+  document.querySelector('.readerPanel')?.classList.toggle('childBookMode', type==='child');
+  const btn=$('#readerComplete'); btn.textContent = type==='couple' ? 'Concluir leitura do casal' : 'Concluir historinha do Arthur'; btn.onclick=()=>{ completeDevotion(type); closeReadMode(); };
   $('#reader').classList.remove('hidden'); document.body.classList.add('reader-open');
 }
-function closeReadMode(){ $('#reader')?.classList.add('hidden'); document.body.classList.remove('reader-open'); }
+function closeReadMode(){ $('#reader')?.classList.add('hidden'); document.body.classList.remove('reader-open'); document.querySelector('.readerPanel')?.classList.remove('childBookMode'); }
 
 function markRead(day,val){
   day=clamp(day,1,365);
@@ -508,7 +637,7 @@ function renderReading(){
   const previous=PLAN.slice(Math.max(0,d-4), d-1).map(dayItem).join('');
   const allList=S.reading.showAll ? PLAN.map(dayItem).join('') : '';
   el.innerHTML=`
-    <div class="hero floralHero sage"><div class="heroMark" aria-hidden="true">${appIcon('bible')}</div>${appIllu('bible')}<p class="kicker">Plano cronológico 365 dias</p><h2>Leitura bíblica anual, leve no celular.</h2><p>A tela mostra o essencial. A lista completa só aparece quando vocês pedirem.</p></div>
+    <div class="hero floralHero sage"><div class="heroMark" aria-hidden="true">${appIcon('bible')}</div>${appIllu('bible')}<p class="kicker">Plano cronológico 365 dias</p><h2>Leitura bíblica anual em ordem cronológica.</h2><p>A jornada acompanha a linha histórica da redenção: origens, patriarcas, reino, profetas, Cristo e igreja primitiva.</p></div>
     <div class="grid two">
       <div class="card">
         <h3>Progresso</h3>
@@ -541,11 +670,11 @@ function renderReading(){
 }
 function saveNote(id,val){ S.reading.notes[id]=val; save(); toast('Reflexão salva com carinho.'); }
 
-function exportBackup(){ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup-eterno-compromisso-v31-'+todayKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
+function exportBackup(){ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup-eterno-compromisso-v36-'+todayKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
 function importBackup(file){ if(!file)return; const r=new FileReader(); r.onload=()=>{ try{ const imported=JSON.parse(r.result); S={...emptyState(),...imported,version:APP_VERSION}; normalizeState(); save(); toast('Backup restaurado com sucesso.'); }catch(e){ toast('Arquivo inválido.'); } }; r.readAsText(file); }
 function restoreAutoBackup(index=0){
   try{
-    const backups=JSON.parse(localStorage.getItem('ec_v31_auto_backups')||'[]');
+    const backups=JSON.parse(localStorage.getItem('ec_v32_auto_backups')||'[]');
     if(!backups[index]) return toast('Backup automático não encontrado.');
     if(confirm(`Restaurar backup automático de ${backups[index].date}?`)){ S={...emptyState(),...backups[index].state,version:APP_VERSION}; normalizeState(); save(); toast('Backup automático restaurado.'); }
   }catch(e){ toast('Não foi possível restaurar.'); }
@@ -553,7 +682,7 @@ function restoreAutoBackup(index=0){
 function renderSettings(){
   const el=$('#sec-ajustes'); if(!el)return;
   const hist=(S.history.completedDevotions||[]).slice(0,6).map(x=>`<div class="historyItem">${x.date} — ${x.type==='couple'?'Devocional do casal':'Devocional do Arthur'}<br><span>${safeHTML(x.reading||'')}</span></div>`).join('') || '<div class="empty"><strong>Ainda não há registros.</strong><span>Comecem hoje com uma oração simples.</span></div>';
-  let backups=[]; try{ backups=JSON.parse(localStorage.getItem('ec_v31_auto_backups')||'[]'); }catch(e){}
+  let backups=[]; try{ backups=JSON.parse(localStorage.getItem('ec_v32_auto_backups')||'[]'); }catch(e){}
   const backupList=backups.slice(0,4).map((b,i)=>`<div class="historyItem"><strong>${b.date}</strong><br><span>Backup automático local</span><br><button type="button" class="btn mini secondary" onclick="restoreAutoBackup(${i})">Restaurar</button></div>`).join('') || '<div class="empty"><strong>Sem backup automático ainda.</strong><span>Ele será criado quando vocês salvarem algo hoje.</span></div>';
   el.innerHTML=`
     <div class="hero floralHero peach"><div class="heroMark" aria-hidden="true">${appIcon('settings')}</div>${appIllu('settings')}<p class="kicker">Ajustes</p><h2>Essencial, leve e confiável.</h2><p>Conta, backup, sincronização, histórico simples e manutenção do aplicativo.</p><div class="syncLine"><span class="dot ${syncDotClass()}"></span><span>${safeHTML(syncLabel())}</span></div></div>
@@ -562,7 +691,7 @@ function renderSettings(){
       <div class="card"><h3>Sincronização</h3><p class="sub">${safeHTML(syncLabel())}</p><button type="button" class="btn full" onclick="forceSync()">Sincronizar agora</button></div>
       <div class="card"><h3>Backup manual</h3><div class="row"><button type="button" class="btn" onclick="exportBackup()">Exportar</button><label class="btn secondary">Importar<input type="file" accept="application/json" class="hidden" onchange="importBackup(this.files[0])"></label></div></div>
       <div class="card"><h3>Backups automáticos</h3><div class="history">${backupList}</div></div>
-      <div class="card"><h3>Diagnóstico</h3><div class="stats"><div class="stat"><b>31</b><span>Versão</span></div><div class="stat"><b>${doneCount()}</b><span>Dias lidos</span></div><div class="stat"><b>${cloudReady?'Nuvem':'Local'}</b><span>Status</span></div></div><button type="button" class="btn secondary full" style="margin-top:10px" onclick="clearCaches()">Limpar cache</button></div>
+      <div class="card"><h3>Diagnóstico</h3><div class="stats"><div class="stat"><b>36</b><span>Versão</span></div><div class="stat"><b>${doneCount()}</b><span>Dias lidos</span></div><div class="stat"><b>${cloudReady?'Nuvem':'Local'}</b><span>Status</span></div></div><button type="button" class="btn secondary full" style="margin-top:10px" onclick="clearCaches()">Limpar cache</button></div>
       <div class="card"><h3>Histórico simples</h3><div class="history">${hist}</div></div>
     </div>`;
 }
@@ -621,6 +750,6 @@ function installSW(){
 function showUpdate(worker){ swWaiting=worker; $('#updateBanner')?.classList.remove('hidden'); }
 function applyAppUpdate(){ if(swWaiting){ swWaiting.postMessage({type:'SKIP_WAITING'}); } else location.reload(); }
 
-window.switchTab=switchTab; window.markRead=markRead; window.setCurrentDay=setCurrentDay; window.resetReading=resetReading; window.markUntil=markUntil; window.unmarkFrom=unmarkFrom; window.setStartToday=setStartToday; window.jumpExpected=jumpExpected; window.toggleAllReading=toggleAllReading; window.searchReading=searchReading; window.generateDevotion=generateDevotion; window.completeDevotion=completeDevotion; window.openReadMode=openReadMode; window.closeReadMode=closeReadMode; window.saveNote=saveNote; window.saveWeeklyReview=saveWeeklyReview; window.loginGoogle=loginGoogle; window.logout=logout; window.exportBackup=exportBackup; window.importBackup=importBackup; window.restoreAutoBackup=restoreAutoBackup; window.clearCaches=clearCaches; window.forceSync=forceSync; window.applyAppUpdate=applyAppUpdate;
+window.switchTab=switchTab; window.markRead=markRead; window.setCurrentDay=setCurrentDay; window.resetReading=resetReading; window.markUntil=markUntil; window.unmarkFrom=unmarkFrom; window.setStartToday=setStartToday; window.jumpExpected=jumpExpected; window.toggleAllReading=toggleAllReading; window.searchReading=searchReading; window.generateDevotion=generateDevotion; window.completeDevotion=completeDevotion; window.openReadMode=openReadMode; window.closeReadMode=closeReadMode; window.saveNote=saveNote; window.saveWeeklyReview=saveWeeklyReview; window.loginGoogle=loginGoogle; window.logout=logout; window.exportBackup=exportBackup; window.importBackup=importBackup; window.restoreAutoBackup=restoreAutoBackup; window.clearCaches=clearCaches; window.forceSync=forceSync; window.applyAppUpdate=applyAppUpdate; window.toggleInsight=toggleInsight; window.scrollToCard=scrollToCard; window.turnChildPage=turnChildPage; window.toggleDarkMode=toggleDarkMode;
 
 (async function main(){ localLoad(); await loadSvgSprite(); await loadDataFiles(); installSW(); initFirebase(); render(); setTimeout(hideSplash,520); })();

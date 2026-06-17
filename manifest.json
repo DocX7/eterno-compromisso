@@ -1,7 +1,7 @@
 {
   "name": "Eterno Compromisso",
   "short_name": "Eterno",
-  "description": "Rotina devocional com visual sóbrio, fluido, tecnológico e acolhedor para Marcus, Ingrid e Arthur.",
+  "description": "Rotina devocional com plano bíblico de 365 dias em ordem cronológica revisada.",
   "start_url": "./#hoje",
   "scope": "./",
   "display": "standalone",

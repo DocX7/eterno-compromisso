@@ -1,3 +1,23 @@
+## V36 — Plano Cronológico Revisado
+
+Versão com revisão específica do plano bíblico anual em ordem cronológica. O visual e as funcionalidades principais da V35 foram preservados.
+
+## V35 — Absolutamente Final
+
+Versão final com modo escuro premium, livrinho do Arthur com virada de página e plano bíblico anual em ordem cronológica.
+
+## V34 — Refinamento Final
+
+Versão com polimento fino de layout, menu inferior mais elegante e microanimações mais suaves para uso premium no iPhone.
+
+## V33 — Premium Cinematic Storybook
+
+Versão com transições mais cinematográficas, cards premium e área do Arthur em formato de livrinho interativo.
+
+## V32 — Imersivo Formal Narrativo
+
+Versão com estrutura mais inovadora, interativa e tecnológica, mantendo visual formal e acolhedor. O devocional do Arthur agora trabalha com historinhas narrativas.
+
 ## V31 — Tech Acolhedor Formal
 
 Versão com visual mais sóbrio, formal, fluido e tecnológico, mantendo acolhimento e leveza.

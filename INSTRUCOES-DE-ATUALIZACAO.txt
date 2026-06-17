@@ -1,9 +1,13 @@
-INSTRUÇÕES DE ATUALIZAÇÃO — V31 TECH ACOLHEDOR FORMAL
+INSTRUÇÕES DE ATUALIZAÇÃO — V36 PLANO CRONOLÓGICO REVISADO
 
 1. Extraia o ZIP.
-2. Envie todos os arquivos e pastas de dentro da pasta V31 para a raiz do repositório GitHub.
+2. Envie todos os arquivos e pastas de dentro da pasta V36 para a raiz do repositório GitHub.
 3. Não envie a pasta externa inteira.
 4. Faça commit e aguarde o GitHub Pages atualizar.
-5. Se o visual antigo continuar, use Ctrl+F5, limpe cache ou reinstale o PWA no celular.
+5. Se o plano antigo continuar aparecendo, use Ctrl+F5, limpe cache ou reinstale o PWA no celular.
 
-A V31 preserva o mesmo documento Firestore das versões recentes para não apagar o progresso salvo.
+Alteração principal:
+- data/reading-plan-365.json foi revisado em ordem cronológica mais refinada.
+
+Observação:
+Se vocês já começaram o plano antigo, o progresso por número de dia será preservado, mas as leituras daquele dia podem mudar por causa da nova ordem cronológica.
