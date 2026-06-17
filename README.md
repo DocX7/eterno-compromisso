@@ -1,3 +1,11 @@
+## V41 — Assinatura Premium
+
+Versão focada em um visual mais belo, especial e diferenciado, com acabamento premium, atmosfera bíblica e experiência mais marcante.
+
+## V40 — Layout Ajustado
+
+Esta versão corrige o layout da versão anterior, especialmente a área de leitura cronológica, e melhora o topo, a hierarquia visual e a navegação entre abas.
+
 ## V39 — Visual Palavra
 
 Versão focada em redesign visual: mais conexão com a Palavra de Deus, atmosfera cinematográfica e área do Arthur com estética própria.

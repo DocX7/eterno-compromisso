@@ -1,12 +1,12 @@
 {
   "name": "Eterno Compromisso",
   "short_name": "Eterno",
-  "description": "Visual bíblico cinematográfico e acolhedor, com área infantil diferenciada para Arthur.",
+  "description": "Versão premium com visual belo, especial e diferenciado, centrado na Palavra de Deus.",
   "start_url": "./#hoje",
   "scope": "./",
   "display": "standalone",
   "background_color": "#120d0a",
-  "theme_color": "#1a130f",
+  "theme_color": "#15100d",
   "orientation": "portrait-primary",
   "icons": [
     {

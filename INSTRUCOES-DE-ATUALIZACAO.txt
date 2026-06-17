@@ -1,8 +1,9 @@
-INSTRUÇÕES DE ATUALIZAÇÃO — V39 VISUAL PALAVRA
+ATUALIZAÇÃO V41
 
 1. Extraia o ZIP.
-2. Envie todo o conteúdo interno da pasta para a raiz do repositório GitHub Pages.
-3. Faça commit e aguarde a publicação.
-4. Se a versão antiga persistir, limpe o cache do navegador ou reinstale o PWA no iPhone.
+2. Suba o conteúdo da pasta para a raiz do repositório GitHub Pages.
+3. Faça commit.
+4. Aguarde a publicação.
+5. Limpe o cache do navegador se a versão antiga persistir.
 
-Esta versão altera o design geral e destaca mais a conexão com a Palavra de Deus.
+Dica: no iPhone, se estiver como app instalado, remova e instale novamente para garantir o novo visual.

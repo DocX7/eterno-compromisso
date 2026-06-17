@@ -1,4 +1,4 @@
-const APP_VERSION = 'V39_VISUAL_PALAVRA';
+const APP_VERSION = 'V41_ASSINATURA_PREMIUM';
 const ALLOWED_EMAILS = ['contato.marcusbuceles@gmail.com','contato.ingridbuceles@gmail.com'];
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyCr-zPc9UqDSuQRBwXHYguCot9zeChOJI8",
@@ -15,8 +15,8 @@ const COUPLE_DOC = 'marcus_e_ingrid_essencial_v23';
 const OPENAI_API_KEY_FIXA = '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';
 const OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
 const DEFAULT_MODEL = 'gpt-5-mini';
-const STORAGE_KEY = 'ec_v39_visual_palavra_state';
-const LEGACY_STORAGE_KEYS = ['ec_v38_premium_total_state','ec_v37_arthur_ilustrado_state','ec_v36_cronologico_state','ec_v35_final_state','ec_v34_refinamento_state','ec_v33_cinematic_state','ec_v32_imersivo_state','ec_v31_formal_state','ec_v29_final_visual_state','ec_v28_fluidez_state','ec_v27_premium_state','ec_v26_floral_state','ec_v25_pastel_state','ec_v24_essencial_state','ec_v23_essencial_state','ec_v22_essencial_state'];
+const STORAGE_KEY = 'ec_v41_assinatura_premium_state';
+const LEGACY_STORAGE_KEYS = ['ec_v40_layout_ajustado_state','ec_v39_visual_palavra_state','ec_v38_premium_total_state','ec_v37_arthur_ilustrado_state','ec_v36_cronologico_state','ec_v35_final_state','ec_v34_refinamento_state','ec_v33_cinematic_state','ec_v32_imersivo_state','ec_v31_formal_state','ec_v29_final_visual_state','ec_v28_fluidez_state','ec_v27_premium_state','ec_v26_floral_state','ec_v25_pastel_state','ec_v24_essencial_state','ec_v23_essencial_state','ec_v22_essencial_state'];
 const BR_TZ = 'America/Fortaleza';
 
 let db=null, auth=null, user=null, ref=null, unsub=null, applyingRemote=false, cloudReady=false;
@@ -143,7 +143,7 @@ function localLoad(){
 }
 function autoBackup(){
   try{
-    const k='ec_v39_auto_backups'; const today=todayKey();
+    const k='ec_v41_auto_backups'; const today=todayKey();
     const backups=JSON.parse(localStorage.getItem(k)||'[]');
     if(backups[0]?.date===today) return;
     backups.unshift({date:today, ts:Date.now(), state:S});
@@ -171,12 +171,14 @@ function fallbackPlan(){ return Array.from({length:365},(_,i)=>({day:i+1,reading
 function switchTab(tab){
   if(!['hoje','casal','crianca','leitura','ajustes'].includes(tab)) tab='hoje';
   const app=document.querySelector('.app');
+  window.scrollTo({top:0,left:0,behavior:'auto'});
   app?.classList.add('tab-switching');
   S.activeTab=tab;
   localSave();
   history.replaceState(null,'','#'+tab);
   render();
-  requestAnimationFrame(()=>window.scrollTo({top:0,behavior:'smooth'}));
+  requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'auto'}));
+  setTimeout(()=>window.scrollTo({top:0,left:0,behavior:'auto'}),80);
   clearTimeout(window.__ecTabFx);
   window.__ecTabFx=setTimeout(()=>app?.classList.remove('tab-switching'),520);
 }
@@ -819,11 +821,11 @@ function renderReading(){
 }
 function saveNote(id,val){ S.reading.notes[id]=val; save(); toast('Reflexão salva com carinho.'); }
 
-function exportBackup(){ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup-eterno-compromisso-v39-'+todayKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
+function exportBackup(){ const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup-eterno-compromisso-v41-'+todayKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
 function importBackup(file){ if(!file)return; const r=new FileReader(); r.onload=()=>{ try{ const imported=JSON.parse(r.result); S={...emptyState(),...imported,version:APP_VERSION}; normalizeState(); save(); toast('Backup restaurado com sucesso.'); }catch(e){ toast('Arquivo inválido.'); } }; r.readAsText(file); }
 function restoreAutoBackup(index=0){
   try{
-    const backups=JSON.parse(localStorage.getItem('ec_v39_auto_backups')||'[]');
+    const backups=JSON.parse(localStorage.getItem('ec_v41_auto_backups')||'[]');
     if(!backups[index]) return toast('Backup automático não encontrado.');
     if(confirm(`Restaurar backup automático de ${backups[index].date}?`)){ S={...emptyState(),...backups[index].state,version:APP_VERSION}; normalizeState(); save(); toast('Backup automático restaurado.'); }
   }catch(e){ toast('Não foi possível restaurar.'); }
@@ -831,7 +833,7 @@ function restoreAutoBackup(index=0){
 function renderSettings(){
   const el=$('#sec-ajustes'); if(!el)return;
   const hist=(S.history.completedDevotions||[]).slice(0,6).map(x=>`<div class="historyItem">${x.date} — ${x.type==='couple'?'Devocional do casal':'Devocional do Arthur'}<br><span>${safeHTML(x.reading||'')}</span></div>`).join('') || '<div class="empty"><strong>Ainda não há registros.</strong><span>Comecem hoje com uma oração simples.</span></div>';
-  let backups=[]; try{ backups=JSON.parse(localStorage.getItem('ec_v39_auto_backups')||'[]'); }catch(e){}
+  let backups=[]; try{ backups=JSON.parse(localStorage.getItem('ec_v41_auto_backups')||'[]'); }catch(e){}
   const backupList=backups.slice(0,4).map((b,i)=>`<div class="historyItem"><strong>${b.date}</strong><br><span>Backup automático local</span><br><button type="button" class="btn mini secondary" onclick="restoreAutoBackup(${i})">Restaurar</button></div>`).join('') || '<div class="empty"><strong>Sem backup automático ainda.</strong><span>Ele será criado quando vocês salvarem algo hoje.</span></div>';
   el.innerHTML=`
     <div class="hero floralHero peach"><div class="heroMark" aria-hidden="true">${appIcon('settings')}</div>${appIllu('settings')}<p class="kicker">Ajustes</p><h2>Essencial, leve e confiável.</h2><p>Conta, backup, sincronização, histórico simples e manutenção do aplicativo.</p><div class="syncLine"><span class="dot ${syncDotClass()}"></span><span>${safeHTML(syncLabel())}</span></div></div>
@@ -840,7 +842,7 @@ function renderSettings(){
       <div class="card"><h3>Sincronização</h3><p class="sub">${safeHTML(syncLabel())}</p><button type="button" class="btn full" onclick="forceSync()">Sincronizar agora</button></div>
       <div class="card"><h3>Backup manual</h3><div class="row"><button type="button" class="btn" onclick="exportBackup()">Exportar</button><label class="btn secondary">Importar<input type="file" accept="application/json" class="hidden" onchange="importBackup(this.files[0])"></label></div></div>
       <div class="card"><h3>Backups automáticos</h3><div class="history">${backupList}</div></div>
-      <div class="card"><h3>Diagnóstico</h3><div class="stats"><div class="stat"><b>39</b><span>Versão</span></div><div class="stat"><b>${doneCount()}</b><span>Dias lidos</span></div><div class="stat"><b>${cloudReady?'Nuvem':'Local'}</b><span>Status</span></div></div><button type="button" class="btn secondary full" style="margin-top:10px" onclick="clearCaches()">Limpar cache</button></div>
+      <div class="card"><h3>Diagnóstico</h3><div class="stats"><div class="stat"><b>41</b><span>Versão</span></div><div class="stat"><b>${doneCount()}</b><span>Dias lidos</span></div><div class="stat"><b>${cloudReady?'Nuvem':'Local'}</b><span>Status</span></div></div><button type="button" class="btn secondary full" style="margin-top:10px" onclick="clearCaches()">Limpar cache</button></div>
       <div class="card"><h3>Histórico simples</h3><div class="history">${hist}</div></div>
     </div>`;
 }

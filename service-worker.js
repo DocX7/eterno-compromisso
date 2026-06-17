@@ -1,4 +1,4 @@
-const CACHE='ec-v39-visual-palavra';
+const CACHE='ec-v41-assinatura-premium';
 const ASSETS=[
   './',
   'index.html',
