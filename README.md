@@ -1,6 +1,6 @@
-## V30 — Vivo, Acolhedor e Jovial
+## V31 — Tech Acolhedor Formal
 
-Versão com cores mais vivas, fortes e jovens, preservando o aconchego e a fluidez do app.
+Versão com visual mais sóbrio, formal, fluido e tecnológico, mantendo acolhimento e leveza.
 
 ## V29 — Final Visual Completa
 

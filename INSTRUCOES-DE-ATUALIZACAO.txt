@@ -1,9 +1,9 @@
-INSTRUÇÕES DE ATUALIZAÇÃO — V30 VIVO ACOLHEDOR JOVIAL
+INSTRUÇÕES DE ATUALIZAÇÃO — V31 TECH ACOLHEDOR FORMAL
 
 1. Extraia o ZIP.
-2. Envie todos os arquivos e pastas de dentro da pasta V30 para a raiz do repositório GitHub.
+2. Envie todos os arquivos e pastas de dentro da pasta V31 para a raiz do repositório GitHub.
 3. Não envie a pasta externa inteira.
 4. Faça commit e aguarde o GitHub Pages atualizar.
 5. Se o visual antigo continuar, use Ctrl+F5, limpe cache ou reinstale o PWA no celular.
 
-A V30 preserva o mesmo documento Firestore das versões recentes para não apagar o progresso salvo.
+A V31 preserva o mesmo documento Firestore das versões recentes para não apagar o progresso salvo.
